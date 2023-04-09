@@ -275,7 +275,7 @@ https://templatemo.com/tm-588-ebook-landing
             </section>
 
 
-            <section class="contact-section section-padding" id="section_5">
+           <section class="contact-section section-padding" id="section_5">
                 <div class="container">
                     <div class="row">
 
@@ -357,7 +357,7 @@ https://templatemo.com/tm-588-ebook-landing
 
                     </div>
                 </div>
-            </section>
+            </section> 
         </main>
 
         <!-- JAVASCRIPT FILES -->
