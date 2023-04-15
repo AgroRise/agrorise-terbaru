@@ -13,13 +13,15 @@
     <link href="css/bootstrap-icons.css" rel="stylesheet">
     <link href="css/landing.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <link href="css/signup.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>@yield('title')</title>
 </head>
 <body>
     <header>
-        @include('includes.header')
+        {{-- @include('includes.header') --}}
         @yield('content')
         {{-- @include('includes.footer') --}}
     </header>

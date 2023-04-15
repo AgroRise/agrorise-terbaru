@@ -1,6 +1,7 @@
 @extends('layout.app')
 @section('title', 'agrorise')
 @section('content')
+@include('includes.header')
 <section class="hero-section d-flex flex-warp justify-content-center align-items-center" id="section_1">
     <div class="container">
         <div class="row">
@@ -187,4 +188,5 @@
         </div>
     </div>
 </section>
+@include('includes.footer')
 @endsection

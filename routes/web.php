@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\SigninController;
+use App\Http\Controllers\SignupController;
+use App\Http\Controllers\SignuppakarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +24,27 @@ Route::get('/login', function () {
     return view('loginmain');
 });
 
-Route::get('/login/pakar', function () {
-    return view('login');
+// Route::get('/pakar', function () {
+//     return view('login');
+// });
+
+Route::get('/pakar', function () {
+    return view('sesi/pakar');
 });
 
-Route::get('home', function () {
-    return view('home/index');
-});
+// Route::get('/signup', function () {
+//     return view('signup');
+// });
+// Route::get('home', function () {
+//     return view('home/index');
+// });
+
+route::get('/signin',[SigninController::class, 'index']);
+route::post('/signin',[SigninController::class, 'login']);
+
+route::get('/signup',[SignupController::class, 'index']);
+route::post('/signup',[SignupController::class, 'store']);
+
+route::get('/pakar',[SignuppakarController::class, 'index']);
+route::post('/pakar',[SignuppakarController::class, 'store']);
+

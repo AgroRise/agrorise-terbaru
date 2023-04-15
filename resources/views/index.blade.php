@@ -20,7 +20,7 @@
 
         <link href="css/bootstrap-icons.css" rel="stylesheet">
 
-        <link href="css\landing1.css" rel="stylesheet">
+        <link href="css\landing.css" rel="stylesheet">
 <!--
 
 TemplateMo 588 ebook landing
