@@ -10,7 +10,7 @@ class SignuppakarController extends Controller
 {
     public function index()
     {
-        return view('sesi/pakar');
+        return view('sesi/signup-pakar');
     }
 
     public function store(Request $request)

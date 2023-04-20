@@ -1,4 +1,4 @@
-@extends('layout.pakar') 
+@extends('layout.sesi') 
 @section('title', 'pakar')
 @section('content')
 <nav class="navbar navbar-expand-lg">

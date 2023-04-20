@@ -20,7 +20,7 @@
 
         <link href="css/bootstrap-icons.css" rel="stylesheet">
 
-        <link href="css\landing.css" rel="stylesheet">
+        <link href="css/landing.css" rel="stylesheet">
 <!--
 
 TemplateMo 588 ebook landing
@@ -74,14 +74,74 @@ https://templatemo.com/tm-588-ebook-landing
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" href="#section_5">Tentang Kami</a>
                             </li>
-                        </ul>
+                        </ul> 
+                        {{-- Hallo, {{ auth()->guard('web')->user()->username ?? auth()->guard('pakar')->user()->username }} --}}
+                        {{-- {{Auth::user()->username}}    --}}
+                        {{-- @auth --}}
+                        <li class="nav-item dropdown">
+                            @if(Str::length(Auth::guard('pakar')->user()) > 0)
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">                        
+                                hallo, {{Auth::guard('pakar')->user()->username}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/profile"> <i class="bi bi-person"></i> Profil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>               
+                                </form>
+                                </li>
+                            </ul>   
+                        </li>
+                            </a>
+                            @elseif(Str::length(Auth::guard('user')->user()) > 0)
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">                        
+                                hallo, {{Auth::guard('user')->user()->username}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/profile"> <i class="bi bi-person"></i> Profil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>               
+                                </form>
+                                </li>
+                            </ul>   
+                        </li>
+                            @endif
+   
 
+
+                        {{-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> --}}
+                                {{-- Hallo, {{ auth()->user()->username }} --}}
+                                {{-- {{Auth::guard('pakar')->user()->username}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/profile"> <i class="bi bi-person"></i> Profil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>               
+                                </form>
+                                </li>
+                            </ul>   
+                        </li>
+                            
+                        @else                         
                         <div class="d-none d-lg-block">
-                            <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
+                            <a href="/login" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                                 <i class="btn-icon bi-cloud-download"></i>
                                 <span href="...\PPLARGO\login.php">Masuk</span><!-- duplicated above one for mobile -->
                             </a>
                         </div>
+                        @endauth                   --}}
+
+
+
                     </div>
                 </div>
             </nav>
@@ -98,7 +158,7 @@ https://templatemo.com/tm-588-ebook-landing
                             <h1 class="text-white mt-3 mb-4">AgroRise</h1>
                             <p class="text-white">Website penyedia layanan forum untuk berdiskusi mengenai hal AgroIndustri dan layanan Pencatatan Data</p>
 
-                            <a href="#section_2" class="btn custom-btn smoothscroll me-3 mt-3">Mulai</a>
+                            <a href="/mulai" class="btn custom-btn smoothscroll me-3 mt-3">Mulai</a>
                         </div>
                     </div>
                 </div>
@@ -114,29 +174,9 @@ https://templatemo.com/tm-588-ebook-landing
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-lg-12 col-12 text-center">
-                            <h6>What's inside?</h6>
+                                             
 
-                            <h2 class="mb-5">Preview at glance</h2>
-                        </div>
-
-                        <div class="col-lg-4 col-12">
-                            <nav id="navbar-example3" class="h-100 flex-column align-items-stretch">
-                                <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link smoothscroll" href="#item-1">Introduction</a>
-
-                                    <a class="nav-link smoothscroll" href="#item-2">Chapter 1: <strong>Win back your time</strong></a>
-
-                                    <a class="nav-link smoothscroll" href="#item-3">Chapter 2: <strong>Work less, do more</strong></a>
-
-                                    <a class="nav-link smoothscroll" href="#item-4">Chapter 3: <strong>Delegate</strong></a>
-
-                                    <a class="nav-link smoothscroll" href="#item-5">Chapter 4: <strong>Habits</strong></a>
-                                </nav>
-                            </nav>
-                        </div>
-
-                        <div class="col-lg-8 col-12">
+                        <div class="text-center align-items-center">
                             <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
                                 <div class="scrollspy-example-item" id="item-1">
                                     <h5>Introducing ebook</h5>
@@ -144,8 +184,6 @@ https://templatemo.com/tm-588-ebook-landing
                                     <p>This ebook landing page is good to use for any purpose. This layout is based on Bootstrap 5 CSS framework.</p>
 
                                     <p><strong>What is Content Marketing?</strong> If you are wondering what content marketing is all about, this is the place to start.</p>
-
-                                    <blockquote class="blockquote">Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito</blockquote>
 
                                     <p>When you need free HTML CSS templates, please visit Templatemo website which provides a variety of templates.</p>
                                 </div>
@@ -169,44 +207,10 @@ https://templatemo.com/tm-588-ebook-landing
                                         </div>
                                     </div>
 
-                                    <p>If you need some specific CSS templates, you can Google with keywords such as templatemo gallery, templatemo digital marketing, etc.</p>
+                                
                                 </div>
 
-                                <div class="scrollspy-example-item" id="item-3">
-                                    <h5>Work less, do more</h5>
-
-                                    <p>Credit goes to <a rel="nofollow" href="https://freepik.com" target="_blank">FreePik</a> for images used in this ebook landing page template. You may browse FreePik to download more free images for your website.</p>
-                                    <p>This is a second paragraph. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-
-                                    <p>Lorem ipsum dolor sit amet, consive adipisicing elit, sed do eiusmod. tempor incididunt ut labore.</p>
-
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-6 col-12">
-                                            <img src="images/tablet-screen-contents.jpg" class="img-fluid" alt="">
-                                        </div>
-
-                                        <div class="col-lg-6 col-12">
-                                            <p>Modern ebook ever</p>
-
-                                            <p><strong>Lorem ipsum dolor sit amet, consive adipisicing elit, sed do eiusmod. tempor incididunt.</strong></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="scrollspy-example-item" id="item-4">
-                                    <h5>Delegate</h5>
-
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-                                    <p>Lorem ipsum dolor sit amet, consive adipisicing elit, sed do eiusmod. tempor incididunt ut labore.</p>
-
-                                    <p>You are not allowed to redistribute this template ZIP file on any other template collection website. Please contact TemplateMo for more information.</p>
-
-                                    <img src="images/portrait-mature-smiling-authoress-sitting-desk.jpg" class="scrollspy-example-item-image img-fluid mb-3" alt="">
-
-                                    <p>You may want to contact us for more information about this template.</p>
-                                </div>
-
+                                
                                 <div class="scrollspy-example-item" id="item-5">
                                     <h5>Habits</h5>
 
@@ -215,8 +219,6 @@ https://templatemo.com/tm-588-ebook-landing
                                     <p>You are not allowed to redistribute this template ZIP file on any other template collection website. Please contact TemplateMo for more information.</p>
 
                                     <p><strong>What is Free CSS Templates?</strong> Free CSS Templates are a variety of ready-made web pages designed for different kinds of websites.</p>
-
-                                    <blockquote class="blockquote">Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito</blockquote>
 
                                     <p>You may browse TemplateMo website for more CSS templates. Thank you for visiting our website.</p>
                                 </div>
@@ -245,7 +247,6 @@ https://templatemo.com/tm-588-ebook-landing
 
                             <p>Lorem ipsum dolor sit amet, consive adipisicing elit, sed do eiusmod. tempor incididunt ut labore.</p>
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -275,41 +276,13 @@ https://templatemo.com/tm-588-ebook-landing
             </section>
 
 
-           <section class="contact-section section-padding" id="section_5">
+            <section class="contact-section section-padding" id="section_5">
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-lg-5 col-12 mx-auto">
-                            <form class="custom-form ebook-download-form bg-white shadow" action="#" method="post" role="form">
-                                <div class="text-center mb-5">
-                                    <h2 class="mb-1">Get your free ebook</h2>
-                                </div>
+                        
 
-                                <div class="ebook-download-form-body">
-                                    <div class="input-group mb-4">
-                                        <input type="text" name="ebook-form-name" id="ebook-form-name" class="form-control" aria-label="ebook-form-name" aria-describedby="basic-addon1" placeholder="Your Name" required>
-
-                                        <span class="input-group-text" id="basic-addon1">
-                                            <i class="custom-form-icon bi-person"></i>
-                                        </span>
-                                    </div>
-
-                                    <div class="input-group mb-4">
-                                        <input type="email" name="ebook-email" id="ebook-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="your@company.com" aria-label="ebook-form-email" aria-describedby="basic-addon2" required="">
-
-                                        <span class="input-group-text" id="basic-addon2">
-                                            <i class="custom-form-icon bi-envelope"></i>
-                                        </span>
-                                    </div>
-
-                                    <div class="col-lg-8 col-md-10 col-8 mx-auto">
-                                        <button type="submit" class="form-control">Download ebook</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col-lg-6 col-12">
+                        <div class="text-center align-items-center">
                             <h6 class="mt-5">Say hi and talk to us</h6>
 
                             <h2 class="mb-4">Contact</h2>
@@ -331,33 +304,12 @@ https://templatemo.com/tm-588-ebook-landing
                                 </a>
                             </p>
 
-                            <h6 class="site-footer-title mt-5 mb-3">Social</h6>
-
-                            <ul class="social-icon mb-4">
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-instagram"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-twitter"></a>
-                                </li>
-                                
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-facebook"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-whatsapp"></a>
-                                </li>
-                            </ul>
-
-                            <p class="copyright-text">Copyright © 2048 ebook company
-                            <br><br><a rel="nofollow" href="https://templatemo.com" target="_blank">designed by templatemo</a></p>
+                            
                         </div>
 
                     </div>
                 </div>
-            </section> 
+            </section>
         </main>
 
         <!-- JAVASCRIPT FILES -->

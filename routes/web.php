@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SigninController;
+use App\Http\Controllers\SigninpakarController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\SignuppakarController;
 use Illuminate\Support\Facades\Route;
@@ -16,35 +18,70 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+// Route::get('/', function () {
+//     return view('index');
+// });
+// ->middleware('auth');
+
+Route::get('/daftar', function () {
+    return view('signupmain');
+});
+
+Route::get('/mulai', function () {
+    return view('main');
 });
 
 Route::get('/login', function () {
-    return view('loginmain');
+    return view('mainlogin');
 });
-
-// Route::get('/pakar', function () {
-//     return view('login');
-// });
 
 Route::get('/pakar', function () {
     return view('sesi/pakar');
 });
 
-// Route::get('/signup', function () {
-//     return view('signup');
-// });
-// Route::get('home', function () {
-//     return view('home/index');
-// });
+Route::get('/profile', function () {
+    return view('profile');
+});
+
+Route::get('/profilepakar', function () {
+    return view('profilepakar');
+});
+
+Route::get('/keuntungan', function () {
+    return view('keuntungan');
+});
+
+Route::get('/pestisida', function () {
+    return view('pestisida');
+});
 
 route::get('/signin',[SigninController::class, 'index']);
 route::post('/signin',[SigninController::class, 'login']);
 
+route::post('/logout',[SigninController::class, 'logout']);
+
+route::get('/signin-pakar',[SigninpakarController::class, 'index']);
+route::post('/signin-pakar',[SigninpakarController::class, 'login']);
+
+route::post('/logout',[SigninpakarController::class, 'logout']);
+
 route::get('/signup',[SignupController::class, 'index']);
 route::post('/signup',[SignupController::class, 'store']);
 
-route::get('/pakar',[SignuppakarController::class, 'index']);
-route::post('/pakar',[SignuppakarController::class, 'store']);
+route::get('/signup-pakar',[SignuppakarController::class, 'index']);
+route::post('/signup-pakar',[SignuppakarController::class, 'store']);
 
+
+route::get('/',[DashboardController::class, 'index']);
+route::group(['middleware' => ['auth:user,pakar']], function(){
+    route::get('/',[DashboardController::class, 'index']);
+});
+
+// Route::middleware(['guest:pakar'])->group(function () {
+//     route::get('/signin-pakar',[SigninpakarController::class, 'index']);
+//     route::post('/logout',[SigninpakarController::class, 'logout']);
+// });
+
+// Route::middleware(['auth:web'])->group(function () {
+//     route::get('/signin',[SigninController::class, 'index'])->middleware('guest');
+// });

@@ -1,4 +1,4 @@
-@extends('layout.pakar') 
+@extends('layout.sesi') 
 @section('title', 'signin')
 @section('content')
 <nav class="navbar navbar-expand-lg">
@@ -69,7 +69,7 @@
         @endif
         <div id="formContent">
         <!-- Tabs Titles -->
-        <h2 class="active"> Login </h2>
+        <h2 class="active"> Pengguna </h2>
         <!-- Login Form -->
         <form action="/signin" method="post">
             @csrf
@@ -80,12 +80,12 @@
             </div>
             @enderror
             <input type="password" id="password" class="fadeIn third @error('password') is-invalid @enderror" name="password" placeholder="Password" required>
-            <input type="submit" class="fadeIn fourth" value="Daftar">
+            <input type="submit" class="fadeIn fourth" value="Login">
         </form>
     
         <!-- Remind Passowrd -->
         <div id="formFooter">
-            <a class="underlineHover" href="/signup">sign up</a>
+            <a class="underlineHover" href="/signup">Daftar</a>
         </div>
     
         </div>

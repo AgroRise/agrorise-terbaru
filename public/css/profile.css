@@ -429,7 +429,7 @@ strong {
 }
 
 .navbar {
-  background: transparent;
+  background: black;
   z-index: 99;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -1127,14 +1127,14 @@ h2 {
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
-  background: #fff;
+  background: white;
   padding: 30px;
   width: 90%;
   max-width: 450px;
   position: relative;
   padding: 0px;
   -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.5);
   text-align: center;
 }
 
@@ -1198,7 +1198,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text], input[type=username], input[type=password], input[type=email] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -1219,14 +1219,15 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+input[type=text], input[type=username], input[type=password], input[type=email] :focus {
   background-color: #fff;
   border-bottom: 2px solid #f7be54;
 }
 
-input[type=text]:placeholder {
+input[type=text], input[type=username], input[type=email], input[type=password] :placeholder {
   color: #cccccc;
 }
+
 
 
 
@@ -1415,3 +1416,22 @@ input[type=text]:placeholder {
   }
 }
 
+body{
+  margin-top:130px;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid transparent;
+  border-radius: .25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+}
+.me-2 {
+  margin-right: .5rem!important;
+}

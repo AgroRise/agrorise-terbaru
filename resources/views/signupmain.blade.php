@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Login - AgroRise</title>
+        <title>AgroRise - Login Main</title>
 
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
 
         <link href="css/bootstrap-icons.css" rel="stylesheet">
 
-        <link href="css/login.css" rel="stylesheet">
+        <link href="css/logmain.css" rel="stylesheet">
 <!--
 
 
@@ -87,27 +87,15 @@
                 <div class="wrapper fadeInDown">
                     <div id="formContent">
                     <!-- Tabs Titles -->
-                    <h2 class="active"> Sign In </h2>
-                    
-                
-                    <!-- Icon -->
-                    <div class="fadeIn first">
-                        <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-                    </div>
+                    <h2 class="active"> Daftar sebagai </h2>
                 
                     <!-- Login Form -->
                     <form>
-                        <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email" autofocus required>
-                        <input type="text" id="password" class="fadeIn third" name="login" placeholder="Password" required>
-                        <input type="submit" class="fadeIn fourth" value="Log In">
+                        <a href="/signup-pakar" ><input type="button" class="fadeIn fourth" value="Pakar"></a>
+                        <a href="/signup"><input type="button" class="fadeIn fourth" value="Pengguna"></a>
                     </form>
                 
-                    <!-- Remind Passowrd -->
-                    <div id="formFooter">
-                        <a class="underlineHover" href="#">Lupa Password?</a> <p>atau</p>
-                        <a class="underlineHover" href="#">Mendaftar</a>
-                    </div>
-                
+
                     </div>
                 </div>
             </div>

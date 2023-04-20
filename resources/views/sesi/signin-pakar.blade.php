@@ -1,5 +1,5 @@
 @extends('layout.sesi') 
-@section('title', 'signup')
+@section('title', 'signin-pakar')
 @section('content')
 <nav class="navbar navbar-expand-lg">
     <div class="container">
@@ -55,6 +55,12 @@
 </nav>
 <div class="bgimg">
     <div class="wrapper fadeInDown">
+        @if(session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         @if(session()->has('loginError'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             {{ session('loginError') }}
@@ -63,9 +69,9 @@
         @endif
         <div id="formContent">
         <!-- Tabs Titles -->
-        <h2 class="active"> Mendaftar </h2>
+        <h2 class="active"> Pakar </h2>
         <!-- Login Form -->
-        <form action="/signup" method="post">
+        <form action="/signin-pakar" method="post">
             @csrf
             <input type="email" id="email" class="fadeIn second @error('email') is-invalid @enderror" name="email" placeholder="Email" required autofocus value="{{ old('email') }}">
             @error('email')
@@ -73,30 +79,13 @@
                 {{ $message }}
             </div>
             @enderror
-            <input type="text" id="username" class="fadeIn second @error('username') is-invalid @enderror" name="username" placeholder="Username" required value="{{ old('username') }}">
-            @error('username')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-            @enderror
             <input type="password" id="password" class="fadeIn third @error('password') is-invalid @enderror" name="password" placeholder="Password" required>
-            @error('password')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-            @enderror
-            <input type="password" id="password" class="fadeIn third @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Konfirmasi Password" required>
-            @error('password')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-            @enderror
-            <input type="submit" class="fadeIn fourth" value="Daftar">
+            <input type="submit" class="fadeIn fourth" value="Login">
         </form>
     
         <!-- Remind Passowrd -->
         <div id="formFooter">
-            <a class="underlineHover" href="/signin">Masuk</a>
+            <a class="underlineHover" href="/signup">Daftar</a>
         </div>
     
         </div>

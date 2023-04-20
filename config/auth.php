@@ -40,7 +40,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'pakar'=>[
+            'driver'=>'session',
+            'provider'=>'pakars',
+        ],
+        'user'=>[
+            'driver'=>'session',
+            'provider'=>'users',
+        ],
     ],
+
+    
+    // 'user'=>[
+    //     'driver'=>'session',
+    //     'provider'=>'users',
+    // ],
 
     /*
     |--------------------------------------------------------------------------
@@ -65,10 +79,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'pakars' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Pakar::class,
+        ],
     ],
 
     /*

@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Login - AgroRIse</title>
+        <title>AgroRise - Login Main</title>
 
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,13 +87,12 @@
                 <div class="wrapper fadeInDown">
                     <div id="formContent">
                     <!-- Tabs Titles -->
-                    <h2 class="active"> Masuk sebagai </h2>
+                    <h2 class="active"> Masuk Sebagai </h2>
                 
                     <!-- Login Form -->
                     <form>
-                        <input type="button" class="fadeIn fourth" value="Admin">
-                        <input type="button" class="fadeIn fourth" value="Pakar">
-                        <input type="button" class="fadeIn fourth" value="Pengguna">
+                        <a href="/signin" ><input type="button" class="fadeIn fourth" value="Pengguna"></a>
+                        <a href="/signin-pakar"><input type="button" class="fadeIn fourth" value="Pakar"></a>
                     </form>
                 
 
