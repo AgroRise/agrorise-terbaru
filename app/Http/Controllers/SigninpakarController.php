@@ -24,10 +24,18 @@ class SigninpakarController extends Controller
         return back()->with('loginError','login failed!');
     }
     public function logout(){
-        if (Auth::guard('pakar')->check()){
-            Auth::guard('pakar')->logout();
-        }
+        Auth::guard('pakar')->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
         return redirect('/login');
+
+
+
+
+        // if (Auth::guard('pakar')->check()){
+        //     Auth::guard('pakar')->logout();
+        // }
+        // return redirect('/login');
 
 
         

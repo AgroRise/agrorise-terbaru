@@ -24,10 +24,17 @@ class SigninController extends Controller
         return back()->with('loginError','login failed!');
     }
     public function logout(){
-        if (Auth::guard('user')->check()){
-            Auth::guard('user')->logout();
-        }
+        Auth::guard('user')->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
         return redirect('/login');
+
+
+
+        // if (Auth::guard('user')->check()){
+        //     Auth::guard('user')->logout();
+        // }
+        // return redirect('/login');
 
 
 
