@@ -18,7 +18,8 @@ class SignuppakarController extends Controller
         // return request()->all();
         $validatedData = $request->validate([
             'email' => 'required|email:dns|unique:pakars',
-            'username' => 'required|min:4|max:20',
+            'nama' => 'required|min:4|max:30',
+            'username' => 'required|min:4|max:20|unique:pakars',
             'password' => 'required|confirmed|min:5',
             'no_telepon' => 'required',
             'alamat' => 'required',
@@ -32,6 +33,6 @@ class SignuppakarController extends Controller
         // dd('registrasi berhasil'); 
         $validatedData['password'] = Hash::make($validatedData['password']);
         Pakar::create($validatedData);
-        return redirect('/signin')->with('success', 'Registration successfull! Please Login');
+        return redirect('/signin-pakar')->with('success', 'Registration successfull! Please Login');
     }
 }

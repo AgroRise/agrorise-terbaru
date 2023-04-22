@@ -65,10 +65,16 @@
         <!-- Tabs Titles -->
         <h2 class="active"> Mendaftar Pakar</h2>
         <!-- Login Form -->
-        <form action="/pakar" method="post">
+        <form action="/signup-pakar" method="post">
             @csrf
             <input type="email" id="email" class="fadeIn second @error('email') is-invalid @enderror" name="email" placeholder="Email" required autofocus value="{{ old('email') }}">
             @error('email')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+            <input type="text" id="nama" class="fadeIn second @error('nama') is-invalid @enderror" name="nama" placeholder="Nama Lengkap" required value="{{ old('nama') }}">
+            @error('nama')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>

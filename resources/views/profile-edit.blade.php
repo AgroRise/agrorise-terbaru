@@ -103,36 +103,40 @@
                             <div class="col-lg-8">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">Username</h6>
+                                        <form action="/update-user" method="post">
+                                            @method("put")
+                                            @csrf
+                                            <div class="row mb-3">
+                                                <div class="col-sm-3">
+                                                    <h6 class="mb-0">Username</h6>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    <input type="username" class="form-control"  @error('username') is-invalid @enderror" value="{{ old('username', Auth::guard('pakar')->user()->username)}}" autofocus>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-9 text-secondary">
-                                                <input type="username" class="form-control" value={{Auth::guard('user')->user()->username}}>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-3">
+                                                    <h6 class="mb-0">Email</h6>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    <input type="email" class="form-control" value={{Auth::guard('user')->user()->email}}>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">Email</h6>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-3">
+                                                    <h6 class="mb-0">Password</h6>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    <input type="password" class="form-control" value={{Auth::guard('user')->user()->password}}>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-9 text-secondary">
-                                                <input type="email" class="form-control" value={{Auth::guard('user')->user()->email}}>
+                                            <div class="row">
+                                                <div class="col-sm-3"></div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    <input type="button" class="btn btn-primary px-4" value="Save">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">Password</h6>
-                                            </div>
-                                            <div class="col-sm-9 text-secondary">
-                                                <input type="password" class="form-control" value={{Auth::guard('user')->user()->password}}>
-                                            </div>
-                                        </div>
-                                        <button class="row">
-                                            <div class="col-sm-3"></div>
-                                            <div class="col-sm-9 text-secondary">
-                                                <input type="button" class="btn btn-primary px-4" value="Save Changes">
-                                            </div>
-                                        </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

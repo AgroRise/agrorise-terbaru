@@ -115,73 +115,7 @@ https://templatemo.com/tm-588-ebook-landing
                                 <span href="...\PPLARGO\login.php">Masuk</span><!-- duplicated above one for mobile -->
                             </a>
                         </div>
-                        @endif
-                        
-
-                        {{-- <li class="nav-item dropdown">
-                            @if(Str::length(Auth::guard('pakar')->user()) > 0)
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">                        
-                                hallo, {{Auth::guard('pakar')->user()->username}}
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/profile"> <i class="bi bi-person"></i> Profil</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                <form action="/logout" method="post">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>               
-                                </form>
-                                </li>
-                            </ul>   
-                        </li>
-                            </a>
-                            @elseif(Str::length(Auth::guard('user')->user()) > 0)
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">                        
-                                hallo, {{Auth::guard('user')->user()->username}}
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/profile"> <i class="bi bi-person"></i> Profil</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                <form action="/logout" method="post">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>               
-                                </form>
-                                </li>
-                            </ul>   
-                        </li>
-                            @endif --}}
-
-
-
-                        {{-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> --}}
-                                {{-- Hallo, {{ auth()->user()->username }} --}}
-                                {{-- {{Auth::guard('pakar')->user()->username}}
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/profile"> <i class="bi bi-person"></i> Profil</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                <form action="/logout" method="post">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>               
-                                </form>
-                                </li>
-                            </ul>   
-                        </li>
-                            
-                        @else                         
-                        <div class="d-none d-lg-block">
-                            <a href="/login" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
-                                <i class="btn-icon bi-cloud-download"></i>
-                                <span href="...\PPLARGO\login.php">Masuk</span><!-- duplicated above one for mobile -->
-                            </a>
-                        </div>
-                        @endauth                   --}}
-
-
-
+                        @endif                        
                     </div>
                 </div>
             </nav>

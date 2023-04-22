@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PakarController;
 use App\Http\Controllers\PestisidaController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\SigninpakarController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\SignuppakarController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +33,12 @@ route::get('/',[DashboardController::class, 'index']);
 
 route::group(['middleware' => ['auth:user,pakar']], function(){
     Route::get('/pestisida', function () {return view('pestisida');});
+    Route::get('/profile', function () {return view('profile');});
+    Route::get('/profilepakar', function () {return view('profilepakar');});
+    route::get('/edit-pakar',[PakarController::class, 'index']);
+    route::put('/update-pakar',[PakarController::class, 'update']);
+    route::get('/edit-user',[UserController::class, 'index']);
+    route::put('/update-user',[UserController::class, 'update']);
 });
 
 route::group(['middleware' => ['guest:user,pakar']], function(){
@@ -44,8 +52,6 @@ route::group(['middleware' => ['guest:user,pakar']], function(){
     route::post('/signup',[SignupController::class, 'store']);
     route::get('/signup-pakar',[SignuppakarController::class, 'index']);
     route::post('/signup-pakar',[SignuppakarController::class, 'store']);
-    Route::get('/profile', function () {return view('profile');});
-    Route::get('/profilepakar', function () {return view('profilepakar');});
     Route::get('/login', function () {return view('mainlogin');})->name('login');
 });
 

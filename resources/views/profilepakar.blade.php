@@ -100,31 +100,38 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-8">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Username</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="username" class="form-control" value="John Doe">
-                                        </div>
+                                    @if(session()->has('success'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ session('success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
+                                    @endif
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Email</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="email" class="form-control" value="john@example.com">
+                                            <input readonly type="email" class="form-control" value="{{ old('email', Auth::guard('pakar')->user()->email)}}">
+                                        </div>  
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Username</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input readonly type="username" class="form-control" value="{{ old('username', Auth::guard('pakar')->user()->username)}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Password</h6>
+                                            <h6 class="mb-0">Nama Lengkap</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="password" class="form-control" value="*******">
+                                            <input readonly type="text" class="form-control" value="{{ old('nama', Auth::guard('pakar')->user()->nama)}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -132,7 +139,7 @@
                                             <h6 class="mb-0">No Telepon</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="(320) 380-4539">
+                                            <input readonly type="text" class="form-control" value="{{ old('no_telepon', Auth::guard('pakar')->user()->no_telepon)}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -140,7 +147,7 @@
                                             <h6 class="mb-0">Alamat</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
+                                            <input readonly type="text" class="form-control" value="{{ old('alamat', Auth::guard('pakar')->user()->alamat)}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -148,7 +155,7 @@
                                             <h6 class="mb-0">Pendidikan Terakhir</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="S1">
+                                            <input readonly type="text" class="form-control" value="{{ old('pendidikan_terakhir', Auth::guard('pakar')->user()->pendidikan_terakhir)}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -156,7 +163,7 @@
                                             <h6 class="mb-0">Pekerjaan</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="Dosen">
+                                            <input readonly type="text" class="form-control" value="{{ old('pekerjaan', Auth::guard('pakar')->user()->pekerjaan)}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -164,7 +171,7 @@
                                             <h6 class="mb-0">Instansi</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="Universitas Jember">
+                                            <input readonly type="text" class="form-control" value="{{ old('instansi', Auth::guard('pakar')->user()->instansi)}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -172,13 +179,13 @@
                                             <h6 class="mb-0">Alamat Instansi</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="Jln. Mawar">
+                                            <input readonly type="text" class="form-control" value="{{ old('alamat_instansi', Auth::guard('pakar')->user()->alamat_instansi)}}">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="button" class="btn btn-primary px-4" value="Save Changes">
+                                            <a href="/edit-pakar"><input type="button" class="btn btn-primary px-4" value="Edit"></a>
                                         </div>
                                     </div>
                                 </div>
