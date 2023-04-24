@@ -106,30 +106,54 @@
                             <div class="col-lg-8">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form action="/update-user" method="post">
+                                        @if(session()->has('message'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{ session('message') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        @endif
+                                        <form action="/update-password-user" method="post">
                                             @method("put")
                                             @csrf
                                             <div class="row mb-3">
                                                 <div class="col-sm-3">
-                                                    <h6 class="mb-0">Email</h6>
+                                                    <h6 class="mb-0">Password Lama</h6>
                                                 </div>
                                                 <div class="col-sm-9 text-secondary">
-                                                    <input type="email" readonly name="email" class="form-control" value="{{ old('email', Auth::guard('user')->user()->email)}}">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Username</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    <input type="username" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username', Auth::guard('user')->user()->username)}}" autofocus>
-                                                    @error('username')
+                                                    <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror" autofocus>
+                                                    @error('current_password')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
                                                     @enderror
                                                 </div>
-                                            </div>                                            
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-3">
+                                                    <h6 class="mb-0">Password Baru</h6>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
+                                                    @error('password')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-3">
+                                                    <h6 class="mb-0">Konfirmasi Password</h6>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    <input type="password" name="password_confirmation" class="form-control">
+                                                    @error('password_confirmation')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                            </div>                                      
                                             <button class="row">
                                                 <div class="col-sm-3"></div>
                                                 <div class="col-sm-9 text-secondary">

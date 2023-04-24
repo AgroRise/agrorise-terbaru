@@ -34,7 +34,7 @@ class PakarController extends Controller
             'instansi' => $request->instansi,
             'alamat_instansi' => $request->alamat_instansi,
         ]);
-        return redirect('/profilepakar')->with('success', 'Profil Berhasil Diperbarui');
+        return redirect('/profile')->with('success', 'Profil Berhasil Diperbarui');
         // Auth::guard('pakar')->id()
     }
 }

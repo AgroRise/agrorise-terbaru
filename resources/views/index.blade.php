@@ -33,7 +33,6 @@ https://templatemo.com/tm-588-ebook-landing
     <body>
 
         <main>
-
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="index.html">
@@ -75,7 +74,6 @@ https://templatemo.com/tm-588-ebook-landing
                                 <a class="nav-link click-scroll" href="#section_5">Tentang Kami</a>
                             </li>
                         </ul> 
-
                         @if(Str::length(Auth::guard('pakar')->user()) > 0)
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -83,6 +81,7 @@ https://templatemo.com/tm-588-ebook-landing
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item active" href="/profilepakar">Profil</a></li>
+                                <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form action="/logout" method="post">
@@ -99,6 +98,7 @@ https://templatemo.com/tm-588-ebook-landing
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item active" href="/profile">Profil</a></li>
+                                <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form action="/logout" method="post">

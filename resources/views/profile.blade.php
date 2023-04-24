@@ -92,8 +92,11 @@
                                         <div class="d-flex flex-column align-items-center text-center">
                                             <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="150">
                                             <div class="mt-3">
-                                                <h4>John Doe</h4>
-                                                <button class="btn btn-primary">Logout</button>
+                                                <h4>{{ old('username', Auth::guard('user')->user()->username)}}</h4>
+                                                <form action="/logout" method="post">
+                                                    @csrf
+                                                    <button class="btn btn-primary">Logout</button>               
+                                                </form>
                                             </div>
                                         </div>
                                         
@@ -103,36 +106,34 @@
                             <div class="col-lg-8">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">Username</h6>
-                                            </div>
-                                            <div class="col-sm-9 text-secondary">
-                                                <input type="username" class="form-control" value={{Auth::guard('user')->user()->username}}>
-                                            </div>
+                                        @if(session()->has('success'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{ session('success') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
+                                        @endif
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <h6 class="mb-0">Email</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="email" class="form-control" value={{Auth::guard('user')->user()->email}}>
-                                            </div>
+                                                <input readonly type="email" class="form-control" value="{{ old('email', Auth::guard('user')->user()->email)}}">
+                                            </div>  
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                                <h6 class="mb-0">Password</h6>
+                                                <h6 class="mb-0">Username</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="password" class="form-control" value={{Auth::guard('user')->user()->password}}>
+                                                <input readonly type="username" class="form-control" value="{{ old('username', Auth::guard('user')->user()->username)}}">
                                             </div>
                                         </div>
-                                        <button class="row">
+                                        <div class="row">
                                             <div class="col-sm-3"></div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="button" class="btn btn-primary px-4" value="Save Changes">
+                                                <a href="/edit-user"><input type="button" class="btn btn-primary px-4" value="Edit"></a>
                                             </div>
-                                        </button>
+                                        </div>                                  
                                     </div>
                                 </div>
                             </div>

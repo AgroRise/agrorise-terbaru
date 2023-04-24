@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PakarController;
+use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\PasswordPakarController;
 use App\Http\Controllers\PestisidaController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\SigninpakarController;
@@ -39,6 +41,10 @@ route::group(['middleware' => ['auth:user,pakar']], function(){
     route::put('/update-pakar',[PakarController::class, 'update']);
     route::get('/edit-user',[UserController::class, 'index']);
     route::put('/update-user',[UserController::class, 'update']);
+    route::get('/edit-password-user',[PasswordController::class, 'index']);
+    route::put('/update-password-user',[PasswordController::class, 'update']);
+    route::get('/edit-password-pakar',[PasswordPakarController::class, 'index']);
+    route::put('/update-password-pakar',[PasswordPakarController::class, 'update']);
 });
 
 route::group(['middleware' => ['guest:user,pakar']], function(){
