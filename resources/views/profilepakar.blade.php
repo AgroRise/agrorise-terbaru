@@ -72,14 +72,18 @@
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" href="#section_5">Tentang Kami</a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_5">Hallo, {{ Auth::guard('pakar')->user()->username }}</a>
+                            </li>
                         </ul>
 
-                        <div class="d-none d-lg-block">
+                        {{-- <div class="d-none d-lg-block">
                             <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                                 <i class="btn-icon bi-cloud-download"></i>
                                 <span>Masuk</span><!-- duplicated above one for mobile -->
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </nav>

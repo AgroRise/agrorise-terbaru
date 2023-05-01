@@ -74,12 +74,12 @@
                             </li>
                         </ul>
 
-                        <div class="d-none d-lg-block">
+                        {{-- <div class="d-none d-lg-block">
                             <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                                 <i class="btn-icon bi-cloud-download"></i>
                                 <span>Masuk</span><!-- duplicated above one for mobile -->
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </nav>
