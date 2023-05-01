@@ -85,12 +85,12 @@
                 {{ $message }}
             </div>
             @enderror
-            <input type="password" id="password" class="fadeIn third @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Konfirmasi Password" required>
-            @error('password')
+            <input type="password" id="password" class="fadeIn third " name="password_confirmation" placeholder="Konfirmasi Password" required>
+            {{-- @error('password')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
-            @enderror
+            @enderror --}}
             <input type="submit" class="fadeIn fourth" value="Daftar">
         </form>
     

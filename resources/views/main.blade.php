@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>AgroRise - Login Main</title>
+        <title>AgroRise - Mulai</title>
 
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">

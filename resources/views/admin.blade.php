@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>AgroRise - Daftar</title>
+        <title>AgroRise - Admin</title>
 
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,8 @@
 
         <link href="css/bootstrap-icons.css" rel="stylesheet">
 
-        <link href="css/logmain.css" rel="stylesheet">
+        <link href="css/profile.css" rel="stylesheet">
+        
 <!--
 
 
@@ -83,25 +84,34 @@
                     </div>
                 </div>
             </nav>
-            <div class="bgimg">
-                <div class="wrapper fadeInDown">
-                    <div id="formContent">
-                    <!-- Tabs Titles -->
-                    <h2 class="active"> Daftar sebagai </h2>
-                
-                    <!-- Login Form -->
-                    <form>
-                        <a href="/signup-pakar" ><input type="button" class="fadeIn fourth" value="Pakar"></a>
-                        <a href="/signup"><input type="button" class="fadeIn fourth" value="Pengguna"></a>
-                    </form>
-                
-
+                <div class="container">
+                    <div class="main-body">
+                    {{-- {{json_encode($data)}} --}}
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>username</th>
+                                            <th>email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($data as $item)
+                                            <tr>
+                                                <td>{{$item->id}}</td>
+                                                <td>{{$item->username}}</td>
+                                                <td>{{$item->email}}</td>                                 
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                {{$data->links()}}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-
-
             
         </main>
 
@@ -114,3 +124,22 @@
 
     </body>
 </html>
+
+{{-- <table class="table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>username</th>
+            <th>email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($data as $item)
+            <tr>
+                <td>{{$item->id}}</td>
+                <td>{{$item->username}}</td>
+                <td>{{$item->email}}</td>                                 
+            </tr>
+        @endforeach
+    </tbody>
+</table> --}}

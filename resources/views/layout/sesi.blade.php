@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>AgroRise - SignUp Pakar</title>
+        <title>AgroRise - @yield('title')</title>
 
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">

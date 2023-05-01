@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminPakarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PakarController;
 use App\Http\Controllers\PasswordController;
@@ -35,6 +37,9 @@ route::get('/',[DashboardController::class, 'index']);
 
 route::group(['middleware' => ['auth:user,pakar']], function(){
     Route::get('/pestisida', function () {return view('pestisida');});
+    Route::get('/pupuk-urea', function () {return view('pupuk-urea');});
+    Route::get('/pupuk-kotoran-ayam', function () {return view('kotoran-ayam');});
+    Route::get('/pupuk-SP-36', function () {return view('SP-36');});
     Route::get('/profile', function () {return view('profile');});
     Route::get('/profilepakar', function () {return view('profilepakar');});
     route::get('/edit-pakar',[PakarController::class, 'index']);
@@ -45,9 +50,11 @@ route::group(['middleware' => ['auth:user,pakar']], function(){
     route::put('/update-password-user',[PasswordController::class, 'update']);
     route::get('/edit-password-pakar',[PasswordPakarController::class, 'index']);
     route::put('/update-password-pakar',[PasswordPakarController::class, 'update']);
+    // route::get('/signin',[AdminController::class, 'index']);
+
 });
 
-route::group(['middleware' => ['guest:user,pakar']], function(){
+route::group(['middleware' => ['guest:user,pakar,admin']], function(){
     Route::get('/mulai', function () {return view('main');});
     Route::get('/daftar', function () {return view('signupmain');});
     route::get('/signin',[SigninController::class, 'index']);
@@ -58,8 +65,16 @@ route::group(['middleware' => ['guest:user,pakar']], function(){
     route::post('/signup',[SignupController::class, 'store']);
     route::get('/signup-pakar',[SignuppakarController::class, 'index']);
     route::post('/signup-pakar',[SignuppakarController::class, 'store']);
+    route::post('/admin-pakar',[AdminPakarController::class, 'index']);
     Route::get('/login', function () {return view('mainlogin');})->name('login');
+    // route::post('/signin',[AdminController::class, 'index']);
 });
 
 
 
+
+// route::get('/admin',[AdminController::class, 'index']);
+// route::get('/admin-pakar',[AdminPakarController::class, 'index']);
+
+route::get('/file',[AdminPakarController::class, 'file']);
+// route::get('/signin-pakar',[AdminController::class, 'login']);

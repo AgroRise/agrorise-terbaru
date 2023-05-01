@@ -73,8 +73,8 @@
         <!-- Login Form -->
         <form action="/signin" method="post">
             @csrf
-            <input type="email" id="email" class="fadeIn second @error('email') is-invalid @enderror" name="email" placeholder="Email" required autofocus value="{{ old('email') }}">
-            @error('email')
+            <input type="text" id="login" class="fadeIn second @error('login') is-invalid @enderror" name="login" placeholder="Email atau Username" required autofocus value="{{ old('login') }}">
+            @error('login')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>

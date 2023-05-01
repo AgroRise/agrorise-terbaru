@@ -14,13 +14,31 @@ class SigninController extends Controller
     public function login(Request $request){
         // Session::flash('email', $request->input('email'));
         $credentials = $request->validate([
-            'email' => 'required|email:dns',
+            'login' => 'required',
             'password' => 'required'
         ]);
-        if (Auth::guard('user')->attempt($credentials)){
+        
+        if (Auth::guard('user')->attempt(['email' => $credentials['login'], 'password' => $credentials['password']]) ||
+            Auth::guard('user')->attempt(['username' => $credentials['login'], 'password' => $credentials['password']])) {
             $request->session()->regenerate();
             return redirect()->intended('/');
-        }
+        }    
+        elseif (Auth::guard('admin')->attempt(['email' => $credentials['login'], 'password' => $credentials['password']]) ||
+            Auth::guard('admin')->attempt(['username' => $credentials['login'], 'password' => $credentials['password']])) {
+            $request->session()->regenerate();
+            return redirect()->intended('/');
+        }    
+        // if (Auth::loginUsingId(10)){
+        //     $request->session()->regenerate();
+        //     return redirect()->intended('/');
+        // }
+
+
+        // if (Auth::guard('admin')->attempt($credentials)){
+        //     $request->session()->regenerate();
+        //     return redirect()->intended('/');
+        // }    
+
         return back()->with('loginError','login failed!');
     }
     public function logout(){
@@ -29,7 +47,7 @@ class SigninController extends Controller
         request()->session()->regenerateToken();
         return redirect('/login');
 
-
+//username login
 
         // if (Auth::guard('user')->check()){
         //     Auth::guard('user')->logout();

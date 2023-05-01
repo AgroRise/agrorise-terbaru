@@ -1,5 +1,5 @@
 @extends('layout.sesi') 
-@section('title', 'pakar')
+@section('title', 'signup-pakar')
 @section('content')
 <nav class="navbar navbar-expand-lg">
     <div class="container">
@@ -91,12 +91,12 @@
                 {{ $message }}
             </div>
             @enderror
-            <input type="password" id="password" class="fadeIn third @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Konfirmasi Password" required>
-            @error('password')
+            <input type="password" id="password" class="fadeIn third" name="password_confirmation" placeholder="Konfirmasi Password" required>
+            {{-- @error('password')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
-            @enderror
+            @enderror --}}
             <input type="text" id="no_telepon" class="fadeIn second @error('no_telepon') is-invalid @enderror" name="no_telepon" placeholder="Nomor Telepon" required>
             @error('no_telepon')
             <div class="invalid-feedback">

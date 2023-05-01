@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 class PasswordController extends Controller
 {
     public function index(){
-        return view('password-edit-pakar');
+        return view('password-edit-user');
     }
     public function update(Request $request){
         $request->validate([

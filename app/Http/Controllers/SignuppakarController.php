@@ -20,7 +20,7 @@ class SignuppakarController extends Controller
             'email' => 'required|email:dns|unique:pakars',
             'nama' => 'required|min:4|max:30',
             'username' => 'required|min:4|max:20|unique:pakars',
-            'password' => 'required|confirmed|min:5',
+            'password' => 'required|confirmed|min:5|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
             'no_telepon' => 'required',
             'alamat' => 'required',
             'pendidikan_terakhir' => 'required',
@@ -28,8 +28,13 @@ class SignuppakarController extends Controller
             'instansi' => 'required',
             'alamat_instansi' => 'required',
             'cv' => 'required',
-            'sertifikat' => 'required',
-        ]);
+            'sertifikat' => 'required'
+        ],['password.regex' => ' Mengandung setidaknya 1 huruf besar, 1 huruf kecil, dan 1 angka',]);
+        // $cv_file = $request->file('cv');
+        // $cv_ekstensi = $cv_file->extension();
+        // $cv_nama = date('ymdhis'). ".".$cv_ekstensi;
+        // $cv_file->move(public_path('cv'),$cv_nama);
+        
         // dd('registrasi berhasil'); 
         $validatedData['password'] = Hash::make($validatedData['password']);
         Pakar::create($validatedData);
