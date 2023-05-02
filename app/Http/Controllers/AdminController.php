@@ -28,9 +28,19 @@ class AdminController extends Controller
         ]);
         return redirect('/profileadmin')->with('success', 'Profil Berhasil Diperbarui');
     }
-    public function file()
+    public function user()
     {
         $data = User::orderBy('id', 'asc')->paginate(1);
         return view('admin')->with('data', $data);
     }
+    public function pakar(){
+        $data = Pakar::orderBy('id', 'asc')->paginate(1);
+        return view('admin-pakar')->with('data', $data);
+    }
+    // public function file(){
+    //     file_cv = $request
+
+    //     // $data = Pakar::
+    //     return view('file')->with('file'$data);
+    // }
 }

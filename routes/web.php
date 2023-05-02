@@ -57,6 +57,8 @@ route::group(['middleware' => ['auth:user,pakar,admin']], function(){
     route::put('/update-password-pakar',[PasswordPakarController::class, 'update']);
     route::get('/edit-password-admin',[PasswordAdminController::class, 'index']);
     route::put('/update-password-admin',[PasswordAdminController::class, 'update']);
+    route::get('/file',[AdminController::class, 'user']);
+    route::get('/filepakar',[AdminController::class, 'pakar']);
     // route::get('/signin',[AdminController::class, 'index']);
 
 });
@@ -86,5 +88,5 @@ route::group(['middleware' => ['guest:user,pakar,admin']], function(){
 // route::get('/admin',[AdminController::class, 'index']);
 // route::get('/admin-pakar',[AdminPakarController::class, 'index']);
 
-route::get('/file',[AdminPakarController::class, 'file']);
+// route::get('/file',[AdminPakarController::class, 'file']);
 // route::get('/signin-pakar',[AdminController::class, 'login']);

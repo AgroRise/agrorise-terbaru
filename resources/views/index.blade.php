@@ -124,6 +124,8 @@ https://templatemo.com/tm-588-ebook-landing
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item active" href="/profileadmin">Profil</a></li>
+                                <li><a class="dropdown-item" href="/file">Database Pengguna</a></li>
+                                <li><a class="dropdown-item" href="/filepakar">Database Pakar</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -137,25 +139,6 @@ https://templatemo.com/tm-588-ebook-landing
                                 </li>
                             </ul>
                         </div>
-
-
-                        {{-- @elseif(Str::length(Auth::loginUsingId(10)) > 0)
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Hallo, {{Auth::loginUsingId(10)->username}}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item active" href="/profile">Profil</a></li>
-                                <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <form action="/logout" method="post">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>               
-                                    </form>
-                                </li>
-                            </ul>
-                        </div> --}}
                     @else
                         <div class="d-none d-lg-block">
                             <a href="/login" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
@@ -168,24 +151,79 @@ https://templatemo.com/tm-588-ebook-landing
             </div>
         </nav>
 
+        @if (Str::length(Auth::guard('pakar')->user()) > 0)
+            <section class="hero-section d-flex flex-warp justify-content-center align-items-center" id="section_1">
+                <div class="container">
+                    <div class="row">
 
-        <section class="hero-section d-flex flex-warp justify-content-center align-items-center" id="section_1">
-            <div class="container">
-                <div class="row">
+                        <div class="land justify-content-center align-items-center col-12 text-center ">
 
-                    <div class="land justify-content-center align-items-center col-12 text-center ">
+                            <h6>Selamat Datang di Website</h6>
 
-                        <h6>Selamat Datang di Website</h6>
+                            <h1 class="text-white mt-3 mb-4">AgroRise</h1>
+                            <p class="text-white">Website penyedia layanan forum untuk berdiskusi mengenai hal
+                                AgroIndustri
+                                dan layanan Pencatatan Data</p>
 
-                        <h1 class="text-white mt-3 mb-4">AgroRise</h1>
-                        <p class="text-white">Website penyedia layanan forum untuk berdiskusi mengenai hal AgroIndustri
-                            dan layanan Pencatatan Data</p>
 
-                        <a href="/mulai" class="btn custom-btn smoothscroll me-3 mt-3">Mulai</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @elseif(Str::length(Auth::guard('user')->user()) > 0)
+            <section class="hero-section d-flex flex-warp justify-content-center align-items-center" id="section_1">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="land justify-content-center align-items-center col-12 text-center ">
+
+                            <h6>Selamat Datang di Website</h6>
+
+                            <h1 class="text-white mt-3 mb-4">AgroRise</h1>
+                            <p class="text-white">Website penyedia layanan forum untuk berdiskusi mengenai hal
+                                AgroIndustri
+                                dan layanan Pencatatan Data</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @elseif(Str::length(Auth::guard('admin')->user()) > 0)
+            <section class="hero-section d-flex flex-warp justify-content-center align-items-center" id="section_1">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="land justify-content-center align-items-center col-12 text-center ">
+
+                            <h6>Selamat Datang di Website</h6>
+
+                            <h1 class="text-white mt-3 mb-4">AgroRise</h1>
+                            <p class="text-white">Website penyedia layanan forum untuk berdiskusi mengenai hal
+                                AgroIndustri
+                                dan layanan Pencatatan Data</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @else
+            <section class="hero-section d-flex flex-warp justify-content-center align-items-center" id="section_1">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="land justify-content-center align-items-center col-12 text-center ">
+
+                            <h6>Selamat Datang di Website</h6>
+
+                            <h1 class="text-white mt-3 mb-4">AgroRise</h1>
+                            <p class="text-white">Website penyedia layanan forum untuk berdiskusi mengenai hal
+                                AgroIndustri
+                                dan layanan Pencatatan Data</p>
+
+                            <a href="/mulai" class="btn custom-btn smoothscroll me-3 mt-3">Mulai</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @endif
 
 
 

@@ -78,12 +78,6 @@
                         </li>
                     </ul>
 
-                    <div class="d-none d-lg-block">
-                        <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
-                            <i class="btn-icon bi-cloud-download"></i>
-                            <span>Masuk</span><!-- duplicated above one for mobile -->
-                        </a>
-                    </div>
                 </div>
             </div>
         </nav>
@@ -105,7 +99,8 @@
                                     <th>pekerjaan</th>
                                     <th>instansi</th>
                                     <th>alamat instansi</th>
-                                    <th>Detail</th>
+                                    <th>cv</th>
+                                    <th>sertifikat</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,7 +116,8 @@
                                         <td>{{ $item->pekerjaan }}</td>
                                         <td>{{ $item->instansi }}</td>
                                         <td>{{ $item->alamat_instansi }}</td>
-                                        <td><a class="btn btn-secondary btn-sm" href="/file">Detail</a></td>
+                                        <td><a class="btn btn-secondary btn-sm" href="#">Detail</a></td>
+                                        <td><a class="btn btn-secondary btn-sm" href="#">Detail</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
