@@ -12,12 +12,20 @@ class Admin extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    // protected $fillable = [
+    //     'username',
+    //     'email',
+    //     'password',
+    // ];
     protected $guarded = ['id'];
+    // protected $table = 'admins';
+    protected $guard = 'admin';
 
-    // protected $guard = 'admin';
-
-    
-    // protected $table = 'admin';
     /**
      * The attributes that should be hidden for serialization.
      *

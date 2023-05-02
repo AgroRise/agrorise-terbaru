@@ -17,10 +17,13 @@ class SignupController extends Controller
     {
         // return request()->all();
         $validatedData = $request->validate([
-            'username' => 'required|min:4|max:20',
+            'username' => 'required|min:4|max:20|unique:users|regex:/^\S+$/',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|confirmed|min:5|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', // mengandung setidaknya 1 huruf besar, 1 huruf kecil, dan 1 angka           
-        ],['password.regex' => ' Mengandung setidaknya 1 huruf besar, 1 huruf kecil, dan 1 angka',]);
+        ], [
+            'password.regex' => ' Mengandung setidaknya 1 huruf besar, 1 huruf kecil, dan 1 angka',
+            'username.regex' => 'username tidak boleh spasi'
+        ]);
         // dd('registrasi berhasil'); 
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);

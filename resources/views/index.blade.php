@@ -116,24 +116,27 @@ https://templatemo.com/tm-588-ebook-landing
                                 </li>
                             </ul>
                         </div>
-                        {{-- 
-                        @elseif(Str::length(Auth::guard('admin')->user()) > 0)
+                    @elseif(Str::length(Auth::guard('admin')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Hallo, {{Auth::guard('admin')->user()->username}}
+                            <button class="btn btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Hallo, {{ Auth::guard('admin')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item active" href="/profile">Profil</a></li>
-                                <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
-                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item active" href="/profileadmin">Profil</a></li>
+                                <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
                                 <li>
                                     <form action="/logout" method="post">
                                         @csrf
-                                        <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>               
+                                        <button type="submit" class="dropdown-item"><i
+                                                class="bi bi-box-arrow-right"></i> Logout</button>
                                     </form>
                                 </li>
                             </ul>
-                        </div> --}}
+                        </div>
 
 
                         {{-- @elseif(Str::length(Auth::loginUsingId(10)) > 0)
@@ -155,7 +158,7 @@ https://templatemo.com/tm-588-ebook-landing
                         </div> --}}
                     @else
                         <div class="d-none d-lg-block">
-                            <a href="/mulai" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
+                            <a href="/login" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                                 <i class="btn-icon bi-cloud-download"></i>
                                 <span href="...\PPLARGO\login.php">Masuk</span><!-- duplicated above one for mobile -->
                             </a>
@@ -312,6 +315,11 @@ https://templatemo.com/tm-588-ebook-landing
                         <p>
                             <a href="mailto:info@company.com" class="contact-link">
                                 info@company.com
+                            </a>
+                        </p>
+                        <p>
+                            <a href="/signin-admin" class="contact-link">
+                                Admin
                             </a>
                         </p>
 

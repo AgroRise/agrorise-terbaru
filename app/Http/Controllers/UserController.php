@@ -8,14 +8,16 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('profile-edit');
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $request->validate([
-            'username' =>['required','min:4','max:20', Rule::unique('users')->ignore(Auth::guard('user')->user()->id),]
-        ]);
+            'username' => ['required', 'min:4', 'max:20', 'regex:/^\S+$/', Rule::unique('users')->ignore(Auth::guard('user')->user()->id),]
+        ], ['username.regex' => 'username tidak boleh spasi']);
 
         Auth::guard('user')->user()->update([
             'username' => $request->username,

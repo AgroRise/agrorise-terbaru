@@ -4,9 +4,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminPakarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PakarController;
+use App\Http\Controllers\PasswordAdminController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PasswordPakarController;
 use App\Http\Controllers\PestisidaController;
+use App\Http\Controllers\SigninadminController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\SigninpakarController;
 use App\Http\Controllers\SignupController;
@@ -35,21 +37,26 @@ route::post('/logout',[SigninpakarController::class, 'logout']);
 
 route::get('/',[DashboardController::class, 'index']);
 
-route::group(['middleware' => ['auth:user,pakar']], function(){
+route::group(['middleware' => ['auth:user,pakar,admin']], function(){
     Route::get('/pestisida', function () {return view('pestisida');});
     Route::get('/pupuk-urea', function () {return view('pupuk-urea');});
     Route::get('/pupuk-kotoran-ayam', function () {return view('kotoran-ayam');});
     Route::get('/pupuk-SP-36', function () {return view('SP-36');});
     Route::get('/profile', function () {return view('profile');});
     Route::get('/profilepakar', function () {return view('profilepakar');});
+    Route::get('/profileadmin', function () {return view('profileadmin');});
     route::get('/edit-pakar',[PakarController::class, 'index']);
     route::put('/update-pakar',[PakarController::class, 'update']);
     route::get('/edit-user',[UserController::class, 'index']);
     route::put('/update-user',[UserController::class, 'update']);
+    route::get('/edit-admin',[AdminController::class, 'index']);
+    route::put('/update-admin',[AdminController::class, 'update']);
     route::get('/edit-password-user',[PasswordController::class, 'index']);
     route::put('/update-password-user',[PasswordController::class, 'update']);
     route::get('/edit-password-pakar',[PasswordPakarController::class, 'index']);
     route::put('/update-password-pakar',[PasswordPakarController::class, 'update']);
+    route::get('/edit-password-admin',[PasswordAdminController::class, 'index']);
+    route::put('/update-password-admin',[PasswordAdminController::class, 'update']);
     // route::get('/signin',[AdminController::class, 'index']);
 
 });
@@ -61,6 +68,8 @@ route::group(['middleware' => ['guest:user,pakar,admin']], function(){
     route::post('/signin',[SigninController::class, 'login']);
     route::get('/signin-pakar',[SigninpakarController::class, 'index']);
     route::post('/signin-pakar',[SigninpakarController::class, 'login']);
+    route::get('/signin-admin',[SigninadminController::class, 'index']);
+    route::post('/signin-admin',[SigninadminController::class, 'login']);
     route::get('/signup',[SignupController::class, 'index']);
     route::post('/signup',[SignupController::class, 'store']);
     route::get('/signup-pakar',[SignuppakarController::class, 'index']);
@@ -69,6 +78,7 @@ route::group(['middleware' => ['guest:user,pakar,admin']], function(){
     Route::get('/login', function () {return view('mainlogin');})->name('login');
     // route::post('/signin',[AdminController::class, 'index']);
 });
+
 
 
 

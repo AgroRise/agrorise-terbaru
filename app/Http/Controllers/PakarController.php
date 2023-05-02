@@ -8,21 +8,23 @@ use Illuminate\Validation\Rule;
 
 class PakarController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('profilepakar-edit');
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $request->validate([
             'nama' => 'required|min:4|max:30',
-            'username' =>['required','min:4','max:20', Rule::unique('pakars')->ignore(Auth::guard('pakar')->user()->id),],
+            'username' => ['required', 'min:4', 'max:20', 'regex:/^\S+$/', Rule::unique('pakars')->ignore(Auth::guard('pakar')->user()->id),],
             'no_telepon' => 'required',
             'alamat' => 'required',
             'pendidikan_terakhir' => 'required',
             'pekerjaan' => 'required',
             'instansi' => 'required',
             'alamat_instansi' => 'required',
-        ]);
+        ], ['username.regex' => 'username tidak boleh spasi']);
 
         Auth::guard('pakar')->user()->update([
             'nama' => $request->nama,

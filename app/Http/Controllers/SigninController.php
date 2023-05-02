@@ -23,11 +23,7 @@ class SigninController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/');
         }    
-        elseif (Auth::guard('admin')->attempt(['email' => $credentials['login'], 'password' => $credentials['password']]) ||
-            Auth::guard('admin')->attempt(['username' => $credentials['login'], 'password' => $credentials['password']])) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
-        }    
+
         // if (Auth::loginUsingId(10)){
         //     $request->session()->regenerate();
         //     return redirect()->intended('/');

@@ -75,9 +75,10 @@
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_5">Tentang Kami</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">Hallo,
-                                {{ Auth::guard('pakar')->user()->username }}</a>
+                            <a class="nav-link click-scroll" href="#section_5"> Hallo,
+                                {{ Auth::guard('admin')->user()->username }}</a></a>
                         </li>
                     </ul>
 
@@ -100,7 +101,7 @@
                                     <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin"
                                         class="rounded-circle p-1 bg-primary" width="150">
                                     <div class="mt-3">
-                                        <h4>{{ old('username', Auth::guard('pakar')->user()->username) }}</h4>
+                                        <h4>{{ old('username', Auth::guard('admin')->user()->username) }}</h4>
                                         <form action="/logout" method="post">
                                             @csrf
                                             <button class="btn btn-primary">Logout</button>
@@ -114,65 +115,38 @@
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-body">
-                                @if (session()->has('message'))
+                                @if (session()->has('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        {{ session('message') }}
+                                        {{ session('success') }}
                                         <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"></button>
                                     </div>
                                 @endif
-                                <form action="/update-password-pakar" method="post">
-                                    @method('put')
-                                    @csrf
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Password Lama</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="password" name="current_password"
-                                                class="form-control @error('current_password') is-invalid @enderror"
-                                                autofocus>
-                                            @error('current_password')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Password Baru</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="password" name="password"
-                                                class="form-control @error('password') is-invalid @enderror">
-                                            @error('password')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input readonly type="email" class="form-control"
+                                            value="{{ old('email', Auth::guard('admin')->user()->email) }}">
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Konfirmasi Password</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="password" name="password_confirmation" class="form-control">
-                                            @error('password_confirmation')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Username</h6>
                                     </div>
-                                    <button class="row">
-                                        <div class="col-sm-3"></div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="button" class="btn btn-primary px-4" value="Save">
-                                        </div>
-                                    </button>
-                                </form>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input readonly type="username" class="form-control"
+                                            value="{{ old('username', Auth::guard('admin')->user()->username) }}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <a href="/edit-admin"><input type="button" class="btn btn-primary px-4"
+                                                value="Edit"></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

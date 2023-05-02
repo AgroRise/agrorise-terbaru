@@ -77,7 +77,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_5">Hallo,
-                                {{ Auth::guard('pakar')->user()->username }}</a>
+                                {{ Auth::guard('admin')->user()->username }}</a>
                         </li>
                     </ul>
 
@@ -100,7 +100,7 @@
                                     <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin"
                                         class="rounded-circle p-1 bg-primary" width="150">
                                     <div class="mt-3">
-                                        <h4>{{ old('username', Auth::guard('pakar')->user()->username) }}</h4>
+                                        <h4>{{ old('username', Auth::guard('admin')->user()->username) }}</h4>
                                         <form action="/logout" method="post">
                                             @csrf
                                             <button class="btn btn-primary">Logout</button>
@@ -121,7 +121,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                 @endif
-                                <form action="/update-password-pakar" method="post">
+                                <form action="/update-password-admin" method="post">
                                     @method('put')
                                     @csrf
                                     <div class="row mb-3">
