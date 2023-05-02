@@ -55,7 +55,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_1">Beranda</a>
+                            <a class="nav-link click-scroll" href="/">Beranda</a>
                         </li>
 
                         <li class="nav-item">
