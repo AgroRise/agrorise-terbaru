@@ -489,10 +489,19 @@ strong {
   padding-bottom: 15px;
 }
 
-.navbar-nav .nav-link.active, 
+.navbar-nav .nav-link.active{
+  color: white;
+}
+.navbar-nav .nav-link.text{
+  color: #E76F51;
+}
 .navbar-nav .nav-link:hover {
   color: var(--primary-color);
 }
+.dropdown .text{
+  color: #E76F51;
+}
+
 
 .navbar-toggler {
   border: 0;

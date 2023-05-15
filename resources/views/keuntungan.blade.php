@@ -62,8 +62,8 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Perhitungan</a>
+                            <a class="nav-link text dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Keuntungan</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                 <li><a class="dropdown-item" href="/pupuk-urea">Pupuk</a></li>
@@ -76,13 +76,6 @@
                             <a class="nav-link click-scroll" href="#section_5">Tentang Kami</a>
                         </li>
                     </ul>
-
-                    <div class="d-none d-lg-block">
-                        <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
-                            <i class="btn-icon bi-cloud-download"></i>
-                            <span>Masuk</span><!-- duplicated above one for mobile -->
-                        </a>
-                    </div>
                 </div>
             </div>
         </nav>

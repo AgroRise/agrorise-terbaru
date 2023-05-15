@@ -62,8 +62,8 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Perhitungan</a>
+                            <a class="nav-link text dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Pestisida</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                 <li><a class="dropdown-item" href="/pupuk-urea">Pupuk</a></li>
@@ -73,7 +73,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">Tentang Kami</a>
+                            <a class="nav-link click-scroll" href="/#tentang_kami">Tentang Kami</a>
                         </li>
                     </ul>
 
@@ -173,9 +173,9 @@
         var btangki = document.getElementById("btangki");
 
         function hpest() {
-            dosis.value = Number(consent.value) * Number(vsemprot.value) + " (L/Ha)"
-            vpestisida.value = Number(consent.value) * Number(vtangki.value) + "  mL"
-            vair.value = Number(vsemprot.value) * Number(luas.value) + "  L"
+            dosis.value = Number(consent.value) * Number(vsemprot.value)
+            vpestisida.value = Number(consent.value) * Number(vtangki.value)
+            vair.value = Number(vsemprot.value) * Number(luas.value)
             btangki.value = Number(vair.value) / Number(vtangki.value) + "  Tangki"
         }
     </script>

@@ -71,17 +71,17 @@ https://templatemo.com/tm-588-ebook-landing
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">Tentang Kami</a>
+                            <a class="nav-link click-scroll" href="#tentang_kami">Tentang Kami</a>
                         </li>
                     </ul>
                     @if (Str::length(Auth::guard('pakar')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Hallo, {{ Auth::guard('pakar')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item active" href="/profilepakar">Profil</a></li>
+                                <li><a class="dropdown-item" href="/profilepakar">Profil</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -97,12 +97,12 @@ https://templatemo.com/tm-588-ebook-landing
                         </div>
                     @elseif(Str::length(Auth::guard('user')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Hallo, {{ Auth::guard('user')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item active" href="/profile">Profil</a></li>
+                                <li><a class="dropdown-item" href="/profile">Profil</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -118,12 +118,12 @@ https://templatemo.com/tm-588-ebook-landing
                         </div>
                     @elseif(Str::length(Auth::guard('admin')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Hallo, {{ Auth::guard('admin')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item active" href="/profileadmin">Profil</a></li>
+                                <li><a class="dropdown-item" href="/profileadmin">Profil</a></li>
                                 <li><a class="dropdown-item" href="/file">Database Pengguna</a></li>
                                 <li><a class="dropdown-item" href="/filepakar">Database Pakar</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
@@ -304,7 +304,7 @@ https://templatemo.com/tm-588-ebook-landing
         </section>
 
 
-        <section class="author-section section-padding" id="section_3">
+        <section class="author-section section-padding" id="tentang_kami">
             <div class="container">
                 <div class="row">
 

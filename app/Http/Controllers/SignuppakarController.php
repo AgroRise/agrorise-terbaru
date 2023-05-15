@@ -27,13 +27,15 @@ class SignuppakarController extends Controller
             'pekerjaan' => 'required',
             'instansi' => 'required',
             'alamat_instansi' => 'required',
-            'cv' => 'required|mimes:pdf',
-            'sertifikat' => 'required|mimes:pdf'
+            'cv' => 'required',
+            'sertifikat' => 'required'
+            // 'cv' => 'required|mimes:pdf',
+            // 'sertifikat' => 'required|mimes:pdf'
         ], [
             'password.regex' => ' Mengandung setidaknya 1 huruf besar, 1 huruf kecil, dan 1 angka',
             'username.regex' => 'username tidak boleh spasi',
-            'cv.mimes' => 'file harus pdf',
-            'sertifikat.mimes' => 'file harus pdf'
+            // 'cv.mimes' => 'file harus pdf',
+            // 'sertifikat.mimes' => 'file harus pdf'
         ]);
         // $cv_file = $request->file('cv');
         // $cv_ekstensi = $cv_file->extension();

@@ -70,10 +70,10 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_5">Tentang Kami</a>
+                                <a class="nav-link click-scroll" href="/#tentang_kami">Tentang Kami</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_5">Hallo, {{ Auth::guard('admin')->user()->username }}</a>
+                                <a class="nav-link text click-scroll" href="#section_5">Hallo, {{ Auth::guard('admin')->user()->username }}</a>
                             </li>
                         </ul>
 

@@ -73,11 +73,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">Tentang Kami</a>
+                            <a class="nav-link click-scroll" href="/#tentang_kami">Tentang Kami</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">Hallo,
+                            <a class="nav-link click-scroll text" href="/profilepakar">Hallo,
                                 {{ Auth::guard('pakar')->user()->username }}</a>
                         </li>
                     </ul>
