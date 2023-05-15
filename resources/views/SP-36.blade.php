@@ -76,7 +76,79 @@
                             <a class="nav-link click-scroll" href="/#tentang_kami">Tentang Kami</a>
                         </li>
                     </ul>
-
+                    @if (Str::length(Auth::guard('pakar')->user()) > 0)
+                        <div class="dropdown">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Hallo, {{ Auth::guard('pakar')->user()->username }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="/profilepakar">Profil</a></li>
+                                <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item"><i
+                                                class="bi bi-box-arrow-right"></i> Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @elseif(Str::length(Auth::guard('user')->user()) > 0)
+                        <div class="dropdown">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Hallo, {{ Auth::guard('user')->user()->username }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="/profile">Profil</a></li>
+                                <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item"><i
+                                                class="bi bi-box-arrow-right"></i> Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @elseif(Str::length(Auth::guard('admin')->user()) > 0)
+                        <div class="dropdown">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Hallo, {{ Auth::guard('admin')->user()->username }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="/profileadmin">Profil</a></li>
+                                <li><a class="dropdown-item" href="/file">Database Pengguna</a></li>
+                                <li><a class="dropdown-item" href="/filepakar">Database Pakar</a></li>
+                                <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item"><i
+                                                class="bi bi-box-arrow-right"></i> Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <div class="d-none d-lg-block">
+                            <a href="/login" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
+                                <i class="btn-icon bi-cloud-download"></i>
+                                <span href="...\PPLARGO\login.php">Masuk</span><!-- duplicated above one for mobile -->
+                            </a>
+                        </div>
+                    @endif
                     {{-- <div class="d-none d-lg-block">
                             <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                                 <i class="btn-icon bi-cloud-download"></i>

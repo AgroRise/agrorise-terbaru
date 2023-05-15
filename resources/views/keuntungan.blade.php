@@ -56,31 +56,99 @@
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="/">Beranda</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_2">Course</a>
                         </li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link text dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">Keuntungan</a>
-
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                 <li><a class="dropdown-item" href="/pupuk-urea">Pupuk</a></li>
                                 <li><a class="dropdown-item" href="/pestisida">Pestisida</a></li>
                                 <li><a class="dropdown-item" href="/keuntungan">Keuntungan</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_5">Tentang Kami</a>
                         </li>
                     </ul>
+                    @if (Str::length(Auth::guard('pakar')->user()) > 0)
+                        <div class="dropdown">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Hallo, {{ Auth::guard('pakar')->user()->username }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="/profilepakar">Profil</a></li>
+                                <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item"><i
+                                                class="bi bi-box-arrow-right"></i> Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @elseif(Str::length(Auth::guard('user')->user()) > 0)
+                        <div class="dropdown">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Hallo, {{ Auth::guard('user')->user()->username }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="/profile">Profil</a></li>
+                                <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item"><i
+                                                class="bi bi-box-arrow-right"></i> Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @elseif(Str::length(Auth::guard('admin')->user()) > 0)
+                        <div class="dropdown">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Hallo, {{ Auth::guard('admin')->user()->username }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="/profileadmin">Profil</a></li>
+                                <li><a class="dropdown-item" href="/file">Database Pengguna</a></li>
+                                <li><a class="dropdown-item" href="/filepakar">Database Pakar</a></li>
+                                <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item"><i
+                                                class="bi bi-box-arrow-right"></i> Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <div class="d-none d-lg-block">
+                            <a href="/login" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
+                                <i class="btn-icon bi-cloud-download"></i>
+                                <span href="...\PPLARGO\login.php">Masuk</span><!-- duplicated above one for mobile -->
+                            </a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </nav>
         <div class="content">
-
             <div class="container">
                 <div class="row align-items-stretch justify-content-center no-gutters">
                     <div class="col-md-7">

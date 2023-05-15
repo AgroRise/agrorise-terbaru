@@ -77,6 +77,28 @@
                             <a class="nav-link click-scroll" href="/#tentang_kami">Tentang Kami</a>
                         </li>
                     </ul>
+                    <div class="dropdown">
+                        <button class="btn btn-transparent dropdown-toggle text" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Hallo, {{ Auth::guard('admin')->user()->username }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="/profileadmin">Profil</a></li>
+                            <li><a class="dropdown-item" href="/file">Database Pengguna</a></li>
+                            <li><a class="dropdown-item" href="/filepakar">Database Pakar</a></li>
+                            <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item"><i
+                                            class="bi bi-box-arrow-right"></i> Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>

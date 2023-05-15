@@ -81,13 +81,8 @@
             @enderror
             <input type="password" id="password" class="fadeIn third @error('password') is-invalid @enderror" name="password" placeholder="Password" required>
             <input type="submit" class="fadeIn fourth" value="Login">
-        </form>
-    
-        <!-- Remind Passowrd -->
-        <div id="formFooter">
-            <a class="underlineHover" href="/signup">Daftar</a>
-        </div>
-    
+        </form> 
+        <!-- Remind Passowrd -->   
         </div>
     </div>
 </div>
