@@ -75,12 +75,27 @@
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="/#tentang_kami">Tentang Kami</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text click-scroll" href="#section_5">Hallo,
-                                {{ Auth::guard('pakar')->user()->username }}</a>
-                        </li>
                     </ul>
-
+                    <div class="dropdown">
+                        <button class="btn btn-transparent dropdown-toggle text" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Hallo, {{ Auth::guard('pakar')->user()->username }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="/profilepakar">Profil</a></li>
+                            <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item"><i
+                                            class="bi bi-box-arrow-right"></i> Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                     {{-- <div class="d-none d-lg-block">
                             <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                                 <i class="btn-icon bi-cloud-download"></i>
