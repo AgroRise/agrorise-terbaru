@@ -97,8 +97,9 @@
                         <a href="/signup-pakar"><input type="button" class="fadeIn fourth" value="Pakar"></a>
                         <a href="/signup"><input type="button" class="fadeIn fourth" value="Pengguna"></a>
                     </form>
-
-
+                    <div id="formFooter">
+                        <p>Sudah punya akun?<a class="underlineHover" href="/login">Masuk</a></p>
+                    </div>
                 </div>
             </div>
         </div>
