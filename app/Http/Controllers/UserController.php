@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('profile-edit');
+        return view('user/profile-edit');
     }
 
     public function update(Request $request)

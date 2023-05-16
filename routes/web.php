@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/keuntungan', function () {return view('keuntungan');});
+Route::get('/keuntungan', function () {return view('kalkulator/keuntungan');});
 
 route::post('/logout',[SigninController::class, 'logout']);
 
@@ -38,13 +38,13 @@ route::post('/logout',[SigninpakarController::class, 'logout']);
 route::get('/',[DashboardController::class, 'index']);
 
 route::group(['middleware' => ['auth:user,pakar,admin']], function(){
-    Route::get('/pestisida', function () {return view('pestisida');});
-    Route::get('/pupuk-urea', function () {return view('pupuk-urea');});
-    Route::get('/pupuk-kotoran-ayam', function () {return view('kotoran-ayam');});
-    Route::get('/pupuk-SP-36', function () {return view('SP-36');});
-    Route::get('/profile', function () {return view('profile');});
-    Route::get('/profilepakar', function () {return view('profilepakar');});
-    Route::get('/profileadmin', function () {return view('profileadmin');});
+    Route::get('/pestisida', function () {return view('kalkulator/pestisida');});
+    Route::get('/pupuk-urea', function () {return view('kalkulator/pupuk-urea');});
+    Route::get('/pupuk-kotoran-ayam', function () {return view('kalkulator/kotoran-ayam');});
+    Route::get('/pupuk-SP-36', function () {return view('kalkulator/SP-36');});
+    Route::get('/profile', function () {return view('user/profile');});
+    Route::get('/profilepakar', function () {return view('pakar/profilepakar');});
+    Route::get('/profileadmin', function () {return view('admin/profileadmin');});
     route::get('/edit-pakar',[PakarController::class, 'index']);
     route::put('/update-pakar',[PakarController::class, 'update']);
     route::get('/edit-user',[UserController::class, 'index']);
@@ -60,7 +60,6 @@ route::group(['middleware' => ['auth:user,pakar,admin']], function(){
     route::get('/file',[AdminController::class, 'user']);
     route::get('/filepakar',[AdminController::class, 'pakar']);
     // route::get('/signin',[AdminController::class, 'index']);
-
 });
 
 route::group(['middleware' => ['guest:user,pakar,admin']], function(){

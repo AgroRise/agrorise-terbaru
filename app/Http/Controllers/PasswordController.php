@@ -11,7 +11,7 @@ class PasswordController extends Controller
 {
     public function index()
     {
-        return view('password-edit-user');
+        return view('user/password-edit-user');
     }
     public function update(Request $request)
     {

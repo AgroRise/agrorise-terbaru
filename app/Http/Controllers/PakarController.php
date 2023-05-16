@@ -10,7 +10,7 @@ class PakarController extends Controller
 {
     public function index()
     {
-        return view('profilepakar-edit');
+        return view('pakar/profilepakar-edit');
     }
 
     public function update(Request $request)

@@ -11,7 +11,7 @@ class PasswordPakarController extends Controller
 {
     public function index()
     {
-        return view('password-edit-pakar');
+        return view('pakar/password-edit-pakar');
     }
     public function update(Request $request)
     {

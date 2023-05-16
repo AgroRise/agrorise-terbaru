@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('profileadmin-edit');
+        return view('admin/profileadmin-edit');
     }
 
     public function update(Request $request)
@@ -31,11 +31,11 @@ class AdminController extends Controller
     public function user()
     {
         $data = User::orderBy('id', 'asc')->paginate(1);
-        return view('admin')->with('data', $data);
+        return view('database/admin-user')->with('data', $data);
     }
     public function pakar(){
         $data = Pakar::orderBy('id', 'asc')->paginate(1);
-        return view('admin-pakar')->with('data', $data);
+        return view('database/admin-pakar')->with('data', $data);
     }
     // public function file(){
     //     file_cv = $request

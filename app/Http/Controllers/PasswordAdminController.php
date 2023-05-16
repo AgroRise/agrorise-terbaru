@@ -11,7 +11,7 @@ class PasswordAdminController extends Controller
 {
     public function index()
     {
-        return view('password-edit-admin');
+        return view('admin/password-edit-admin');
     }
     public function update(Request $request)
     {
