@@ -69,8 +69,6 @@ route::group(['middleware' => ['guest:user,pakar,admin']], function(){
     route::post('/signin',[SigninController::class, 'login']);
     route::get('/signin-pakar',[SigninpakarController::class, 'index']);
     route::post('/signin-pakar',[SigninpakarController::class, 'login']);
-    route::get('/signin-admin',[SigninadminController::class, 'index']);
-    route::post('/signin-admin',[SigninadminController::class, 'login']);
     route::get('/signup',[SignupController::class, 'index']);
     route::post('/signup',[SignupController::class, 'store']);
     route::get('/signup-pakar',[SignuppakarController::class, 'index']);

@@ -326,44 +326,27 @@ https://templatemo.com/tm-588-ebook-landing
                 </div>
             </div>
         </section>
-
-
         <section class="contact-section section-padding" id="section_5">
             <div class="container">
                 <div class="row">
-
-
-
                     <div class="text-center align-items-center">
                         <h6 class="mt-5">Say hi and talk to us</h6>
-
                         <h2 class="mb-4">Contact</h2>
-
                         <p class="mb-3">
                             <i class="bi-geo-alt me-2"></i>
                             London, United Kingdom
                         </p>
-
                         <p class="mb-2">
                             <a href="tel: 010-020-0340" class="contact-link">
                                 010-020-0340
                             </a>
                         </p>
-
                         <p>
                             <a href="mailto:info@company.com" class="contact-link">
                                 info@company.com
                             </a>
                         </p>
-                        <p>
-                            <a href="/signin-admin" class="contact-link">
-                                Admin
-                            </a>
-                        </p>
-
-
                     </div>
-
                 </div>
             </div>
         </section>

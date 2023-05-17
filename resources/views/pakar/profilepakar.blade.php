@@ -220,8 +220,8 @@
                                 </div>
                                 <div class="row justify-content-between">
                                     <div class="col-4 text-secondary">
-                                        <a href="/"><input type="button"
-                                                class="btn btn-primary px-4" value="Kembali"></a>
+                                        {{-- <a href="/"><input type="button"
+                                                class="btn btn-primary px-4" value="Kembali"></a> --}}
                                     </div>
                                     <div class="col-3 text-secondary">
                                         <a href="/edit-pakar"><input type="button" class="btn btn-primary px-4" value="Edit"></a>
