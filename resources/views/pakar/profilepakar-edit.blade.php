@@ -77,8 +77,8 @@
                         </li>
                     </ul>
                     <div class="dropdown">
-                        <button class="btn btn-transparent dropdown-toggle text" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <button class="btn btn-transparent dropdown-toggle text" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Hallo, {{ Auth::guard('pakar')->user()->username }}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark">
@@ -90,8 +90,8 @@
                             <li>
                                 <form action="/logout" method="post">
                                     @csrf
-                                    <button type="submit" class="dropdown-item"><i
-                                            class="bi bi-box-arrow-right"></i> Logout</button>
+                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i>
+                                        Logout</button>
                                 </form>
                             </li>
                         </ul>
@@ -261,12 +261,15 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <button class="row">
-                                        <div class="col-sm-3"></div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="button" class="btn btn-primary px-4" value="Save">
+                                    <div class="row justify-content-between">
+                                        <div class="col-4 text-secondary">
+                                            <a href="/profilepakar"><input type="button"
+                                                    class="btn btn-primary px-4" value="Kembali"></a>
                                         </div>
-                                    </button>
+                                        <button class="col-4 text-secondary">
+                                            <input type="button" class="btn btn-primary px-4" value="Save">
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

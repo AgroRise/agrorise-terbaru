@@ -181,12 +181,15 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <button class="row">
-                                        <div class="col-sm-3"></div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="button" class="btn btn-primary px-4" value="Save">
+                                    <div class="row justify-content-between">
+                                        <div class="col-4 text-secondary">
+                                            <a href="/"><input type="button"
+                                                    class="btn btn-primary px-4" value="Kembali"></a>
                                         </div>
-                                    </button>
+                                        <button class="col-4 text-secondary">
+                                            <input type="button" class="btn btn-primary px-4" value="Save">
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

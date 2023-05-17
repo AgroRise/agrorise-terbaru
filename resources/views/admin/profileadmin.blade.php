@@ -156,13 +156,22 @@
                                             value="{{ old('username', Auth::guard('admin')->user()->username) }}">
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row justify-content-between">
+                                    <div class="col-4 text-secondary">
+                                        <a href="/"><input type="button"
+                                                class="btn btn-primary px-4" value="Kembali"></a>
+                                    </div>
+                                    <div class="col-3 text-secondary">
+                                        <a href="/edit-admin"><input type="button" class="btn btn-primary px-4" value="Edit"></a>
+                                    </div>
+                                </div>
+                                {{-- <div class="row">
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9 text-secondary">
                                         <a href="/edit-admin"><input type="button" class="btn btn-primary px-4"
                                                 value="Edit"></a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

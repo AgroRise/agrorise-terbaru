@@ -96,12 +96,6 @@
                             </li>
                         </ul>
                     </div>
-                    {{-- <div class="d-none d-lg-block">
-                            <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
-                                <i class="btn-icon bi-cloud-download"></i>
-                                <span>Masuk</span><!-- duplicated above one for mobile -->
-                            </a>
-                        </div> --}}
                 </div>
             </div>
         </nav>
@@ -157,12 +151,15 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <button class="row">
-                                        <div class="col-sm-3"></div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="button" class="btn btn-primary px-4" value="Save">
+                                    <div class="row justify-content-between">
+                                        <div class="col-4 text-secondary">
+                                            <a href="/profile"><input type="button"
+                                                    class="btn btn-primary px-4" value="Kembali"></a>
                                         </div>
-                                    </button>
+                                        <button class="col-4 text-secondary">
+                                            <input type="button" class="btn btn-primary px-4" value="Save">
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
