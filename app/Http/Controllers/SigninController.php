@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Signin;
 
 class SigninController extends Controller
 {
-    function index()
+    function index1()
     {
         return view('sesi/signin');
     }
-    public function login(Request $request)
+    public function login1(Request $request)
     {
         // Session::flash('email', $request->input('email'));
         $credentials = $request->validate([
@@ -20,6 +20,7 @@ class SigninController extends Controller
             'password' => 'required'
         ]);
 
+        // login untuk user
         if (
             Auth::guard('user')->attempt(['email' => $credentials['login'], 'password' => $credentials['password']]) ||
             Auth::guard('user')->attempt(['username' => $credentials['login'], 'password' => $credentials['password']])
@@ -27,6 +28,8 @@ class SigninController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
+
+        // login untuk admin
         if (
             Auth::guard('admin')->attempt(['email' => $credentials['login'], 'password' => $credentials['password']]) ||
             Auth::guard('admin')->attempt(['username' => $credentials['login'], 'password' => $credentials['password']])
@@ -37,25 +40,40 @@ class SigninController extends Controller
 
         return back()->with('loginError', 'login failed!');
     }
-    public function logout()
+    public function logout1()
     {
         Auth::guard('user')->logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
         return redirect('/login');
+    }
 
-        //username login
-
-        // if (Auth::guard('user')->check()){
-        //     Auth::guard('user')->logout();
-        // }
-        // return redirect('/login');
-
-
-
-        // Auth::logout();
-        // request()->session()->invalidate();
-        // request()->session()->regenerateToken();
-        // return redirect('/');
+    //login untuk pakar
+    function index2()
+    {
+        return view('sesi/signin-pakar');
+    }
+    public function login2(Request $request)
+    {
+        // Session::flash('email', $request->input('email'));
+        $credentials = $request->validate([
+            'login' => 'required',
+            'password' => 'required'
+        ]);
+        if (
+            Auth::guard('pakar')->attempt(['email' => $credentials['login'], 'password' => $credentials['password']]) ||
+            Auth::guard('pakar')->attempt(['username' => $credentials['login'], 'password' => $credentials['password']])
+        ) {
+            $request->session()->regenerate();
+            return redirect()->intended('/');
+        }
+        return back()->with('loginError', 'login failed!');
+    }
+    public function logout2()
+    {
+        Auth::guard('pakar')->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect('/login');
     }
 }

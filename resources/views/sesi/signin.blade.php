@@ -85,7 +85,7 @@
     
         <!-- Remind Passowrd -->
         <div id="formFooter">
-            <a class="underlineHover" href="/signup">Daftar</a>
+            <a class="underlineHover" href="/daftar">Daftar</a>
         </div>
     
         </div>
