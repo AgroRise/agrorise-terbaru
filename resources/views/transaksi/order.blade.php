@@ -19,11 +19,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
-    <link href="css/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap-icons.css')}}" rel="stylesheet">
 
-    <link href="css/kalkulator.css" rel="stylesheet">
+    <link href="{{asset('css/kalkulator.css')}}" rel="stylesheet">
     <!--
 
 

@@ -17,11 +17,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
-    <link href="css/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap-icons.css')}}" rel="stylesheet">
 
-    <link href="css/landing.css" rel="stylesheet">
+    <link href="{{asset('css/landing.css')}}" rel="stylesheet">
     <!--
 
 TemplateMo 588 ebook landing
@@ -332,19 +332,14 @@ https://templatemo.com/tm-588-ebook-landing
                     <div class="text-center align-items-center">
                         <h6 class="mt-5">Say hi and talk to us</h6>
                         <h2 class="mb-4">Contact</h2>
+                        <p>
+                            <a href="mailto:agrorise2023@gmail.com" class="contact-link">
+                                agrorise2023@gmail.com
+                            </a>
+                        </p>
                         <p class="mb-3">
                             <i class="bi-geo-alt me-2"></i>
-                            London, United Kingdom
-                        </p>
-                        <p class="mb-2">
-                            <a href="tel: 010-020-0340" class="contact-link">
-                                010-020-0340
-                            </a>
-                        </p>
-                        <p>
-                            <a href="mailto:info@company.com" class="contact-link">
-                                info@company.com
-                            </a>
+                            Jember, Jawa Timur
                         </p>
                     </div>
                 </div>
