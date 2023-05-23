@@ -36,7 +36,7 @@ https://templatemo.com/tm-588-ebook-landing
     <main>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="/">
                     <i class="navbar-brand-icon bi-book me-2"></i>
                     <span>AgroRise</span>
                 </a>

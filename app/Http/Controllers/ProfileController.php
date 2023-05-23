@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProfileController extends Controller
 {
@@ -18,12 +20,39 @@ class ProfileController extends Controller
     public function update1(Request $request)
     {
         $request->validate([
-            'username' => ['required', 'min:4', 'max:20', 'regex:/^\S+$/', Rule::unique('users')->ignore(Auth::guard('user')->user()->id),]
-        ], ['username.regex' => 'username tidak boleh spasi']);
-
-        Auth::guard('user')->user()->update([
-            'username' => $request->username,
+            'username' => ['required', 'min:4', 'max:20', 'regex:/^\S+$/', Rule::unique('users')->ignore(Auth::guard('user')->user()->id),],
+            'foto' => 'mimes:jpeg,jpg,png,gif'
+        ], [
+            'username.regex' => 'username tidak boleh spasi',
+            'foto.mimes' => 'File foto hanya boleh berekstensi JPEG, JPG, PNG, dan GIF'
         ]);
+
+        $user = Auth::guard('user')->user();
+
+        // Menghapus gambar lama jika ada
+        $oldImage = Auth::guard('user')->user()->foto;
+        if ($request->hasFile('foto') && $oldImage) {
+            Storage::delete($oldImage);
+        }
+
+        //Mengupdate mengupdate gambar yang sudah ada di database tanpa harus menambah file gambar
+        if ($request->hasFile('foto')) {
+            $file_name = $request->foto->getClientOriginalName();
+            $image = $request->foto->storeAs('images', $file_name);
+            $user->foto = $image;
+        }
+
+        $user->username = $request->username;
+        $user->save();
+
+        // $file_name = $request->foto->getClientOriginalName();
+        // $image = $request->foto->storeAs('images', $file_name);
+
+        // Auth::guard('user')->user()->update([
+        //     'username' => $request->username,
+        //     'foto' => $image
+        // ]);
+
         return redirect('/profile')->with('success', 'Profil Berhasil Diperbarui');
     }
 
@@ -44,7 +73,31 @@ class ProfileController extends Controller
             'pekerjaan' => 'required',
             'instansi' => 'required',
             'alamat_instansi' => 'required',
-        ], ['username.regex' => 'username tidak boleh spasi']);
+            'foto' => 'mimes:jpeg,jpg,png,gif',
+        ], [
+            'username.regex' => 'username tidak boleh spasi',
+            'foto.mimes' => 'File foto hanya boleh berekstensi JPEG, JPG, PNG, dan GIF'
+        ]);
+
+        $user = Auth::guard('pakar')->user();
+
+        // Menghapus gambar lama jika ada
+        $oldImage = Auth::guard('pakar')->user()->foto;
+        if ($request->hasFile('foto')) {
+            // Menghapus gambar lama jika ada
+            $oldImage = $user->foto;
+            if ($oldImage) {
+                Storage::delete($oldImage);
+            }
+            $file_name = $request->foto->getClientOriginalName();
+            $image = $request->foto->storeAs('images', $file_name);
+            $user->foto = $image;
+        }
+        $user->username = $request->username;
+        $user->save();
+
+        // $file_name = $request->foto->getClientOriginalName();
+        // $image = $request->foto->storeAs('images', $file_name);
 
         Auth::guard('pakar')->user()->update([
             'nama' => $request->nama,
@@ -55,9 +108,9 @@ class ProfileController extends Controller
             'pekerjaan' => $request->pekerjaan,
             'instansi' => $request->instansi,
             'alamat_instansi' => $request->alamat_instansi,
+            'foto' => $user->foto
         ]);
         return redirect('/profilepakar')->with('success', 'Profil Berhasil Diperbarui');
-        // Auth::guard('pakar')->id()
     }
 
     // edit profil admin
@@ -69,22 +122,47 @@ class ProfileController extends Controller
     public function update3(Request $request)
     {
         $request->validate([
-            'username' => ['required', 'min:4', 'max:20','regex:/^\S+$/', Rule::unique('admins')->ignore(Auth::guard('admin')->user()->id),]
+            'username' => ['required', 'min:4', 'max:20', 'regex:/^\S+$/', Rule::unique('admins')->ignore(Auth::guard('admin')->user()->id),],
+            'foto' => 'mimes:jpeg,jpg,png,gif',
         ], [
-            'username.regex' => 'username tidak boleh spasi'
+            'username.regex' => 'username tidak boleh spasi',
+            'foto.mimes' => 'File foto hanya boleh berekstensi JPEG, JPG, PNG, dan GIF'
         ]);
 
-        Auth::guard('admin')->user()->update([
-            'username' => $request->username,
-        ]);
+        $user = Auth::guard('admin')->user();
+
+        // Menghapus gambar lama jika ada
+        $oldImage = Auth::guard('admin')->user()->foto;
+        if ($request->hasFile('foto') && $oldImage) {
+            Storage::delete($oldImage);
+        }
+
+        //Mengupdate mengupdate gambar yang sudah ada di database tanpa harus menambah file gambar
+        if ($request->hasFile('foto')) {
+            $file_name = $request->foto->getClientOriginalName();
+            $image = $request->foto->storeAs('images', $file_name);
+            $user->foto = $image;
+        }
+
+        $user->username = $request->username;
+        $user->save();
+
+        // Auth::guard('admin')->user()->update([
+        //     'username' => $request->username,
+        //     'foto' => $image
+        // ]);
         return redirect('/profileadmin')->with('success', 'Profil Berhasil Diperbarui');
     }
+
+
+
     public function user()
     {
         $data = User::orderBy('id', 'asc')->paginate(1);
         return view('database/admin-user')->with('data', $data);
     }
-    public function pakar(){
+    public function pakar()
+    {
         $data = Pakar::orderBy('id', 'asc')->paginate(1);
         return view('database/admin-pakar')->with('data', $data);
     }

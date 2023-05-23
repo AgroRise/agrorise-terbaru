@@ -52,11 +52,11 @@ route::group(['middleware' => ['auth:user,pakar,admin']], function(){
     Route::get('/profilepakar', function () {return view('pakar/profilepakar');});
     Route::get('/profileadmin', function () {return view('admin/profileadmin');});
     route::get('/edit-pakar',[ProfileController::class, 'index2']);
-    route::put('/update-pakar',[ProfileController::class, 'update2']);
+    route::patch('/update-pakar',[ProfileController::class, 'update2']);
     route::get('/edit-user',[ProfileController::class, 'index1']);
-    route::put('/update-user',[ProfileController::class, 'update1']);
+    route::patch('/update-user',[ProfileController::class, 'update1']);
     route::get('/edit-admin',[ProfileController::class, 'index3']);
-    route::put('/update-admin',[ProfileController::class, 'update3']);
+    route::patch('/update-admin',[ProfileController::class, 'update3']);
     route::get('/edit-password-user',[PasswordController::class, 'index1']);
     route::put('/update-password-user',[PasswordController::class, 'update1']);
     route::get('/edit-password-admin',[PasswordController::class, 'index2']);
