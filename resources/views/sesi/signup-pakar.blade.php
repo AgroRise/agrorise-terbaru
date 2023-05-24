@@ -27,7 +27,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_2">Course</a>
+                        <a class="nav-link click-scroll" href="#section_2">Kursus</a>
                     </li>
 
                     <li class="nav-item dropdown">

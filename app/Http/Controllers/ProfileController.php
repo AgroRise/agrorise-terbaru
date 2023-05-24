@@ -15,7 +15,7 @@ class ProfileController extends Controller
     // edit profil user
     public function index1()
     {
-        return view('user/profile-edit');
+        return view('user.profile-edit');
     }
     public function update1(Request $request)
     {
@@ -60,7 +60,7 @@ class ProfileController extends Controller
     // edit profil pakar
     public function index2()
     {
-        return view('pakar/profilepakar-edit');
+        return view('pakar.profilepakar-edit');
     }
     public function update2(Request $request)
     {
@@ -116,7 +116,7 @@ class ProfileController extends Controller
     // edit profil admin
     public function index3()
     {
-        return view('admin/profileadmin-edit');
+        return view('admin.profileadmin-edit');
     }
 
     public function update3(Request $request)
@@ -159,12 +159,12 @@ class ProfileController extends Controller
     public function user()
     {
         $data = User::orderBy('id', 'asc')->paginate(1);
-        return view('database/admin-user')->with('data', $data);
+        return view('database.admin-user')->with('data', $data);
     }
     public function pakar()
     {
         $data = Pakar::orderBy('id', 'asc')->paginate(1);
-        return view('database/admin-pakar')->with('data', $data);
+        return view('database.admin-pakar')->with('data', $data);
     }
     // public function file(){
     //     file_cv = $request

@@ -9,7 +9,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return view('transaksi/order');
+        return view('transaksi.order');
     }
     public function checkout(Request $request)
     {
@@ -39,7 +39,7 @@ class OrderController extends Controller
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
         // dd($snapToken);
-        return view('transaksi/checkout', compact('snapToken', 'order'));
+        return view('transaksi.checkout', compact('snapToken', 'order'));
     }
     public function callback(Request $request)
     {
@@ -55,6 +55,6 @@ class OrderController extends Controller
     public function invoice($id)
     {
         $order = Order::find($id);
-        return view('transaksi/invoice', compact('order'));
+        return view('transaksi.invoice', compact('order'));
     }
 }

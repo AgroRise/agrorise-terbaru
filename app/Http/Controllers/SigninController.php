@@ -10,7 +10,7 @@ class SigninController extends Controller
 {
     function index1()
     {
-        return view('sesi/signin');
+        return view('sesi.signin');
     }
     public function login1(Request $request)
     {
@@ -51,7 +51,7 @@ class SigninController extends Controller
     //login untuk pakar
     function index2()
     {
-        return view('sesi/signin-pakar');
+        return view('sesi.signin-pakar');
     }
     public function login2(Request $request)
     {

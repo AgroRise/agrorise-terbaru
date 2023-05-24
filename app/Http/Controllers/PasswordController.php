@@ -40,7 +40,7 @@ class PasswordController extends Controller
     // ubah password buat admin
     public function index2()
     {
-        return view('admin/password-edit-admin');
+        return view('admin.password-edit-admin');
     }
     public function update2(Request $request)
     {
@@ -68,7 +68,7 @@ class PasswordController extends Controller
     // ubah password buat pakar
     public function index3()
     {
-        return view('pakar/password-edit-pakar');
+        return view('pakar.password-edit-pakar');
     }
     public function update3(Request $request)
     {

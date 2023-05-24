@@ -13,7 +13,7 @@ class SignupController extends Controller
     // buat akun user
     public function index1()
     {
-        return view('sesi/signup');
+        return view('sesi.signup');
     }
 
     public function signup1(Request $request)
@@ -38,7 +38,7 @@ class SignupController extends Controller
     // buat akun pakar
     public function index2()
     {
-        return view('sesi/signup-pakar');
+        return view('sesi.signup-pakar');
     }
     public function signup2(Request $request)
     {

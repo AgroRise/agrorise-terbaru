@@ -59,7 +59,7 @@ https://templatemo.com/tm-588-ebook-landing
                             <a class="nav-link click-scroll" href="/">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="/order">Course</a>
+                            <a class="nav-link click-scroll" href="/course">Kursus</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"

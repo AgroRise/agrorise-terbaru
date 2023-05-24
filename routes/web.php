@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminPakarController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PasswordController;
@@ -39,6 +40,10 @@ route::get('/order',[OrderController::class, 'index']);
 route::post('/checkout',[OrderController::class, 'checkout']);
 
 route::get('/invoice/{id}',[OrderController::class, 'invoice']);
+
+
+
+route::get('/course',[CourseController::class, 'index']);
 
 
 
@@ -81,3 +86,4 @@ route::group(['middleware' => ['guest:user,pakar,admin']], function(){
     route::post('/admin-pakar',[AdminPakarController::class, 'index']);
     Route::get('/login', function () {return view('mainlogin');})->name('login');
 });
+
