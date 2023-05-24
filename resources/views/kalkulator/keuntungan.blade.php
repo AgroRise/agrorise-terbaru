@@ -158,18 +158,18 @@
                                 <div class="row">
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Modal (Rupiah)</label>
-                                        <input type="text" class="form-control" id="modal">
+                                        <input type="number" class="form-control" id="modal">
                                     </div>
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Jumlah Hasil Panen (Kg)</label>
-                                        <input type="text" class="form-control" id="panen">
+                                        <input type="number" class="form-control" id="panen">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12 form-group mb-3">
                                         <label for="budget" class="col-form-label">Harga Pasar (Rupiah)</label>
-                                        <input type="text" class="form-control" id="harga">
+                                        <input type="number" class="form-control" id="harga">
                                     </div>
                                 </div>
                                 <div class="row">

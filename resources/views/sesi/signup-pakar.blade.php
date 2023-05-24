@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-lg-auto me-lg-4">
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_1">Beranda</a>
+                        <a class="nav-link click-scroll" href="/">Beranda</a>
                     </li>
 
                     <li class="nav-item">
@@ -35,9 +35,9 @@
                             data-bs-toggle="dropdown" aria-expanded="false">Perhitungan</a>
 
                         <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                            <li><a class="dropdown-item" href="">Pupuk</a></li>
-                            <li><a class="dropdown-item" href="">Bibit</a></li>
-                            <li><a class="dropdown-item" href="">Keuntungan</a></li>
+                            <li><a class="dropdown-item" href="/pupuk-urea">Pupuk</a></li>
+                            <li><a class="dropdown-item" href="/pestisida">Pestisida</a></li>
+                            <li><a class="dropdown-item" href="/keuntungan">Keuntungan</a></li>
                         </ul>
                     </li>
 
@@ -47,7 +47,7 @@
                 </ul>
 
                 <div class="d-none d-lg-block">
-                    <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
+                    <a href="/login" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                         <i class="btn-icon bi-cloud-download"></i>
                         <span>Masuk</span><!-- duplicated above one for mobile -->
                     </a>

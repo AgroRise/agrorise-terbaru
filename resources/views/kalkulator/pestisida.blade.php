@@ -169,20 +169,20 @@
                                 <div class="row">
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Konsentrasi Aplikasi (ml/L)</label>
-                                        <input type="text" class="form-control" id="consent">
+                                        <input type="tnumberext" class="form-control" id="consent">
                                     </div>
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Luas Lahan (m)</label>
-                                        <input type="text" class="form-control" id="luas">
+                                        <input type="number" class="form-control" id="luas">
                                     </div>
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Kapasitas Tangki (L)</label>
-                                        <input type="text" class="form-control" id="vtangki">
+                                        <input type="number" class="form-control" id="vtangki">
                                     </div>
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="budget" class="col-form-label">Volume Aplikasi/Semprot
                                             (L/Ha)</label>
-                                        <input type="text" class="form-control" id="vsemprot">
+                                        <input type="number" class="form-control" id="vsemprot">
                                     </div>
                                 </div>
                                 <div class="row">

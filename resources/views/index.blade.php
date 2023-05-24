@@ -17,11 +17,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/landing.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/landing.css') }}" rel="stylesheet">
     <!--
 
 TemplateMo 588 ebook landing
@@ -76,8 +76,8 @@ https://templatemo.com/tm-588-ebook-landing
                     </ul>
                     @if (Str::length(Auth::guard('pakar')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Hallo, {{ Auth::guard('pakar')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
@@ -97,8 +97,8 @@ https://templatemo.com/tm-588-ebook-landing
                         </div>
                     @elseif(Str::length(Auth::guard('user')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Hallo, {{ Auth::guard('user')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
@@ -118,8 +118,8 @@ https://templatemo.com/tm-588-ebook-landing
                         </div>
                     @elseif(Str::length(Auth::guard('admin')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Hallo, {{ Auth::guard('admin')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
@@ -317,11 +317,20 @@ https://templatemo.com/tm-588-ebook-landing
 
                         <h2 class="mb-4">Tentang Kami</h2>
 
-                        <p>This is an ebook landing page template with Bootstrap 5 CSS framework. It is easy to
-                            customize with the use of Bootstrap CSS classes.</p>
+                        <p>Website AGRORISE merupakan sebuah platform yang dikembangkan oleh Tim Pengembangan Perangkat
+                            Lunak untuk
 
-                        <p>Lorem ipsum dolor sit amet, consive adipisicing elit, sed do eiusmod. tempor incididunt ut
-                            labore.</p>
+                            Dengan adanya AGRORISE, petani dapat memanfaatkan platform ini sebagai wadah untuk belajar
+                            dan memperoleh informasi terkait agroindustri. Mereka dapat mengikuti kursus yang
+                            diselenggarakan oleh para pakar untuk meningkatkan pengetahuan dan wawasan mereka tentang
+                            berbagai aspek agroindustri. Selain itu, petani juga dapat menemukan solusi atas
+                            permasalahan yang mereka alami dalam kegiatan pertanian melalui platform ini.
+
+                            Website AGRORISE bertujuan untuk memberikan bantuan yang komprehensif kepada petani, mulai
+                            dari informasi perkiraan pupuk dan pestisida, hingga kursus-kursus untuk pengembangan
+                            pengetahuan. Dengan demikian, diharapkan petani dapat meningkatkan produktivitas dan
+                            keuntungan mereka dalam agroindustri, serta menghadapi tantangan yang dihadapi dengan lebih
+                            efektif.</p>
                     </div>
                 </div>
             </div>

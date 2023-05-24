@@ -176,7 +176,7 @@
 
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Luas Lahan</label>
-                                        <input type="text" class="form-control" id="luas"><br>
+                                        <input type="number" class="form-control" id="luas"><br>
                                         <select id="selector" onchange="getselect()">
                                             <option value="hektar">Hektar</option>
                                             <option value="meter">m*2</option>

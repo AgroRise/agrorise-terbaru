@@ -27,6 +27,7 @@ class SignupController extends Controller
             'password.regex' => ' Mengandung setidaknya 1 huruf besar, 1 huruf kecil, dan 1 angka',
             'username.regex' => 'username tidak boleh spasi'
         ]);
+
         // dd('registrasi berhasil'); 
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);
