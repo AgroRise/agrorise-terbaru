@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/keuntungan', function () {return view('kalkulator/keuntungan');});
+Route::get('/tes', function () {return view('course/checkout');});
 
 route::post('/logout',[SigninController::class, 'logout1']);
 

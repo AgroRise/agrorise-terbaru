@@ -79,7 +79,7 @@
                 {{ $message }}
             </div>
             @enderror
-            <input type="password" id="password" class="fadeIn third @error('password') is-invalid @enderror" name="password" placeholder="Password" required>
+            <input type="password" id="password" class="fadeIn third pass_show @error('password') is-invalid @enderror" name="password" placeholder="Password" required>
             <input type="submit" class="fadeIn fourth" value="Login">
         </form>
     

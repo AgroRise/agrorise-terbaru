@@ -83,21 +83,21 @@
                             {{ $message }}
                         </div>
                     @enderror
-                    <input type="username" id="username" class="fadeIn second @error('username') is-invalid @enderror"
+                    <input type="username" id="username" class="fadeIn second  @error('username') is-invalid @enderror"
                         name="username" placeholder="Username" required value="{{ old('username') }}">
                     @error('username')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
-                    <input type="password" id="password" class="fadeIn third @error('password') is-invalid @enderror"
+                    <input type="password" id="password" class="fadeIn third pass_show @error('password') is-invalid @enderror"
                         name="password" placeholder="Password" required>
                     @error('password')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
-                    <input type="password" id="password" class="fadeIn third" name="password_confirmation"
+                    <input type="password" id="password" class="fadeIn third pass_show" name="password_confirmation"
                         placeholder="Konfirmasi Password" required>
                     {{-- @error('password')
             <div class="invalid-feedback">

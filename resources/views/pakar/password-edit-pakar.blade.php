@@ -17,11 +17,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/profile.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
     <!--
 
 
@@ -96,12 +96,6 @@
                             </li>
                         </ul>
                     </div>
-                    {{-- <div class="d-none d-lg-block">
-                            <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
-                                <i class="btn-icon bi-cloud-download"></i>
-                                <span>Masuk</span><!-- duplicated above one for mobile -->
-                            </a>
-                        </div> --}}
                 </div>
             </div>
         </nav>
@@ -145,7 +139,7 @@
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="password" name="current_password"
-                                                class="form-control @error('current_password') is-invalid @enderror"
+                                                class="form-control pass_show @error('current_password') is-invalid @enderror"
                                                 autofocus>
                                             @error('current_password')
                                                 <div class="invalid-feedback">
@@ -160,7 +154,7 @@
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="password" name="password"
-                                                class="form-control @error('password') is-invalid @enderror">
+                                                class="form-control pass_show @error('password') is-invalid @enderror">
                                             @error('password')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -173,7 +167,8 @@
                                             <h6 class="mb-0">Konfirmasi Password</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="password" name="password_confirmation" class="form-control">
+                                            <input type="password" name="password_confirmation"
+                                                class="form-control pass_show @error('password') is-invalid @enderror">
                                             @error('password_confirmation')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -206,6 +201,23 @@
     <script src="js/jquery.sticky.js"></script>
     <script src="js/click-scroll.js"></script>
     <script src="js/custom.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.pass_show').append('<span class="ptxt">Show</span>');
+        });
+
+
+        $(document).on('click', '.pass_show .ptxt', function() {
+
+            $(this).text($(this).text() == "Show" ? "Hide" : "Show");
+
+            $(this).prev().attr('type', function(index, attr) {
+                return attr == 'password' ? 'text' : 'password';
+            });
+
+        });
+    </script>
 
 </body>
 

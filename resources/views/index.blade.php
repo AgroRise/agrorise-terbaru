@@ -161,11 +161,8 @@ https://templatemo.com/tm-588-ebook-landing
                             <h6>Selamat Datang di Website</h6>
 
                             <h1 class="text-white mt-3 mb-4">AgroRise</h1>
-                            <p class="text-white">Website penyedia layanan forum untuk berdiskusi mengenai hal
-                                AgroIndustri
-                                dan layanan Pencatatan Data</p>
-
-
+                            <p class="text-white">Sistem Perhitungan Dan Edukasi Petani
+                                Dalam Memajukan Agroindustri</p>
                         </div>
                     </div>
                 </div>
@@ -180,9 +177,8 @@ https://templatemo.com/tm-588-ebook-landing
                             <h6>Selamat Datang di Website</h6>
 
                             <h1 class="text-white mt-3 mb-4">AgroRise</h1>
-                            <p class="text-white">Website penyedia layanan forum untuk berdiskusi mengenai hal
-                                AgroIndustri
-                                dan layanan Pencatatan Data</p>
+                            <p class="text-white">Sistem Perhitungan Dan Edukasi Petani
+                                Dalam Memajukan Agroindustri</p>
                         </div>
                     </div>
                 </div>
@@ -197,9 +193,8 @@ https://templatemo.com/tm-588-ebook-landing
                             <h6>Selamat Datang di Website</h6>
 
                             <h1 class="text-white mt-3 mb-4">AgroRise</h1>
-                            <p class="text-white">Website penyedia layanan forum untuk berdiskusi mengenai hal
-                                AgroIndustri
-                                dan layanan Pencatatan Data</p>
+                            <p class="text-white">Sistem Perhitungan Dan Edukasi Petani
+                                Dalam Memajukan Agroindustri</p>
                         </div>
                     </div>
                 </div>
@@ -214,10 +209,8 @@ https://templatemo.com/tm-588-ebook-landing
                             <h6>Selamat Datang di Website</h6>
 
                             <h1 class="text-white mt-3 mb-4">AgroRise</h1>
-                            <p class="text-white">Website penyedia layanan forum untuk berdiskusi mengenai hal
-                                AgroIndustri
-                                dan layanan Pencatatan Data</p>
-
+                            <p class="text-white">Sistem Perhitungan Dan Edukasi Petani
+                                Dalam Memajukan Agroindustri</p>
                             <a href="/mulai" class="btn custom-btn smoothscroll me-3 mt-3">Mulai</a>
                         </div>
                     </div>
@@ -290,20 +283,13 @@ https://templatemo.com/tm-588-ebook-landing
                                             class="scrollspy-example-item-image img-fluid" alt="">
                                     </div>
                                 </div>
-
-
                             </div>
-
-
-
                         </div>
                     </div>
 
                 </div>
             </div>
         </section>
-
-
         <section class="author-section section-padding" id="tentang_kami">
             <div class="container">
                 <div class="row">
@@ -312,30 +298,19 @@ https://templatemo.com/tm-588-ebook-landing
                         <img src="images/software-engineering-team.jpg" class="author-image img-fluid"
                             alt="">
                     </div>
-
                     <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-
                         <h2 class="mb-4">Tentang Kami</h2>
+                        <p>Website AGRORISE merupakan sebuah platform yang dikembangkan oleh Tim Pengembangan Perangkat Lunak untuk AgroIndustri Modern. Tujuan utama dari website ini adalah memberikan bantuan kepada petani dalam mendapatkan informasi tentang perkiraan perhitungan pupuk dan pestisida, serta potensi keuntungan yang dapat diperoleh. Selain itu, sistem ini juga menyediakan kursus-kursus yang diajarkan oleh pakar-pakar di bidang agroindustri, sehingga petani dapat memperluas pengetahuan dan pemahaman mereka tentang agroindustri.
 
-                        <p>Website AGRORISE merupakan sebuah platform yang dikembangkan oleh Tim Pengembangan Perangkat
-                            Lunak untuk
-
-                            Dengan adanya AGRORISE, petani dapat memanfaatkan platform ini sebagai wadah untuk belajar
-                            dan memperoleh informasi terkait agroindustri. Mereka dapat mengikuti kursus yang
-                            diselenggarakan oleh para pakar untuk meningkatkan pengetahuan dan wawasan mereka tentang
-                            berbagai aspek agroindustri. Selain itu, petani juga dapat menemukan solusi atas
-                            permasalahan yang mereka alami dalam kegiatan pertanian melalui platform ini.
-
-                            Website AGRORISE bertujuan untuk memberikan bantuan yang komprehensif kepada petani, mulai
-                            dari informasi perkiraan pupuk dan pestisida, hingga kursus-kursus untuk pengembangan
-                            pengetahuan. Dengan demikian, diharapkan petani dapat meningkatkan produktivitas dan
-                            keuntungan mereka dalam agroindustri, serta menghadapi tantangan yang dihadapi dengan lebih
-                            efektif.</p>
+                            Dengan adanya AGRORISE, petani dapat memanfaatkan platform ini sebagai wadah untuk belajar dan memperoleh informasi terkait agroindustri. Mereka dapat mengikuti kursus yang diselenggarakan oleh para pakar untuk meningkatkan pengetahuan dan wawasan mereka tentang berbagai aspek agroindustri. Selain itu, petani juga dapat menemukan solusi atas permasalahan yang mereka alami dalam kegiatan pertanian melalui platform ini.
+                            
+                            Website AGRORISE bertujuan untuk memberikan bantuan yang komprehensif kepada petani, mulai dari informasi perkiraan pupuk dan pestisida, hingga kursus-kursus untuk pengembangan pengetahuan. Dengan demikian, diharapkan petani dapat meningkatkan produktivitas dan keuntungan mereka dalam agroindustri, serta menghadapi tantangan yang dihadapi dengan lebih efektif.
+                            </p>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="contact-section section-padding" id="section_5">
+        <footer class="contact-section section-padding" id="section_5">
             <div class="container">
                 <div class="row">
                     <div class="text-center align-items-center">
@@ -353,7 +328,7 @@ https://templatemo.com/tm-588-ebook-landing
                     </div>
                 </div>
             </div>
-        </section>
+        </footer>
     </main>
 
     <!-- JAVASCRIPT FILES -->
