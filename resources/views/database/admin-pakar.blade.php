@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AgroRise - Admin-pakar</title>
+    <title>AgroRise</title>
 
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,17 +17,18 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-    <link href="{{asset('css/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-    <link href="{{asset('css/profile.css')}}" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!--
+    <link href="css/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="css/profile.css" rel="stylesheet">
 
 
-
--->
 </head>
 
 <body>
@@ -35,7 +36,7 @@
     <main>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="/">
                     <i class="navbar-brand-icon bi-book me-2"></i>
                     <span>AgroRise</span>
                 </a>
@@ -57,29 +58,26 @@
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="/">Beranda</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_2">Course</a>
+                            <a class="nav-link click-scroll" href="/course">Kursus</a>
                         </li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">Perhitungan</a>
-
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                 <li><a class="dropdown-item" href="/pupuk-urea">Pupuk</a></li>
                                 <li><a class="dropdown-item" href="/pestisida">Pestisida</a></li>
                                 <li><a class="dropdown-item" href="/keuntungan">Keuntungan</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="/#tentang_kami">Tentang Kami</a>
+                            <a class="nav-link click-scroll" href="#tentang_kami">Tentang Kami</a>
                         </li>
                     </ul>
+
                     <div class="dropdown">
-                        <button class="btn btn-transparent dropdown-toggle text" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <button class="btn btn-transparent dropdown-toggle text" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Hallo, {{ Auth::guard('admin')->user()->username }}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark">
@@ -93,8 +91,8 @@
                             <li>
                                 <form action="/logout" method="post">
                                     @csrf
-                                    <button type="submit" class="dropdown-item"><i
-                                            class="bi bi-box-arrow-right"></i> Logout</button>
+                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i>
+                                        Logout</button>
                                 </form>
                             </li>
                         </ul>
@@ -102,9 +100,10 @@
                 </div>
             </div>
         </nav>
+
+
         <div class="container">
             <div class="main-body">
-                {{-- {{json_encode($data)}} --}}
                 <div class="row">
                     <div class="col-lg-4">
                         <table class="table">
@@ -121,7 +120,7 @@
                                     <th>instansi</th>
                                     <th>alamat instansi</th>
                                     <th>cv</th>
-                                    <th>sertifikat</th>
+                                    <th>portofolio</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -137,18 +136,27 @@
                                         <td>{{ $item->pekerjaan }}</td>
                                         <td>{{ $item->instansi }}</td>
                                         <td>{{ $item->alamat_instansi }}</td>
-                                        <td><a class="btn btn-secondary btn-sm" href="#">Detail</a></td>
-                                        <td><a class="btn btn-secondary btn-sm" href="#">Detail</a></td>
+                                        <td>
+                                            <a class="btn btn-secondary btn-sm" href="{{ asset('cv/' . $item->cv) }}">
+                                                <button>Download</button>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-secondary btn-sm"
+                                                href="{{ asset('portofolio/' . $item->portofolio) }}">
+                                                <button>Download</button>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         {{ $data->links() }}
                     </div>
+
                 </div>
             </div>
         </div>
-
     </main>
 
     <!-- JAVASCRIPT FILES -->
@@ -161,22 +169,3 @@
 </body>
 
 </html>
-
-{{-- <table class="table">
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>username</th>
-            <th>email</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($data as $item)
-            <tr>
-                <td>{{$item->id}}</td>
-                <td>{{$item->username}}</td>
-                <td>{{$item->email}}</td>                                 
-            </tr>
-        @endforeach
-    </tbody>
-</table> --}}

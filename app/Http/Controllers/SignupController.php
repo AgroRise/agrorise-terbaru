@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pakar;
+use App\Models\Province;
+use App\Models\Regency;
 use App\Models\User;
+use CreateRegenciesTables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class SignupController extends Controller
 {
@@ -16,7 +21,7 @@ class SignupController extends Controller
         return view('sesi.signup');
     }
 
-    public function signup1(Request $request)
+    public function store1(Request $request)
     {
         // return request()->all();
         $validatedData = $request->validate([
@@ -31,47 +36,65 @@ class SignupController extends Controller
         // dd('registrasi berhasil'); 
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);
-        return redirect('/signin')->with('success', 'Registration successfull! Please Login');
+        return redirect()->route('signin.index')->with('success', 'Registration successfull! Please Login');
     }
-
 
     // buat akun pakar
     public function index2()
     {
-        return view('sesi.signup-pakar');
+        $provincies = Province::all();
+        $regencies = Regency::all();
+        return view('sesi.signup-pakar', compact('provincies','regencies'));
     }
-    public function signup2(Request $request)
+    public function store2(Request $request)
     {
-        // return request()->all();
+
         $validatedData = $request->validate([
             'email' => 'required|email:dns|unique:pakars',
             'nama' => 'required|min:4|max:30',
             'username' => 'required|min:4|max:20|unique:pakars|regex:/^\S+$/',
             'password' => 'required|confirmed|min:5|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
             'no_telepon' => 'required',
+            'regencies_id' => 'required',
             'alamat' => 'required',
             'pendidikan_terakhir' => 'required',
             'pekerjaan' => 'required',
             'instansi' => 'required',
-            'alamat_instansi' => 'required',
-            'cv' => 'required',
-            'sertifikat' => 'required'
-            // 'cv' => 'required|mimes:pdf',
-            // 'sertifikat' => 'required|mimes:pdf'
+            'cv' => 'required|mimes:pdf',
+            'portofolio' => 'required|mimes:pdf',
         ], [
-            'password.regex' => ' Mengandung setidaknya 1 huruf besar, 1 huruf kecil, dan 1 angka',
+            'password.regex' => ' Mengandung setidaknya 1 huruf besar, 1 huruf kecil, dan 1 angka',
             'username.regex' => 'username tidak boleh spasi',
-            // 'cv.mimes' => 'file harus pdf',
-            // 'sertifikat.mimes' => 'file harus pdf'
+            'cv.mimes' => 'File harus berformat PDF',
+            'portofolio.mimes' => 'File harus berformat PDF',
         ]);
-        // $cv_file = $request->file('cv');
-        // $cv_ekstensi = $cv_file->extension();
-        // $cv_nama = date('ymdhis'). ".".$cv_ekstensi;
-        // $cv_file->move(public_path('cv'),$cv_nama);
 
-        // dd('registrasi berhasil'); 
         $validatedData['password'] = Hash::make($validatedData['password']);
+
+        $cvFile = $request->file('cv');
+        $cvNama = time() . '.' . $cvFile->getClientOriginalExtension();
+        $cvFile->move('cv', $cvNama);
+
+        $portofolioFile = $request->file('portofolio');
+        $portofolioNama = time() . '.' . $portofolioFile->getClientOriginalExtension();
+        $portofolioFile->move('portofolio', $portofolioNama);
+
+        $validatedData['cv'] = $cvNama;
+        $validatedData['portofolio'] = $portofolioNama;
+   
         Pakar::create($validatedData);
-        return redirect('/signin-pakar')->with('success', 'Registration successfull! Please Login');
+
+        return redirect()->route('signin.pakar.index')->with('success', 'Pendaftaran Berhasil! Silahkan Masuk');
     }
+    //fitur baca database di admin
+    // public function user()
+    // {
+    //     $data = User::orderBy('id', 'asc')->paginate(1);
+    //     return view('database.admin-user')->with('data', $data);
+    // }
+    // public function pakar()
+    // {
+    //     $data = Pakar::orderBy('id', 'asc')->paginate(3);
+    //     return view('database.admin-pakar')->with('data', $data);
+    // }
 }

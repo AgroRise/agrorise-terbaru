@@ -10,7 +10,7 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index1()
     {
         return view('course.course');
     }
@@ -62,4 +62,16 @@ class CourseController extends Controller
     {
         //
     }
+
+
+    public function index2()
+    {
+        return view('course.contentcourse');
+    }
 }
+
+
+
+
+
+

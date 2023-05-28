@@ -94,11 +94,11 @@
 
                     <!-- Login Form -->
                     <form>
-                        <a href="/signup-pakar"><input type="button" class="fadeIn fourth" value="Pakar"></a>
-                        <a href="/signup"><input type="button" class="fadeIn fourth" value="Pengguna"></a>
+                        <a href="{{route('pakar.signup.index')}}"><input type="button" class="fadeIn fourth" value="Pakar"></a>
+                        <a href="{{route('signup.index')}}"><input type="button" class="fadeIn fourth" value="Pengguna"></a>
                     </form>
                     <div id="formFooter">
-                        <p>Sudah punya akun?<a class="underlineHover" href="/login">Masuk</a></p>
+                        <p>Sudah punya akun?<a class="underlineHover" href="{{ route('login') }}">Masuk</a></p>
                     </div>
                 </div>
             </div>

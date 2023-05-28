@@ -94,8 +94,8 @@
 
                     <!-- Login Form -->
                     <form>
-                        <a href="/daftar"><input type="button" class="fadeIn fourth" value="Daftar"></a>
-                        <a href="/login"><input type="button" class="fadeIn fourth" value="Login"></a>
+                        <a href="{{route('daftar')}}"><input type="button" class="fadeIn fourth" value="Daftar"></a>
+                        <a href="{{route('login')}}"><input type="button" class="fadeIn fourth" value="Login"></a>
                     </form>
 
 

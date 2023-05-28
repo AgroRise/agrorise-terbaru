@@ -176,15 +176,6 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Alamat</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input readonly type="text" class="form-control"
-                                            value="{{ old('alamat', Auth::guard('pakar')->user()->alamat) }}">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
                                         <h6 class="mb-0">Pendidikan Terakhir</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
@@ -210,19 +201,37 @@
                                             value="{{ old('instansi', Auth::guard('pakar')->user()->instansi) }}">
                                     </div>
                                 </div>
+                                @foreach ($regencies as $prov)
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Kabupaten</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input readonly type="text" class="form-control"
+                                                value="{{ $prov->name }}">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Provinsi</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input readonly type="text" class="form-control"
+                                                value="{{ $prov->province->name }}">
+                                        </div>
+                                    </div>
+                                @endforeach
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Alamat Instansi</h6>
+                                        <h6 class="mb-0">Alamat</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input readonly type="text" class="form-control"
-                                            value="{{ old('alamat_instansi', Auth::guard('pakar')->user()->alamat_instansi) }}">
+                                            value="{{ old('alamat', Auth::guard('pakar')->user()->alamat) }}">
                                     </div>
                                 </div>
                                 <div class="row justify-content-between">
                                     <div class="col-4 text-secondary">
-                                        {{-- <a href="/"><input type="button"
-                                                class="btn btn-primary px-4" value="Kembali"></a> --}}
                                     </div>
                                     <div class="col-3 text-secondary">
                                         <a href="/edit-pakar"><input type="button" class="btn btn-primary px-4"
@@ -256,3 +265,5 @@
 </body>
 
 </html>
+
+

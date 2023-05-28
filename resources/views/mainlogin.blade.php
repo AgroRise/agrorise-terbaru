@@ -76,11 +76,11 @@
                     <h2 class="active"> Masuk Sebagai </h2>
                     <!-- Login Form -->
                     <form>
-                        <a href="/signin"><input type="button" class="fadeIn fourth" value="Pengguna"></a>
-                        <a href="/signin-pakar"><input type="button" class="fadeIn fourth" value="Pakar"></a>
+                        <a href="{{route('signin.index') }}"><input type="button" class="fadeIn fourth" value="Pengguna"></a>
+                        <a href="{{route('signin.pakar.index') }}"><input type="button" class="fadeIn fourth" value="Pakar"></a>
                     </form>
                     <div id="formFooter">
-                        <p>Belum punya akun?<a class="underlineHover" href="/daftar">Daftar</a></p>
+                        <p>Belum punya akun?<a class="underlineHover" href="{{route('daftar') }}">Daftar</a></p>
                     </div>
                 </div>
             </div>

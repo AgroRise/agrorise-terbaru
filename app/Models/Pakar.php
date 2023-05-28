@@ -22,7 +22,7 @@ class Pakar extends Model
     //     'email',
     //     'password',
     // ];
-    protected $guarded = ['id'];
+    protected $guarded = [];
     
     protected $guard = 'pakar';
 

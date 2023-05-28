@@ -80,7 +80,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#tentang_kami">Tentang Kami</a>
+                            <a class="nav-link click-scroll" href="/content-course">Tentang Kami</a>
                         </li>
                     </ul>
                     @if (Str::length(Auth::guard('pakar')->user()) > 0)

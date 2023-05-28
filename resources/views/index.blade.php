@@ -81,7 +81,7 @@ https://templatemo.com/tm-588-ebook-landing
                                 Hallo, {{ Auth::guard('pakar')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/profilepakar">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{route('profilepakar')}}">Profil</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -124,8 +124,7 @@ https://templatemo.com/tm-588-ebook-landing
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profileadmin">Profil</a></li>
-                                <li><a class="dropdown-item" href="/file">Database Pengguna</a></li>
-                                <li><a class="dropdown-item" href="/filepakar">Database Pakar</a></li>
+                                <li><a class="dropdown-item" href="/database-pakar">Database</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -143,7 +142,7 @@ https://templatemo.com/tm-588-ebook-landing
                         <div class="d-none d-lg-block">
                             <a href="/login" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                                 <i class="btn-icon bi-cloud-download"></i>
-                                <span href="...\PPLARGO\login.php">Masuk</span><!-- duplicated above one for mobile -->
+                                <span href="{{route('login')}}">Masuk</span><!-- duplicated above one for mobile -->
                             </a>
                         </div>
                     @endif
@@ -211,24 +210,16 @@ https://templatemo.com/tm-588-ebook-landing
                             <h1 class="text-white mt-3 mb-4">AgroRise</h1>
                             <p class="text-white">Sistem Perhitungan Dan Edukasi Petani
                                 Dalam Memajukan Agroindustri</p>
-                            <a href="/mulai" class="btn custom-btn smoothscroll me-3 mt-3">Mulai</a>
+                            <a href="{{route('mulai')}}" class="btn custom-btn smoothscroll me-3 mt-3">Mulai</a>
                         </div>
                     </div>
                 </div>
             </section>
         @endif
-
-
-
-
         <section class="py-lg-5"></section>
-
-
         <section>
             <div class="container">
                 <div class="row">
-
-
                     <div class="text-center align-items-center">
                         <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
                             class="scrollspy-example-2" tabindex="0">

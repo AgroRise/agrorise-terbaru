@@ -85,6 +85,7 @@
                             <li><a class="dropdown-item" href="/profileadmin">Profil</a></li>
                             <li><a class="dropdown-item" href="/file">Database Pengguna</a></li>
                             <li><a class="dropdown-item" href="/filepakar">Database Pakar</a></li>
+                            <li><a class="dropdown-item" href="/database">Database</a></li>
                             <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
                             <li>
                                 <hr class="dropdown-divider">

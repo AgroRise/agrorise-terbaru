@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pakar;
+use App\Models\Province;
+use App\Models\Regency;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use TCPDF;
 
 
 class ProfileController extends Controller
@@ -56,6 +59,11 @@ class ProfileController extends Controller
         return redirect('/profile')->with('success', 'Profil Berhasil Diperbarui');
     }
 
+    public function show1()
+    {
+        return view('user.profile');
+    }
+
 
     // edit profil pakar
     public function index2()
@@ -68,15 +76,16 @@ class ProfileController extends Controller
             'nama' => 'required|min:4|max:30',
             'username' => ['required', 'min:4', 'max:20', 'regex:/^\S+$/', Rule::unique('pakars')->ignore(Auth::guard('pakar')->user()->id),],
             'no_telepon' => 'required',
+            'regencies_id' => 'required',
             'alamat' => 'required',
             'pendidikan_terakhir' => 'required',
             'pekerjaan' => 'required',
             'instansi' => 'required',
-            'alamat_instansi' => 'required',
             'foto' => 'mimes:jpeg,jpg,png,gif',
         ], [
             'username.regex' => 'username tidak boleh spasi',
-            'foto.mimes' => 'File foto hanya boleh berekstensi JPEG, JPG, PNG, dan GIF'
+            'foto.mimes' => 'File foto hanya boleh berekstensi JPEG, JPG, PNG, dan GIF',
+            // 'regencies_id.required' => 'hehehe'
         ]);
 
         $user = Auth::guard('pakar')->user();
@@ -113,6 +122,26 @@ class ProfileController extends Controller
         return redirect('/profilepakar')->with('success', 'Profil Berhasil Diperbarui');
     }
 
+    public function show2()
+    {
+        $pakar = Auth::guard('pakar')->user();
+        $regencies = Regency::with('Province')->whereIn('id', [$pakar->regencies_id])->paginate();
+    
+        return view('pakar.profilepakar', compact('regencies', 'pakar'));
+    }
+    
+    
+
+
+
+    // public function show2()
+    // {
+    //     $pakar = Pakar::all();
+
+    //     return view('pakar.profilepakar', compact('pakar'));
+    // }
+
+
     // edit profil admin
     public function index3()
     {
@@ -146,30 +175,10 @@ class ProfileController extends Controller
 
         $user->username = $request->username;
         $user->save();
-
-        // Auth::guard('admin')->user()->update([
-        //     'username' => $request->username,
-        //     'foto' => $image
-        // ]);
         return redirect('/profileadmin')->with('success', 'Profil Berhasil Diperbarui');
     }
-
-
-
-    public function user()
+    public function show3()
     {
-        $data = User::orderBy('id', 'asc')->paginate(1);
-        return view('database.admin-user')->with('data', $data);
+        return view('admin.profileadmin');
     }
-    public function pakar()
-    {
-        $data = Pakar::orderBy('id', 'asc')->paginate(1);
-        return view('database.admin-pakar')->with('data', $data);
-    }
-    // public function file(){
-    //     file_cv = $request
-
-    //     // $data = Pakar::
-    //     return view('file')->with('file'$data);
-    // }
 }
