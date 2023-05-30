@@ -56,6 +56,8 @@ route::get('/content-course', [CourseController::class, 'index2']);
 
 
 
+
+
 route::group(['middleware' => ['auth:user,pakar,admin']], function () {
     Route::get('/pestisida', function () {
         return view('kalkulator/pestisida');
@@ -83,12 +85,16 @@ route::group(['middleware' => ['auth:user,pakar,admin']], function () {
     route::put('/update-password-user', [PasswordController::class, 'update1']);
     route::get('/edit-password-admin', [PasswordController::class, 'index2']);
     route::put('/update-password-admin', [PasswordController::class, 'update2']);
-    route::get('/edit-password-pakar', [PasswordController::class, 'index3']);
+    route::get('/edit-password-pakar', [PasswordController::class, 'index3'])->name('edit-password-pakar');
     route::put('/update-password-pakar', [PasswordController::class, 'update3']);
     // route::get('/file', [SignupController::class, 'user']);
     // route::get('/filepakar', [SignupController::class, 'pakar']);
     route::get('/database', [DatabaseController::class, 'show1']);
     route::get('/database-pakar', [DatabaseController::class, 'show2']);
+    route::get('/pengajuan-main', [CourseController::class, 'index'])->name('pengajuan-index');
+    route::get('/pengajuan', [CourseController::class, 'create'])->name('pengajuan');
+    route::post('/pengajuan', [CourseController::class, 'store'])->name('pengajuan-post');
+    route::get('/pengajuan-video', [CourseController::class, 'create1'])->name('pengajuan-video');
 });
 
 route::group(['middleware' => ['guest:user,pakar,admin']], function () {

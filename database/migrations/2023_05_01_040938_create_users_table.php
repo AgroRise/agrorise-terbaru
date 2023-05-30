@@ -11,21 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pakars', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('email');
-            $table->string('nama');
             $table->string('username');
-            $table->string('password');
-            $table->string('no_telepon');
-            $table->char('regencies_id');
-            $table->string('alamat');
-            $table->string('pendidikan_terakhir');
-            $table->string('instansi');
             $table->string('foto')->nullable();
-            $table->string('cv');
-            $table->string('portofolio');
-            $table->foreign('regencies_id')->references('id')->on('regencies');
+            $table->string('password');
             $table->timestamps();
         });
     }
@@ -35,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pakars');
+        Schema::dropIfExists('users');
     }
 };

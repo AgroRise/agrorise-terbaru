@@ -81,8 +81,10 @@ https://templatemo.com/tm-588-ebook-landing
                                 Hallo, {{ Auth::guard('pakar')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="{{route('profilepakar')}}">Profil</a></li>
-                                <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
+                                <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
+                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -90,7 +92,8 @@ https://templatemo.com/tm-588-ebook-landing
                                     <form action="/logout" method="post">
                                         @csrf
                                         <button type="submit" class="dropdown-item"><i
-                                                class="bi bi-box-arrow-right"></i> Logout</button>
+                                                class="bi bi-box-arrow-right"></i>
+                                            Logout</button>
                                     </form>
                                 </li>
                             </ul>
@@ -142,7 +145,7 @@ https://templatemo.com/tm-588-ebook-landing
                         <div class="d-none d-lg-block">
                             <a href="/login" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                                 <i class="btn-icon bi-cloud-download"></i>
-                                <span href="{{route('login')}}">Masuk</span><!-- duplicated above one for mobile -->
+                                <span href="{{ route('login') }}">Masuk</span><!-- duplicated above one for mobile -->
                             </a>
                         </div>
                     @endif
@@ -210,7 +213,7 @@ https://templatemo.com/tm-588-ebook-landing
                             <h1 class="text-white mt-3 mb-4">AgroRise</h1>
                             <p class="text-white">Sistem Perhitungan Dan Edukasi Petani
                                 Dalam Memajukan Agroindustri</p>
-                            <a href="{{route('mulai')}}" class="btn custom-btn smoothscroll me-3 mt-3">Mulai</a>
+                            <a href="{{ route('mulai') }}" class="btn custom-btn smoothscroll me-3 mt-3">Mulai</a>
                         </div>
                     </div>
                 </div>
@@ -291,12 +294,25 @@ https://templatemo.com/tm-588-ebook-landing
                     </div>
                     <div class="col-lg-6 col-12 mt-5 mt-lg-0">
                         <h2 class="mb-4">Tentang Kami</h2>
-                        <p>Website AGRORISE merupakan sebuah platform yang dikembangkan oleh Tim Pengembangan Perangkat Lunak untuk AgroIndustri Modern. Tujuan utama dari website ini adalah memberikan bantuan kepada petani dalam mendapatkan informasi tentang perkiraan perhitungan pupuk dan pestisida, serta potensi keuntungan yang dapat diperoleh. Selain itu, sistem ini juga menyediakan kursus-kursus yang diajarkan oleh pakar-pakar di bidang agroindustri, sehingga petani dapat memperluas pengetahuan dan pemahaman mereka tentang agroindustri.
+                        <p>Website AGRORISE merupakan sebuah platform yang dikembangkan oleh Tim Pengembangan Perangkat
+                            Lunak untuk AgroIndustri Modern. Tujuan utama dari website ini adalah memberikan bantuan
+                            kepada petani dalam mendapatkan informasi tentang perkiraan perhitungan pupuk dan pestisida,
+                            serta potensi keuntungan yang dapat diperoleh. Selain itu, sistem ini juga menyediakan
+                            kursus-kursus yang diajarkan oleh pakar-pakar di bidang agroindustri, sehingga petani dapat
+                            memperluas pengetahuan dan pemahaman mereka tentang agroindustri.
 
-                            Dengan adanya AGRORISE, petani dapat memanfaatkan platform ini sebagai wadah untuk belajar dan memperoleh informasi terkait agroindustri. Mereka dapat mengikuti kursus yang diselenggarakan oleh para pakar untuk meningkatkan pengetahuan dan wawasan mereka tentang berbagai aspek agroindustri. Selain itu, petani juga dapat menemukan solusi atas permasalahan yang mereka alami dalam kegiatan pertanian melalui platform ini.
-                            
-                            Website AGRORISE bertujuan untuk memberikan bantuan yang komprehensif kepada petani, mulai dari informasi perkiraan pupuk dan pestisida, hingga kursus-kursus untuk pengembangan pengetahuan. Dengan demikian, diharapkan petani dapat meningkatkan produktivitas dan keuntungan mereka dalam agroindustri, serta menghadapi tantangan yang dihadapi dengan lebih efektif.
-                            </p>
+                            Dengan adanya AGRORISE, petani dapat memanfaatkan platform ini sebagai wadah untuk belajar
+                            dan memperoleh informasi terkait agroindustri. Mereka dapat mengikuti kursus yang
+                            diselenggarakan oleh para pakar untuk meningkatkan pengetahuan dan wawasan mereka tentang
+                            berbagai aspek agroindustri. Selain itu, petani juga dapat menemukan solusi atas
+                            permasalahan yang mereka alami dalam kegiatan pertanian melalui platform ini.
+
+                            Website AGRORISE bertujuan untuk memberikan bantuan yang komprehensif kepada petani, mulai
+                            dari informasi perkiraan pupuk dan pestisida, hingga kursus-kursus untuk pengembangan
+                            pengetahuan. Dengan demikian, diharapkan petani dapat meningkatkan produktivitas dan
+                            keuntungan mereka dalam agroindustri, serta menghadapi tantangan yang dihadapi dengan lebih
+                            efektif.
+                        </p>
                     </div>
                 </div>
             </div>

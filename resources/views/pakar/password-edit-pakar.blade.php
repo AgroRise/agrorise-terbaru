@@ -82,8 +82,10 @@
                             Hallo, {{ Auth::guard('pakar')->user()->username }}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="/profilepakar">Profil</a></li>
-                            <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
+                            <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
