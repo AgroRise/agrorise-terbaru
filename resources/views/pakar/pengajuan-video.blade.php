@@ -127,18 +127,18 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="form_name">Judul Video *</label>
-                                                    <input id="form_name" type="text" name="name"
+                                                    <label for="title">Judul Video *</label>
+                                                    <input id="title" type="text" name="title"
                                                         class="form-control" placeholder="Masukkan Judul Video "
-                                                        required="required" data-error="Firstname is required.">
+                                                        required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="form_lastname">Link Video *</label>
-                                                    <input id="form_lastname" type="text" name="surname"
+                                                    <label for="link">Link Video *</label>
+                                                    <input id="link" type="text" name="link"
                                                         class="form-control" placeholder="Masukkan link gdrive "
-                                                        required="required" data-error="Lastname is required.">
+                                                        required>
                                                 </div>
                                             </div>
                                             <div id="video-container"></div>

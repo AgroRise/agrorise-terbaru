@@ -826,7 +826,7 @@ input, button {
 
 .profile-img img {
   position: absolute;
-  top: 160px;
+  top: 230px;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;

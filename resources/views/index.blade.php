@@ -59,7 +59,7 @@ https://templatemo.com/tm-588-ebook-landing
                             <a class="nav-link click-scroll" href="/">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="/course">Kursus</a>
+                            <a class="nav-link click-scroll" href="{{route('course')}}">Kursus</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
@@ -127,7 +127,7 @@ https://templatemo.com/tm-588-ebook-landing
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profileadmin">Profil</a></li>
-                                <li><a class="dropdown-item" href="/database-pakar">Database</a></li>
+                                <li><a class="dropdown-item" href="{{ route('database-pakar') }}">Database</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">

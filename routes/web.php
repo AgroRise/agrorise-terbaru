@@ -50,8 +50,8 @@ route::get('/invoice/{id}', [OrderController::class, 'invoice']);
 
 
 
-route::get('/course', [CourseController::class, 'index1']);
-route::get('/content-course', [CourseController::class, 'index2']);
+route::get('/kursus', [CourseController::class, 'show1'])->name('course');
+route::get('/konten-kursus', [CourseController::class, 'index2']);
 
 
 
@@ -90,11 +90,15 @@ route::group(['middleware' => ['auth:user,pakar,admin']], function () {
     // route::get('/file', [SignupController::class, 'user']);
     // route::get('/filepakar', [SignupController::class, 'pakar']);
     route::get('/database', [DatabaseController::class, 'show1']);
-    route::get('/database-pakar', [DatabaseController::class, 'show2']);
+    route::get('/database-user', [DatabaseController::class, 'show1'])->name('database-user');
+    route::get('/database-pakar', [DatabaseController::class, 'show2'])->name('database-pakar');
+    route::get('/pengajuan-kursus', [DatabaseController::class, 'show3'])->name('pengajuan-kursus');
+
     route::get('/pengajuan-main', [CourseController::class, 'index'])->name('pengajuan-index');
     route::get('/pengajuan', [CourseController::class, 'create'])->name('pengajuan');
     route::post('/pengajuan', [CourseController::class, 'store'])->name('pengajuan-post');
     route::get('/pengajuan-video', [CourseController::class, 'create1'])->name('pengajuan-video');
+    route::delete('/pengajuan-delete/{course}', [CourseController::class, 'destroy'])->name('pengajuan-destroy');
 });
 
 route::group(['middleware' => ['guest:user,pakar,admin']], function () {

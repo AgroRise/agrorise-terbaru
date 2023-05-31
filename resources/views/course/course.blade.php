@@ -80,7 +80,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="/content-course">Tentang Kami</a>
+                            <a class="nav-link click-scroll" href="/konten-kursus">Tentang Kami</a>
                         </li>
                     </ul>
                     @if (Str::length(Auth::guard('pakar')->user()) > 0)
@@ -178,87 +178,41 @@
                     <h1>Agroindustri</h1>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="rounded overflow-hidden mb-2">
-                            <div class="profile-img">
-                                <img src="images/team-2.jpg" alt="Profile Photo">
-                            </div>
-                            <img class="img-fluid" src="images/tera1.jpg" alt="">
-                            <div class="bg-secondary p-4">
-                                <p class="profile-name">Andi</p>
-                                <p class="profile-work">Dosen Universitas Jember</p>
-                                <div class="d-flex justify-content-between mb-3">
-                                    <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>18/20
-                                        Peserta</small>
-                                    <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h
-                                        30m</small>
+                    @forelse($courses as $course)
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="rounded overflow-hidden mb-2">
+                                <div class="profile-img">
+                                    <img src="{{ asset('storage/' . old('images', $course->pakar->foto)) }}" alt="Profile Photo">
                                 </div>
-                                <h5>Pengirigasian Saluran Air Sawah dengan Teknik Terasering</h5>
-                                <small class="m-0">Online</small>
-                                <div class="border-top mt-4 pt-4">
-                                    <div class="d-flex justify-content-between">
-                                        <h5 class="m-0 mr-2">Rp. 30.000</h5>
-                                        <button class="button-3" role="button" data-toggle="modal"
-                                            data-target="#exampleModal">Daftar</button>
+                                <img class="rounded" width="450px" height="300px" style="object-fit: cover;"
+                                    src="{{ asset('storage/' . old('thumbnail', $course->thumbnail)) }}"
+                                    alt="">
+                                <div class="bg-secondary p-4">
+                                    <p class="profile-name">{{ $course->pakar->nama }}</p>
+                                    <p class="profile-work">{{ $course->pakar->pekerjaan }}</p>
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <small class="m-0"><i
+                                                class="fa fa-users text-primary mr-2"></i>{{ $course->jmlh_peserta }} Kuota</small>
+                                        <small class="m-0"><i
+                                                class="far fa-clock text-primary mr-2"></i>{{ $course->pertemuan }} Pertemuan</small>
+                                    </div>
+                                    <h5>{{ $course->deskripsi }}</h5>
+                                    <small class="m-0">Online</small>
+                                    <div class="border-top mt-4 pt-4">
+                                        <div class="d-flex justify-content-between">
+                                            <p class="m-0 mr-2">Harga Rp. {{ $course->harga }}</p>
+                                            <button class="button-3" role="button" data-toggle="modal"
+                                                data-target="#exampleModal">Daftar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="rounded overflow-hidden mb-2">
-                            <div class="profile-img">
-                                <img src="images/team-1.jpg" alt="Profile Photo">
-                            </div>
-                            <img class="img-fluid" src="images/jambu.JPG" alt="">
-                            <div class="bg-secondary p-4">
-                                <p class="profile-name">John Doe</p>
-                                <p class="profile-work">Dosen Universitas Jember</p>
-                                <div class="d-flex justify-content-between mb-3">
-                                    <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>0/20
-                                        Peserta</small>
-                                    <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h
-                                        30m</small>
-                                </div>
-                                <h5>Simulasi Penanaman Tanaman Buah Jambu menggunakan Pot</h5>
-                                <small class="m-0">Online</small>
-                                <div class="border-top mt-4 pt-4">
-                                    <div class="d-flex justify-content-between">
-                                        <h5 class="m-0 mr-2">Rp. 30.000</h5>
-                                        <button class="button-3" role="button" data-toggle="modal"
-                                            data-target="#exampleModal">Daftar</button>
-                                    </div>
-                                </div>
-                            </div>
+                    @empty
+                        <div class="alert alert-danger" role="alert">
+                            Belum ada Kursus
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="rounded overflow-hidden mb-2">
-                            <div class="profile-img">
-                                <img src="images/team-1.jpg" alt="Profile Photo">
-                            </div>
-                            <img class="img-fluid" src="images/jambu.JPG" alt="">
-                            <div class="bg-secondary p-4">
-                                <p class="profile-name">John Doe</p>
-                                <p class="profile-work">Dosen Universitas Jember</p>
-                                <div class="d-flex justify-content-between mb-3">
-                                    <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>0/20
-                                        Peserta</small>
-                                    <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h
-                                        30m</small>
-                                </div>
-                                <h5>Simulasi Penanaman Tanaman Buah Jambu menggunakan Pot</h5>
-                                <small class="m-0">Online</small>
-                                <div class="border-top mt-4 pt-4">
-                                    <div class="d-flex justify-content-between">
-                                        <h5 class="m-0 mr-2">Rp. 30.000</h5>
-                                        <button class="button-3" role="button" data-toggle="modal"
-                                            data-target="#exampleModal">Daftar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>

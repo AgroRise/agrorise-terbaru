@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->integer('jmlh_peserta'); // Mengubah tipe data menjadi integer
             $table->string('no_rekening');
+            $table->integer('pertemuan');
+            $table->integer('harga');
             $table->text('deskripsi'); // Mengubah tipe data menjadi text
             $table->foreign('pakar_id')->references('id')->on('pakars');
             $table->foreign('admin_id')->references('id')->on('admins')->nullable(); // Menggunakan nullable() jika admin_id boleh kosong

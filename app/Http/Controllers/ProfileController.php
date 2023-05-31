@@ -68,7 +68,9 @@ class ProfileController extends Controller
     // edit profil pakar
     public function index2()
     {
-        return view('pakar.profilepakar-edit');
+        $provincies = Province::all();
+        $regencies = Regency::all();
+        return view('pakar.profilepakar-edit', compact('provincies', 'regencies'));
     }
     public function update2(Request $request)
     {
@@ -100,25 +102,25 @@ class ProfileController extends Controller
             }
             $file_name = $request->foto->getClientOriginalName();
             $image = $request->foto->storeAs('images', $file_name);
-            $user->foto = $image;
         }
+        
+        $user->nama = $request->nama;
         $user->username = $request->username;
+        $user->no_telepon = $request->no_telepon;
+        $user->alamat = $request->alamat;
+        $user->pendidikan_terakhir = $request->pendidikan_terakhir;
+        $user->pekerjaan = $request->pekerjaan;
+        $user->instansi = $request->instansi;
+        $user->foto = $image;
         $user->save();
 
-        // $file_name = $request->foto->getClientOriginalName();
-        // $image = $request->foto->storeAs('images', $file_name);
+        // Update regencies_id
+        $regency = Regency::find($request->regencies_id);
+        if ($regency) {
+            $user->regency()->associate($regency);
+            $user->save();
+        }
 
-        Auth::guard('pakar')->user()->update([
-            'nama' => $request->nama,
-            'username' => $request->username,
-            'no_telepon' => $request->no_telepon,
-            'alamat' => $request->alamat,
-            'pendidikan_terakhir' => $request->pendidikan_terakhir,
-            'pekerjaan' => $request->pekerjaan,
-            'instansi' => $request->instansi,
-            'alamat_instansi' => $request->alamat_instansi,
-            'foto' => $user->foto
-        ]);
         return redirect('/profilepakar')->with('success', 'Profil Berhasil Diperbarui');
     }
 
@@ -126,11 +128,11 @@ class ProfileController extends Controller
     {
         $pakar = Auth::guard('pakar')->user();
         $regencies = Regency::with('Province')->whereIn('id', [$pakar->regencies_id])->paginate();
-    
+
         return view('pakar.profilepakar', compact('regencies', 'pakar'));
     }
-    
-    
+
+
 
 
 

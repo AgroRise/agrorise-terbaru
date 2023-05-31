@@ -112,98 +112,124 @@
                 </div>
             </div>
         </nav>
-        <form className='snippet-body' action="{{ route('pengajuan-post') }}" method="POST"
-            enctype="multipart/form-data">
+        <form class="snippet-body" action="{{ route('pengajuan-post') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="container">
-                <div class=" text-center">
+                <div class="text-center">
                     <h1>Pengajuan Kursus</h1>
                 </div>
-                <div class="row ">
+                <div class="row">
                     <div class="col-lg-7 mx-auto">
                         <div class="card mt-2 mx-auto p-4 bg-light">
                             <div class="card-body bg-light">
                                 <div class="container">
-                                    <form id="contact-form" role="form">
-                                        <div class="controls">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="judul">Judul *</label>
-                                                        <input id="judul" type="text" name="judul"
-                                                            class="form-control @error('judul') is-invalid @enderror"
-                                                            placeholder="Masukkan Judul Kursus " required>
-                                                        @error('judul')
-                                                            <div class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="judul">Judul *</label>
+                                                <input id="judul" type="text" name="judul"
+                                                    class="form-control @error('judul') is-invalid @enderror"
+                                                    placeholder="Masukkan Judul Kursus" required>
+                                                @error('judul')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="jmlh_peserta">Jumlah peserta *</label>
-                                                        <input id="jmlh_peserta" type="number" name="jmlh_peserta"
-                                                            class="form-control @error('jmlh_peserta') is-invalid @enderror"
-                                                            placeholder="Jumlah Peserta Yang Mengikuti " required>
-                                                        @error('jmlh_peserta')
-                                                            <div class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="no_rekening">No Rekening BRI *</label>
-                                                        <input id="no_rekening" type="email" name="no_rekening"
-                                                            class="form-control @error('no_rekening') is-invalid @enderror"
-                                                            placeholder="Masukkan Nomor Rekening  ">
-                                                        @error('no_rekening')
-                                                            <div class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="thumbnail">Thumbnail Kursus *</label>
-                                                        <input id="thumbnail" type="file" name="thumbnail"
-                                                            multiple
-                                                            class="form-control @error('thumbnail') is-invalid @enderror"
-                                                            required>
-                                                        @error('thumbnail')
-                                                            <div class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="deskripsi">Deskripsi *</label>
-                                                        <textarea id="deskripsi" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror"
-                                                            placeholder="Deskripsikan Kursus Anda " rows="4" required></textarea>
-                                                        @error('deskripsi')
-                                                            <div class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="submit"
-                                                        class="btn btn-success btn-send  pt-2 btn-block"
-                                                        value="Selanjutnya">
-                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
-                                    </form>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="jmlh_peserta">Jumlah Kuota *</label>
+                                                <input id="jmlh_peserta" type="number" name="jmlh_peserta"
+                                                    class="form-control @error('jmlh_peserta') is-invalid @enderror"
+                                                    placeholder="Jumlah Peserta Yang Mengikuti" required>
+                                                @error('jmlh_peserta')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="hargaInput">Harga Kursus *</label>
+                                                <input id="hargaInput" type="text" name="harga"
+                                                    class="form-control @error('harga') is-invalid @enderror"
+                                                    placeholder="Masukkan Harga Kursus Anda " required>
+                                                @error('harga')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="thumbnail">Thumbnail Kursus *</label>
+                                                <input id="thumbnail" type="file" name="thumbnail"
+                                                    class="form-control @error('thumbnail') is-invalid @enderror"
+                                                    required accept=".jpg, .png, .jpeg">
+                                                @error('thumbnail')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="no_rekening">No Rekening BRI *</label>
+                                                <input id="no_rekening" name="no_rekening" type="number"
+                                                    class="form-control @error('no_rekening') is-invalid @enderror"
+                                                    placeholder="Masukkan Nomor Rekening" required>
+                                                @error('no_rekening')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="pertemuan">Jumlah Pertemuan *</label>
+                                                <input id="pertemuan" name="pertemuan" type="number"
+                                                    class="form-control @error('pertemuan') is-invalid @enderror"
+                                                    placeholder="Masukkan Jumlah pertemuan cth: 2 " required>
+                                                @error('pertemuan')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="deskripsi">Deskripsi *</label>
+                                                <textarea id="deskripsi" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror"
+                                                    placeholder="Deskripsikan Kursus Anda" rows="4" required></textarea>
+                                                @error('deskripsi')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mx-auto mb-3">
+                                            <input type="button" class="btn btn-primary btn-send pt-2 btn-block"
+                                                value="Tambah Video" onclick="addInputField()">
+                                        </div>
+                                    </div>
+                                    <div id="video-container">
+                                        <!-- Container for dynamically added video fields -->
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <input type="submit" class="btn btn-success btn-send pt-2 btn-block"
+                                            value="Kirim">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -278,58 +304,86 @@
         });
     </script>
 
-    {{-- fungsi add more --}}
+
+    {{-- menggabungkan 2 form pengajuan dan video --}}
     <script>
         function addInputField() {
             var container = document.getElementById("video-container");
 
-            // Membuat elemen div baru untuk menampung input field
             var div = document.createElement("div");
-            div.className = "form-group";
+            div.className = "row";
 
-            // Membuat input field untuk judul video
-            var labelJudul = document.createElement("label");
-            labelJudul.innerHTML = "Judul Video *";
-            var inputJudul = document.createElement("input");
-            inputJudul.type = "text";
-            inputJudul.className = "form-control";
-            inputJudul.placeholder = "Masukkan Judul Video";
-            inputJudul.required = true;
+            var col1 = document.createElement("div");
+            col1.className = "col-md-6";
+            var col2 = document.createElement("div");
+            col2.className = "col-md-6";
 
-            // Membuat input field untuk link video
-            var labelLink = document.createElement("label");
-            labelLink.innerHTML = "Link Video *";
-            var inputLink = document.createElement("input");
-            inputLink.type = "text";
-            inputLink.className = "form-control";
-            inputLink.placeholder = "Masukkan link gdrive";
-            inputLink.required = true;
+            var titleLabel = document.createElement("label");
+            titleLabel.setAttribute("for", "title");
+            titleLabel.textContent = "Judul Video *";
+            var titleInput = document.createElement("input");
+            titleInput.setAttribute("type", "text");
+            titleInput.setAttribute("name", "title[]");
+            titleInput.className = "form-control";
+            titleInput.setAttribute("placeholder", "Masukkan Judul Video");
+            titleInput.required = true;
 
-            // Membuat tombol hapus
+            var linkLabel = document.createElement("label");
+            linkLabel.setAttribute("for", "link");
+            linkLabel.textContent = "Link Video *";
+            var linkInput = document.createElement("input");
+            linkInput.setAttribute("type", "text");
+            linkInput.setAttribute("name", "link[]");
+            linkInput.className = "form-control";
+            linkInput.setAttribute("placeholder", "Masukkan link gdrive");
+            linkInput.required = true;
+
             var deleteButton = document.createElement("button");
             deleteButton.type = "button";
-            deleteButton.className = "btn btn-danger btn-sm mt-3";
+            deleteButton.className = "btn btn-danger col-2 mt-3 ml-3";
             deleteButton.innerHTML = "Hapus";
             deleteButton.onclick = function() {
-                container.removeChild(div);
+                removeInputField(div);
             };
 
-            // Menambahkan input field dan tombol hapus ke dalam div
-            div.appendChild(labelJudul);
-            div.appendChild(inputJudul);
-            div.appendChild(labelLink);
-            div.appendChild(inputLink);
+            col1.appendChild(titleLabel);
+            col1.appendChild(titleInput);
+            col2.appendChild(linkLabel);
+            col2.appendChild(linkInput);
+
+            div.appendChild(col1);
+            div.appendChild(col2);
             div.appendChild(deleteButton);
 
-            // Menambahkan div ke dalam container
             container.appendChild(div);
         }
 
-        // Mencegah pengiriman form saat tombol "Kirim" ditekan
-        document.getElementById("contact-form").addEventListener("submit", function(event) {
-            event.preventDefault();
+        function removeInputField(div) {
+            var container = document.getElementById("video-container");
+            container.removeChild(div);
+        }
+    </script>
+
+
+    {{-- format harga rupiah --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+    <script>
+        $(document).ready(function() {
+            $('#hargaInput').on('input', function() {
+                // Menghilangkan karakter selain angka
+                var harga = $(this).val().replace(/[^0-9]/g, '');
+
+                // Menambahkan titik sebagai pemisah ribuan
+                harga = harga.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+                // Menambahkan simbol mata uang
+                harga = 'Rp. ' + harga;
+
+                $(this).val(harga);
+            });
         });
     </script>
+
 
 </body>
 

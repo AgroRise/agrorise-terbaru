@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+    
+    protected $guard = 'video';
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

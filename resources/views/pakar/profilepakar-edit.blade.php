@@ -7,6 +7,7 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>AgroRise - Login Main</title>
 
@@ -22,11 +23,38 @@
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-    <!--
 
+    <script>
+        $(function() {
 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('#provincy').on('change', function() {
+                let id_provinces = $('#provincy').val();
 
--->
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('getregency') }}",
+                    data: {
+                        id_provinces: id_provinces
+                    },
+                    cache: false,
+
+                    success: function(msg) {
+                        $('#regency').html(msg);
+                    },
+
+                    error: function(data) {
+                        console.log('error:', data);
+                    },
+                })
+            })
+
+        });
+    </script>
 </head>
 
 <body>
@@ -209,21 +237,6 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Alamat</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="text" name="alamat"
-                                                class="form-control @error('alamat') is-invalid @enderror"
-                                                value="{{ old('alamat', Auth::guard('pakar')->user()->alamat) }}">
-                                            @error('alamat')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
                                             <h6 class="mb-0">Pendidikan Terakhir</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
@@ -269,13 +282,65 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Alamat Instansi</h6>
+                                            <h6 class="mb-0">Provinsi</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" name="alamat_instansi"
-                                                class="form-control @error('alamat_instansi') is-invalid @enderror"
-                                                value="{{ old('alamat_instansi', Auth::guard('pakar')->user()->alamat_instansi) }}">
-                                            @error('alamat_instansi')
+                                            <div class="dropdown-alamat">
+                                                <div class="select @error('Provincy') is-invalid @enderror">
+                                                    <span>Pilih Provinsi</span>
+                                                    <i class="fa fa-chevron-left"></i>
+                                                </div>
+                                                <input type="hidden" id="Provincy" name="Provincy">
+                                                <ul class="dropdown-alamat-menu">
+                                                    @foreach ($provincies as $provincy)
+                                                        <li data-value="{{ $provincy->id }}">{{ $provincy->name }}
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            @error('Provincy')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Kabupaten</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <div class="dropdown-alamat">
+                                                <div class="select @error('regency') is-invalid @enderror">
+                                                    <span>Pilih Kabupaten</span>
+                                                    <i class="fa fa-chevron-left"></i>
+                                                </div>
+                                                <input type="hidden" id="regency" name="regencies_id">
+                                                <ul class="dropdown-alamat-menu">
+                                                    @foreach ($regencies as $regency)
+                                                        <li data-value="{{ $regency->id }}">{{ $regency->name }}
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            @error('regency')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Alamat</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" name="alamat"
+                                                class="form-control @error('alamat') is-invalid @enderror"
+                                                value="{{ old('alamat', Auth::guard('pakar')->user()->alamat) }}">
+                                            @error('alamat')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -319,6 +384,38 @@
                 imgPreview.src = oFREvent.target.result;
             }
         }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            /* Dropdown Menu */
+            $('.dropdown-alamat').click(function() {
+                $(this).attr('tabindex', 1).focus();
+                $(this).toggleClass('active');
+                $(this).find('.dropdown-alamat-menu').slideToggle(300);
+            });
+
+            $('.dropdown-alamat').focusout(function() {
+                $(this).removeClass('active');
+                $(this).find('.dropdown-alamat-menu').slideUp(300);
+            });
+
+            $('.dropdown-alamat .dropdown-alamat-menu li').click(function() {
+                var value = $(this).data('value');
+                var text = $(this).text();
+
+                $(this).parents('.dropdown-alamat').find('span').text(text);
+                $(this).parents('.dropdown-alamat').find('input').val(value);
+            });
+            /* End Dropdown-alamat Menu */
+
+            $('.dropdown-alamat-menu li').click(function() {
+                var input = '<strong>' + $(this).parents('.dropdown-alamat').find('input').val() +
+                    '</strong>';
+                var msg = '<span class="msg">Hidden input value: ';
+                $('.msg').html(msg + input + '</span>');
+            });
+        });
     </script>
 
 </body>

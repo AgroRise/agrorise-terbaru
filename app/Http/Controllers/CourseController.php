@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,14 +14,19 @@ class CourseController extends Controller
      */
     public function index1()
     {
-        return view('course.course');
     }
+
+
+
     public function index()
     {
-        $id = Auth::guard('pakar')->user()->id;
-        $course = Course::where('id', $id)->get();
-        return view('pakar.pengajuan-index', compact('course'));
+        $pakar_id = Auth::guard('pakar')->user()->id;
+        $courses = Course::where('pakar_id', $pakar_id)->get();
+        return view('pakar.pengajuan-index', compact('courses'));
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -42,50 +48,54 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request, [
-            'judul' => 'required',
-            'thumbnail' => 'required',
+            'judul' => 'required|max:50',
+            'thumbnail' => 'required|mimes:png,jpg,jpeg',
             'jmlh_peserta' => 'required',
             'no_rekening' => 'required',
-            'deskripsi' => 'required',
+            'deskripsi' => 'required|max:300',
+            'harga' => 'required',
+            'pertemuan' => 'required',
+            'title.*' => 'required', // tambahkan validasi untuk judul video
+            'link.*' => 'required' // tambahkan validasi untuk link video
         ]);
 
-        $file = $request->thumbnail->getClientOriginalName();
-        $thumbnail = $request->thumbnail->storeAs('thumbnail', $file);
+        $thumbnail =  $request->thumbnail->getClientOriginalName();
+        $file = $request->thumbnail->storeAs('thumbnail', $thumbnail);
 
+        $harga = str_replace(['.', ',', 'Rp'], '', $request->harga);
+        $harga = intval($harga);
 
-        Course::create([
+        $course = Course::create([
             'pakar_id' => Auth::guard('pakar')->user()->id,
             'judul' => $request->judul,
-            'thumbnail' => $thumbnail,
+            'thumbnail' => $file,
             'jmlh_peserta' => $request->jmlh_peserta,
             'no_rekening' => $request->no_rekening,
-            'deskripsi' => $request->deskripsi
+            'pertemuan' => $request->pertemuan,
+            'deskripsi' => $request->deskripsi,
+            'harga' => $harga
         ]);
-        // $kursus = new Course;
-        // $kursus->pakar_id = Auth::guard('pakar')->user()->id;
-        // $kursus->judul = $request->input('judul');
-        // // Simpan thumbnail ke direktori dan simpan nama file di database
-        // if ($request->hasFile('thumbnail')) {
-        //     $thumbnails = $request->file('thumbnail');
-        //     $thumbnailNames = [];
-        //     foreach ($thumbnails as $thumbnail) {
-        //         $thumbnailName = $thumbnail->getClientOriginalName();
-        //         $thumbnail->storeAs('thumbnails', $thumbnailName);
-        //         $thumbnailNames[] = $thumbnailName;
-        //     }
-        //     $kursus->thumbnail = implode(',', $thumbnailNames);
-        // }
-        // $kursus->jmlh_peserta = $request->input('jmlh_peserta');
-        // $kursus->no_rekening = $request->input('no_rekening');
-        // $kursus->deskripsi = $request->input('deskripsi');
-        // $kursus->save();
 
-        // Tambahkan logika lain yang diperlukan
+        $videos = [];
 
-        return redirect()->route('pengajuan-video')->with('success', 'Data kursus berhasil disimpan!');
+        // Menyimpan video-video yang ditambahkan
+        if (!empty($request->title) && is_array($request->title) && !empty($request->link) && is_array($request->link)) {
+            for ($i = 0; $i < count($request->title); $i++) {
+                $video = new Video([
+                    'title' => $request->title[$i],
+                    'link' => $request->link[$i],
+                    'course_id' => $course->id
+                ]);
+
+                $video->save();
+                $videos[] = $video;
+            }
+        }
+
+        return redirect()->route('pengajuan-index')->with('success', 'Data kursus berhasil disimpan!');
     }
+
 
 
 
@@ -94,7 +104,13 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+    }
+
+    public function show1()
+    {
+        // $image = Auth::guard('pakar')->user()->foto; 
+        $courses = Course::all();
+        return view('course.course', compact('courses'));
     }
 
     /**
@@ -118,7 +134,9 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->videos()->delete(); // Menghapus video terkait
+        $course->delete(); // Menghapus kursus
+        return redirect()->back();
     }
 
 
