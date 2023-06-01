@@ -49,4 +49,8 @@ class Admin extends Model
     {
         return $this->hasMany(Course::class, 'admin_id');
     }
+    public function pakar()
+    {
+        return $this->hasMany(Pakar::class, 'admin_id');
+    }
 }

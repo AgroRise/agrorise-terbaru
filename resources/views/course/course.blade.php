@@ -90,8 +90,13 @@
                                 Hallo, {{ Auth::guard('pakar')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/profilepakar">Profil</a></li>
-                                <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
+                                @if (Auth::guard('pakar')->user()->status === 'Disetujui')
+                                    <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a>
+                                    </li>
+                                @endif
+                                <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
+                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -99,7 +104,8 @@
                                     <form action="/logout" method="post">
                                         @csrf
                                         <button type="submit" class="dropdown-item"><i
-                                                class="bi bi-box-arrow-right"></i> Logout</button>
+                                                class="bi bi-box-arrow-right"></i>
+                                            Logout</button>
                                     </form>
                                 </li>
                             </ul>
@@ -179,35 +185,43 @@
                 </div>
                 <div class="row">
                     @forelse($courses as $course)
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="rounded overflow-hidden mb-2">
-                                <div class="profile-img">
-                                    <img src="{{ asset('storage/' . old('images', $course->pakar->foto)) }}" alt="Profile Photo">
-                                </div>
-                                <img class="rounded" width="450px" height="300px" style="object-fit: cover;"
-                                    src="{{ asset('storage/' . old('thumbnail', $course->thumbnail)) }}"
-                                    alt="">
-                                <div class="bg-secondary p-4">
-                                    <p class="profile-name">{{ $course->pakar->nama }}</p>
-                                    <p class="profile-work">{{ $course->pakar->pekerjaan }}</p>
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <small class="m-0"><i
-                                                class="fa fa-users text-primary mr-2"></i>{{ $course->jmlh_peserta }} Kuota</small>
-                                        <small class="m-0"><i
-                                                class="far fa-clock text-primary mr-2"></i>{{ $course->pertemuan }} Pertemuan</small>
+                        @if ($course->status === 'Disetujui')
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="rounded overflow-hidden mb-2">
+                                    <div class="profile-img">
+                                        <img src="{{ asset('storage/' . old('images', $course->pakar->foto)) }}"
+                                            alt="Profile Photo">
                                     </div>
-                                    <h5>{{ $course->deskripsi }}</h5>
-                                    <small class="m-0">Online</small>
-                                    <div class="border-top mt-4 pt-4">
-                                        <div class="d-flex justify-content-between">
-                                            <p class="m-0 mr-2">Harga Rp. {{ $course->harga }}</p>
-                                            <button class="button-3" role="button" data-toggle="modal"
-                                                data-target="#exampleModal">Daftar</button>
+                                    <img class="rounded" width="450px" height="300px" style="object-fit: cover;"
+                                        src="{{ asset('storage/' . old('thumbnail', $course->thumbnail)) }}"
+                                        alt="">
+                                    <div class="bg-secondary p-4">
+                                        <p class="profile-name">{{ $course->pakar->nama }}</p>
+                                        <p class="profile-work">{{ $course->pakar->pekerjaan }}</p>
+                                        <div class="d-flex justify-content-between mb-3">
+                                            <small class="m-0"><i
+                                                    class="fa fa-users text-primary mr-2"></i>{{ $course->jmlh_peserta }}
+                                                Kuota</small>
+                                            <small class="m-0"><i
+                                                    class="far fa-clock text-primary mr-2"></i>{{ $course->pertemuan }}
+                                                Pertemuan</small>
+                                        </div>
+                                        <h5>{{ $course->deskripsi }}</h5>
+                                        <small class="m-0">Online</small>
+                                        <div class="border-top mt-4 pt-4">
+                                            <div class="d-flex justify-content-between">
+                                                <p class="m-0 mr-2">Harga Rp. {{ $course->harga }}</p>
+                                                @if (Str::length(Auth::guard('user')->user()) > 0)
+                                                    <button class="button-3" role="button" data-toggle="modal"
+                                                        data-target="#exampleModal"
+                                                        onclick="setCourseId({{ $course->id }})">Daftar</button>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     @empty
                         <div class="alert alert-danger" role="alert">
                             Belum ada Kursus
@@ -217,92 +231,76 @@
             </div>
         </div>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Isi data diri</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="smartwizard">
-                            <ul>
-                                <li><a href="#step-1">Step 1<br /><small>Account Info</small></a></li>
-                                <li><a href="#step-2">Step 2<br /><small>Personal Info</small></a></li>
-                                <li><a href="#step-3">Step 3<br /><small>Payment Info</small></a></li>
-                                <li><a href="#step-4">Step 4<br /><small>Confirm details</small></a></li>
-                            </ul>
-                            <div class="mt-4">
-                                <div id="step-1">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Name" required>
+
+        @if (Str::length(Auth::guard('user')->user()) > 0)
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Detail Pembayaran</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="smartwizard">
+                                <ul>
+                                    <li><a href="#step-1">Langkah 1<br /><small>Detail Akun</small></a></li>
+                                    <li><a href="#step-2">Langkah 2<br /><small>Detail Kursus</small></a></li>
+                                    <li><a href="#step-3">Langkah 3<br /><small>Pembayaran</small></a></li>
+                                </ul>
+                                <div class="mt-4">
+                                    <div id="step-1">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" readonly
+                                                    value="Nama: {{ old('username', Auth::guard('user')->user()->username) }}">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" readonly
+                                                    value="Email: {{ old('email', Auth::guard('user')->user()->email) }}">
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Email" required>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Password"
-                                                required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Repeat password"
-                                                required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="step-2">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Address"
-                                                required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="City" required>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <input type="number" class="form-control"
+                                                    placeholder="Masukkan Nomor WhatsApp Anda" required>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="State" required>
+                                    <div id="step-2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" placeholder="Address"
+                                                    required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" placeholder="City"
+                                                    required>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Country"
-                                                required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="step-3" class="">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Card Number"
-                                                required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Card Holder Name"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="CVV" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Mobile Number"
-                                                required>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" placeholder="State"
+                                                    required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" placeholder="Country"
+                                                    required>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="step-4" class="">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <span>Thanks For submitting your details with BBBootstrap.com. we will send
-                                                you a confirmation email. We will review your details and revert
-                                                back.</span>
+                                    <div id="step-3" class="">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <span>Thanks For submitting your details with BBBootstrap.com. we will
+                                                    send
+                                                    you a confirmation email. We will review your details and revert
+                                                    back.</span>
+                                            </div>
+                                            <button type="button" class="btn btn-primary mb-2"
+                                                onclick="kirimData()">Kirim</button>
                                         </div>
                                     </div>
                                 </div>
@@ -311,12 +309,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-
-
-
-
+        @endif
         <footer class="contact-section section-padding" id="section_5">
             <div class="container">
                 <div class="row">
@@ -349,24 +342,28 @@
     <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js'>
     </script>
     <script type='text/javascript'>
-        $(document).ready(function() {
+        let selectedCourseId = null;
 
+        $(document).ready(function() {
             $('#smartwizard').smartWizard({
                 selected: 0,
                 theme: 'arrows',
                 autoAdjustHeight: true,
                 transitionEffect: 'fade',
                 showStepURLhash: false,
-
             });
+        });
 
-        });
-    </script>
-    <script type='text/javascript'>
-        var myLink = document.querySelector('a[href="#"]');
-        myLink.addEventListener('click', function(e) {
-            e.preventDefault();
-        });
+        function setCourseId(courseId) {
+            selectedCourseId = courseId;
+        }
+
+        function kirimData() {
+            if (selectedCourseId !== null) {
+                const url = "{{ route('konten-kursus', ':id') }}".replace(':id', selectedCourseId);
+                window.location.href = url;
+            }
+        }
     </script>
 </body>
 

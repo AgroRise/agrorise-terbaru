@@ -93,9 +93,9 @@
                                     <thead>
                                         <tr>
                                             <th data-field="No">No</th>
-                                            <th>Image</th>
+                                            <th>Foto</th>
                                             <th data-field="Email">Email</th>
-                                            <th data-field="Name">Name</th>
+                                            <th data-field="Nama">Nama</th>
                                             <th data-field="Username">Username</th>
                                             <th data-field="Nomor telepon">Nomor telepon</th>
                                             <th data-field="Pendidikan Terakhir">Pendidikan Terakhir</th>
@@ -106,6 +106,7 @@
                                             <th data-field="Alamat">Alamat</th>
                                             <th data-field="CV">CV</th>
                                             <th data-field="Portofolio">Portofolio</th>
+                                            <th data-field="Persetujuan">Persetujuan</th>
                                             <th data-field="Status">Status</th>
                                         </tr>
                                     </thead>
@@ -137,6 +138,26 @@
                                                         href="{{ asset('portofolio/' . $item->portofolio) }}">
                                                         <button>Download</button>
                                                     </a>
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('persetujuan-pakar') }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="pakar_id"
+                                                            value="{{ $item->id }}">
+                                                        <button type="submit" name="setuju"
+                                                            value="1">Setuju</button>
+                                                        <button type="submit" name="setuju"
+                                                            value="0">Tolak</button>
+                                                        <input type="hidden" name="admin_id"
+                                                            value="{{ Auth::guard('admin')->user()->id }}">
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    @if ($item->status === 'Disetujui')
+                                                        <span class="approval-status">Disetujui</span>
+                                                    @elseif ($item->status === 'Ditolak')
+                                                        <span class="approval-status">Ditolak</span>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

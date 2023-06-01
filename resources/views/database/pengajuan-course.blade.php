@@ -93,7 +93,7 @@
                                     <thead>
                                         <tr>
                                             <th data-field="No">No</th>
-                                            <th>Image</th>
+                                            <th>Thumbnail</th>
                                             <th data-field="Judul Kursus">Judul Kursus</th>
                                             <th data-field="Jumlah Peserta">Jumlah Peserta</th>
                                             <th data-field="Pertemuan">Pertemuan</th>

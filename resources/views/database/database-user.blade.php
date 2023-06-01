@@ -93,7 +93,7 @@
                                     <thead>
                                         <tr>
                                             <th data-field="No">No</th>
-                                            <th>Image</th>
+                                            <th>Foto</th>
                                             <th data-field="Email">Email</th>
                                             <th data-field="Username">Username</th>
                                         </tr>

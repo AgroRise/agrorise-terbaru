@@ -156,23 +156,19 @@
         <div class="containerdesc">
             <div class="row">
                 <div class="col-6">
-                    <h5>Penanaman Bibit Apel dengan menggunakan lahan sempit</h5>
-                    <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem
-                        vitae possimus neque sed delectus.
-                        Qui error ea maxime porro voluptatem eligendi dolor unde molestiae alias, quisquam totam cumque
-                        vitae. Sunt! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Maxime exercitationem neque fugit amet, reiciendis esse placeat nulla assumenda, nisi maiores
-                        quisquam excepturi non, adipisci minima molestiae consectetur sequi! Saepe, reprehenderit.</p>
+                    <h5>{{ $videos[0]->course->judul }}</h5>
+                    <p class="description">{{ $videos[0]->course->deskripsi }}</p>
                 </div>
                 <div class="col-6">
                     <div class="containercard">
                         <div class="card-template card-template-1">
                             <div class="left-part">
-                                <img alt="left-circular-image" src="images/team-1.jpg" width="100%" />
+                                <img alt="left-circular-image"
+                                    src="{{ asset('storage/' . old('foto', $videos[0]->course->pakar->foto)) }}" width="100%" />
                             </div>
                             <div class="right-part">
-                                <p class="profile-name">John Doe</p>
-                                <p class="profile-work">Dosen Universitas Jember</p>
+                                <p class="profile-name">{{ $videos[0]->course->pakar->nama }}</p>
+                                <p class="profile-work">{{ $videos[0]->course->pakar->pekerjaan }}</p>
                             </div>
                         </div>
                     </div>
@@ -181,47 +177,25 @@
         </div>
 
 
-
         <div class="containervid">
             <div class="main-video">
-                <div class="video">
-                    <video src="https://res.cloudinary.com/codelife/video/upload/v1637805738/intro_l5ul1k.mp4" controls
-                        autoplay></video>
-                    <h3 class="title">01. Title</h3>
-                </div>
+                @if (!$videos->isEmpty() && array_key_exists(0, $videos->toArray()))
+                    <div class="video">
+                        <video src="{{ $videos[0]->link }}" controls autoplay></video>
+                        <h3 class="title"></h3>
+                    </div>
+                @endif
             </div>
             <div class="video-list">
-                <div class="vid active">
-                    <video src="https://res.cloudinary.com/codelife/video/upload/v1637805738/intro_l5ul1k.mp4" controls
-                        muted></video>
-                    <h3 class="title">01. Title</h3>
-                </div>
-                <div class="vid">
-                    <video src="videos\-Main Comp 1-1.m4v" controls muted></video>
-                    <h3 class="title">02. Title</h3>
-                </div>
-                <div class="vid">
-                    <video src="videos\-Main Comp 1-1.m4v" controls muted></video>
-                    <h3 class="title">03. Title</h3>
-                </div>
-                <div class="vid">
-                    <video src="videos\-Main Comp 1-1.m4v" controls muted></video>
-                    <h3 class="title">04. Title</h3>
-                </div>
-                <div class="vid">
-                    <video src="videos\-Main Comp 1-1.m4v" controls muted></video>
-                    <h3 class="title">04. Title</h3>
-                </div>
-                <div class="vid">
-                    <video src="videos\-Main Comp 1-1.m4v" controls muted></video>
-                    <h3 class="title">04. Title</h3>
-                </div>
-                <div class="vid">
-                    <video src="videos\-Main Comp 1-1.m4v" controls muted></video>
-                    <h3 class="title">04. Title</h3>
-                </div>
+                @foreach ($videos as $video)
+                    <div class="vid">
+                        <video src="{{ $video->link }}" controls muted></video>
+                        <h3 class="title">{{ $video->title }}</h3>
+                    </div>
+                @endforeach
             </div>
         </div>
+
 
         <footer class="contact-section section-padding" id="section_5">
             <div class="container">

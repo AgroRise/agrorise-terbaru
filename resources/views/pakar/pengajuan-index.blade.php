@@ -111,8 +111,9 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
-                                <img width="140px" height="140px" src="{{ asset('storage/' . old('thumbnail', $course->thumbnail)) }}"
-                                    alt="default" style="object-fit: cover;">
+                                <img width="140px" height="140px"
+                                    src="{{ asset('storage/' . old('thumbnail', $course->thumbnail)) }}" alt="default"
+                                    style="object-fit: cover;">
                                 <div class="ml-3">
                                     <p>Judul{{ $course->judul }}</p>
                                     <p class="text-muted">{{ $course->created_at->format('Y-m-d') }} &middot;
@@ -126,17 +127,22 @@
                                     <p class="col-6">Jumlah Kuota {{ $course->jmlh_peserta }}</p>
                                 </div>
                             </div>
-                            <form action="{{route('pengajuan-destroy', $course->id)}}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin untuk menghapus kursus ? ')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                </button>
-                            </form>
+                            @unless ($course->status === 'Disetujui')
+                                <form action="{{ route('pengajuan-destroy', $course->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Apakah anda yakin untuk menghapus kursus ? ')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </button>
+                                </form>
+                            @else
+                                <p class="text-success">Kursus telah disetujui.</p>
+                            @endunless
                         </div>
                     </div>
                 </div>
@@ -145,8 +151,9 @@
                     Kamu belum Memiliki Kursus
                 </div>
             @endforelse
-
         </div>
+
+
 
 
     </main>

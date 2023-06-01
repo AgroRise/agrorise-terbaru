@@ -27,4 +27,9 @@ class Course extends Model
     // {
     //     return asset('storage/thumbnail/' . $this->thumbnail);
     // }
+
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
 }

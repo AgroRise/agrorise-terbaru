@@ -17,11 +17,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/kalkulator.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/kalkulator.css') }}" rel="stylesheet">
     <!--
 
 
@@ -76,8 +76,13 @@
                                 Hallo, {{ Auth::guard('pakar')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/profilepakar">Profil</a></li>
-                                <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
+                                @if (Auth::guard('pakar')->user()->status === 'Disetujui')
+                                    <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a>
+                                    </li>
+                                @endif
+                                <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
+                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -85,7 +90,8 @@
                                     <form action="/logout" method="post">
                                         @csrf
                                         <button type="submit" class="dropdown-item"><i
-                                                class="bi bi-box-arrow-right"></i> Logout</button>
+                                                class="bi bi-box-arrow-right"></i>
+                                            Logout</button>
                                     </form>
                                 </li>
                             </ul>

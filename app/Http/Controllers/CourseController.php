@@ -104,14 +104,21 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        
     }
 
     public function show1()
     {
-        // $image = Auth::guard('pakar')->user()->foto; 
         $courses = Course::all();
         return view('course.course', compact('courses'));
     }
+
+    public function show2(Course $course)
+    {
+        $videos = $course->videos;
+        return view('course.contentcourse', compact('course','videos'));
+    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -140,8 +147,10 @@ class CourseController extends Controller
     }
 
 
-    public function index2()
+    public function index2(Course $course)
     {
-        return view('course.contentcourse');
+        $videos = Video::where('course_id', $course->id)->get();
+        return view('course.contentcourse', compact('course','videos'));
     }
+
 }

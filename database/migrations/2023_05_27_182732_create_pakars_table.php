@@ -14,17 +14,19 @@ return new class extends Migration
         Schema::create('pakars', function (Blueprint $table) {
             $table->id();
             $table->string('email');
+            $table->char('regencies_id');
+            $table->unsignedBigInteger('admin_id')->nullable();
             $table->string('nama');
             $table->string('username');
             $table->string('password');
             $table->string('no_telepon');
-            $table->char('regencies_id');
             $table->string('alamat');
             $table->string('pendidikan_terakhir');
             $table->string('instansi');
             $table->string('foto')->nullable();
             $table->string('cv');
             $table->string('portofolio');
+            $table->foreign('admin_id')->references('id')->on('admins');
             $table->foreign('regencies_id')->references('id')->on('regencies');
             $table->timestamps();
         });

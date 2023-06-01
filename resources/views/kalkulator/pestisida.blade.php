@@ -17,11 +17,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/kalkulator.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/kalkulator.css') }}" rel="stylesheet">
     <!--
 
 
@@ -78,13 +78,18 @@
                     </ul>
                     @if (Str::length(Auth::guard('pakar')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Hallo, {{ Auth::guard('pakar')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/profilepakar">Profil</a></li>
-                                <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
+                                @if (Auth::guard('pakar')->user()->status === 'Disetujui')
+                                    <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a>
+                                    </li>
+                                @endif
+                                <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
+                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -92,15 +97,16 @@
                                     <form action="/logout" method="post">
                                         @csrf
                                         <button type="submit" class="dropdown-item"><i
-                                                class="bi bi-box-arrow-right"></i> Logout</button>
+                                                class="bi bi-box-arrow-right"></i>
+                                            Logout</button>
                                     </form>
                                 </li>
                             </ul>
                         </div>
                     @elseif(Str::length(Auth::guard('user')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Hallo, {{ Auth::guard('user')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
@@ -120,8 +126,8 @@
                         </div>
                     @elseif(Str::length(Auth::guard('admin')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Hallo, {{ Auth::guard('admin')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
@@ -168,7 +174,8 @@
                             <form class="mb-5" method="post" id="contactForm" name="contactForm">
                                 <div class="row">
                                     <div class="col-md-6 form-group mb-3">
-                                        <label for="" class="col-form-label">Konsentrasi Aplikasi (ml/L)</label>
+                                        <label for="" class="col-form-label">Konsentrasi Aplikasi
+                                            (ml/L)</label>
                                         <input type="tnumberext" class="form-control" id="consent">
                                     </div>
                                     <div class="col-md-6 form-group mb-3">

@@ -83,8 +83,11 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
-                            <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
-                            <li><a class="dropdown-item" href="{{route('edit-password-pakar')}}">Ubah Password</a></li>
+                            @if (Auth::guard('pakar')->user()->status === 'Disetujui')
+                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
+                            @endif
+                            <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -118,16 +121,22 @@
                                     @endif
                                     <div class="mt-3">
                                         <h4>{{ old('username', Auth::guard('pakar')->user()->username) }}</h4>
+                                        @if (Auth::guard('pakar')->user()->status === 'Disetujui')
+                                            <h6 class="text-success">Pendaftaran Disetujui</h6>
+                                        @else
+                                            <h6 class="text-danger">Pendaftaran Tidak Disetujui</h6>
+                                            <p>Silahkan Daftar Ulang CV dan Portofolio Anda</p>
+                                        @endif
                                         <form action="/logout" method="post">
                                             @csrf
                                             <button class="btn btn-primary">Logout</button>
                                         </form>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
+
 
                     <div class="col-lg-8">
                         <div class="card">
@@ -266,5 +275,3 @@
 </body>
 
 </html>
-
-
