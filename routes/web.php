@@ -93,6 +93,7 @@ route::group(['middleware' => ['auth:user,pakar,admin']], function () {
     route::get('/database-user', [DatabaseController::class, 'show1'])->name('database-user');
     route::get('/database-pakar', [DatabaseController::class, 'show2'])->name('database-pakar');
     route::get('/pengajuan-kursus', [DatabaseController::class, 'show3'])->name('pengajuan-kursus');
+    route::post('/persetujuan-kursus', [DatabaseController::class, 'store'])->name('persetujuan-kursus');
 
     route::get('/pengajuan-main', [CourseController::class, 'index'])->name('pengajuan-index');
     route::get('/pengajuan', [CourseController::class, 'create'])->name('pengajuan');

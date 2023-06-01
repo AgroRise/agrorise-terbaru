@@ -101,6 +101,7 @@
                                             <th data-field="Harga">Harga</th>
                                             <th data-field="Nomor Rekening">Nomor Rekening</th>
                                             <th data-field="Nama Pakar">Nama Pakar</th>
+                                            <th data-field="Persetujuan">Persetujuan</th>
                                             <th data-field="Status">Status</th>
                                         </tr>
                                     </thead>
@@ -118,6 +119,26 @@
                                                 <td>{{ $item->harga }}</td>
                                                 <td>{{ $item->no_rekening }}</td>
                                                 <td>{{ $item->pakar->nama }}</td>
+                                                <td>
+                                                    <form action="{{ route('persetujuan-kursus') }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="course_id"
+                                                            value="{{ $item->id }}">
+                                                        <button type="submit" name="setuju"
+                                                            value="1">Setuju</button>
+                                                        <button type="submit" name="setuju"
+                                                            value="0">Tolak</button>
+                                                        <input type="hidden" name="admin_id"
+                                                            value="{{ Auth::guard('admin')->user()->id }}">
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    @if ($item->status === 'Disetujui')
+                                                        <span class="approval-status">Disetujui</span>
+                                                    @elseif ($item->status === 'Ditolak')
+                                                        <span class="approval-status">Ditolak</span>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
