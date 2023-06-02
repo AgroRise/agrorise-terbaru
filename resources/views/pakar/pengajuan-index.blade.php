@@ -104,7 +104,12 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <h4 class="card-title mx-auto">Kursus Anda</h4>
-                <a href="{{ route('pengajuan') }}" class="btn btn-primary mb-3">Buat Kursus Baru</a>
+                @if (Auth::guard('pakar')->user()->status === 'Disetujui')
+                    <a href="{{ route('pengajuan') }}" class="btn btn-primary mb-3">Buat Kursus Baru</a>
+                @else
+                    <a href="" onclick="return confirm('Anda belum bisa membuat pengajuan kursus !')"
+                        class="btn btn-primary mb-3">Buat Kursus Baru</a>
+                @endif
             </div>
             @forelse ($courses as $course)
                 <div class="card mb-3">

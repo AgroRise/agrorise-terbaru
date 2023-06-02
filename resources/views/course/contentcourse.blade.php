@@ -84,8 +84,10 @@
                                 Hallo, {{ Auth::guard('pakar')->user()->username }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/profilepakar">Profil</a></li>
-                                <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
+                                <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
+                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -164,7 +166,8 @@
                         <div class="card-template card-template-1">
                             <div class="left-part">
                                 <img alt="left-circular-image"
-                                    src="{{ asset('storage/' . old('foto', $videos[0]->course->pakar->foto)) }}" width="100%" />
+                                    src="{{ asset('storage/' . old('foto', $videos[0]->course->pakar->foto)) }}"
+                                    width="100%" />
                             </div>
                             <div class="right-part">
                                 <p class="profile-name">{{ $videos[0]->course->pakar->nama }}</p>

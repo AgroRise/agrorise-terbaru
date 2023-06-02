@@ -82,10 +82,7 @@ https://templatemo.com/tm-588-ebook-landing
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
-                                @if (Auth::guard('pakar')->user()->status === 'Disetujui')
-                                    <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a>
-                                    </li>
-                                @endif
+                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
                                 <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
                                 </li>
                                 <li>
