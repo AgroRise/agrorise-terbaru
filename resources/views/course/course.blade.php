@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -65,10 +65,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text click-scroll" href="{{route('course')}}">Kursus</a>
+                            <a class="nav-link text click-scroll" href="{{ route('course') }}">Kursus</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
@@ -136,8 +136,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profileadmin">Profil</a></li>
-                                <li><a class="dropdown-item" href="/file">Database Pengguna</a></li>
-                                <li><a class="dropdown-item" href="/filepakar">Database Pakar</a></li>
+                                <li><a class="dropdown-item" href="{{ route('database-pakar') }}">Database</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -203,7 +202,7 @@
                                                     class="far fa-clock text-primary mr-2"></i>{{ $course->pertemuan }}
                                                 Pertemuan</small>
                                         </div>
-                                        <h5>{{ $course->deskripsi }}</h5>
+                                        <h5>{{ $course->judul }}</h5>
                                         <small class="m-0">Online</small>
                                         <div class="border-top mt-4 pt-4">
                                             <div class="d-flex justify-content-between">
