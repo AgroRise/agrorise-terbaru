@@ -61,7 +61,7 @@
                             <a class="nav-link click-scroll" href="/">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text click-scroll" href="/course">Kursus</a>
+                            <a class="nav-link text click-scroll" href="{{route('course')}}">Kursus</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"

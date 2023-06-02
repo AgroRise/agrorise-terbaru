@@ -86,7 +86,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_2">Kursus</a>
+                            <a class="nav-link click-scroll" href="{{route('course')}}">Kursus</a>
                         </li>
 
                         <li class="nav-item dropdown">
