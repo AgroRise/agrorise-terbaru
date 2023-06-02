@@ -8,7 +8,7 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css'>
     <link rel='stylesheet' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/4579/bootstrap-table.css'>
-    <link rel="stylesheet" href="{{asset('css/database.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/database.css') }}">
 
 </head>
 
@@ -31,7 +31,7 @@
 
                 <div class='collapse navbar-collapse navbar-hamburger-delicious'>
                     <ul class='nav navbar-nav side-nav fadeInLeft'>
-                        <li class='toggle-nav visible-lg visible-md visible-sm'><a href="{{route('index')}}"><i
+                        <li class='toggle-nav visible-lg visible-md visible-sm'><a href="{{ route('index') }}"><i
                                     class='fa fa-lg fa-arrow-left'></i>Beranda</a></li>
                         <li class='dashboard'><a href='#'><i class='fa fa-lg fa-dashboard'></i>Dash</a></li>
                         <li class='docs'><a href='{{ route('database-pakar') }}'><i
@@ -43,7 +43,7 @@
                             <hr>
                         </li>
                         <li class='active person-lookup'><a href='{{ route('pengajuan-kursus') }}'><i
-                                    class='fa fa-lg fa-phone-square'></i>Pengajuan Kursus</a>
+                                    class='fa fa-lg fa-check-square-o'></i>Pengajuan Kursus</a>
                         </li>
                         <li class='software-support'><a href='#softwareSupport'><i
                                     class='fa fa-lg fa-question-circle'></i>Support</a></li>
@@ -102,6 +102,7 @@
                                             <th data-field="Harga">Harga</th>
                                             <th data-field="Nomor Rekening">Nomor Rekening</th>
                                             <th data-field="Nama Pakar">Nama Pakar</th>
+                                            <th data-field="Video Kursus">Video Kursus</th>
                                             <th data-field="Persetujuan">Persetujuan</th>
                                             <th data-field="Status">Status</th>
                                         </tr>
@@ -111,23 +112,29 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td><img width="75" height="75"
-                                                        src="{{ asset('storage/' . old('thumbnail', $item->thumbnail)) }}"
+                                                        src="{{ asset('storage/' . $item->thumbnail) }}"
                                                         alt="Foto"></td>
                                                 <td>{{ $item->judul }}</td>
                                                 <td>{{ $item->jmlh_peserta }}</td>
                                                 <td>{{ $item->pertemuan }}</td>
-                                                <td>{{ $item->deskripsi }}</td>
+                                                <td>{{ Str::limit($item->deskripsi, 30) }}</td>
                                                 <td>{{ $item->harga }}</td>
                                                 <td>{{ $item->no_rekening }}</td>
                                                 <td>{{ $item->pakar->nama }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info mb-2"
+                                                        onclick="kirimData({{ $item->id }})">Lihat Video</button>
+                                                </td>
                                                 <td>
                                                     <form action="{{ route('persetujuan-kursus') }}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="course_id"
                                                             value="{{ $item->id }}">
                                                         <button type="submit" name="setuju"
+                                                            onclick="return confirm('Apakah anda yakin untuk menyetujui !')"
                                                             value="1">Setuju</button>
                                                         <button type="submit" name="setuju"
+                                                            onclick="return confirm('Apakah anda yakin untuk menolak !')"
                                                             value="0">Tolak</button>
                                                         <input type="hidden" name="admin_id"
                                                             value="{{ Auth::guard('admin')->user()->id }}">
@@ -142,6 +149,8 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+
+
                                     </tbody>
                                 </table>
                                 {{ $data->links() }}
@@ -159,6 +168,29 @@
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/4579/bootstrap.min.js'></script>
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/4579/bootstrap-table.js'></script>
     <script src="database.js"></script>
+
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            @foreach ($data as $item)
+                $('#smartwizard{{ $item->id }}').smartWizard({
+                    selected: 0,
+                    theme: 'arrows',
+                    autoAdjustHeight: true,
+                    transitionEffect: 'fade',
+                    showStepURLhash: false,
+                });
+            @endforeach
+        });
+
+        function setCourseId(courseId) {
+            selectedCourseId = courseId;
+        }
+
+        function kirimData(courseId) {
+            const url = "{{ route('konten-kursus', ':id') }}".replace(':id', courseId);
+            window.location.href = url;
+        }
+    </script>
 
 </body>
 

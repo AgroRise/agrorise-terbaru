@@ -103,6 +103,7 @@ route::group(['middleware' => ['auth:user,pakar,admin']], function () {
 
     route::get('/kursus', [CourseController::class, 'show1'])->name('course');
     route::get('/konten-kursus{course}', [CourseController::class, 'show2'])->name('konten-kursus');
+    // route::get('/pengajuan-konten-kursus{course}', [CourseController::class, 'show3'])->name('pengajuan-konten-kursus');
     route::get('/kursus-saya', [CourseController::class, 'show3'])->name('kursus-saya');
 
     route::post('/detail-pembayaran', [CourseController::class, 'checkout'])->name('detail-pembayaran');

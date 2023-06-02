@@ -68,7 +68,7 @@
                             <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text click-scroll" href="{{ route('course') }}">Kursus</a>
+                            <a class="nav-link click-scroll" href="{{ route('course') }}">Kursus</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
@@ -85,7 +85,7 @@
                     </ul>
                     @if (Str::length(Auth::guard('pakar')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                            <button class="btn btn-transparent dropdown-toggle text" type="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Hallo, {{ Auth::guard('pakar')->user()->username }}
                             </button>
@@ -109,7 +109,7 @@
                         </div>
                     @elseif(Str::length(Auth::guard('user')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                            <button class="btn btn-transparent dropdown-toggle text" type="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Hallo, {{ Auth::guard('user')->user()->username }}
                             </button>
@@ -131,7 +131,7 @@
                         </div>
                     @elseif(Str::length(Auth::guard('admin')->user()) > 0)
                         <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                            <button class="btn btn-transparent dropdown-toggle text" type="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Hallo, {{ Auth::guard('admin')->user()->username }}
                             </button>

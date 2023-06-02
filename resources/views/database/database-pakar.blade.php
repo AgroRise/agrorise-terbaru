@@ -8,7 +8,7 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css'>
     <link rel='stylesheet' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/4579/bootstrap-table.css'>
-    <link rel="stylesheet" href="{{asset('css/database.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/database.css') }}">
 
 </head>
 
@@ -31,7 +31,7 @@
 
                 <div class='collapse navbar-collapse navbar-hamburger-delicious'>
                     <ul class='nav navbar-nav side-nav fadeInLeft'>
-                        <li class='toggle-nav visible-lg visible-md visible-sm'><a href="{{route('index')}}"><i
+                        <li class='toggle-nav visible-lg visible-md visible-sm'><a href="{{ route('index') }}"><i
                                     class='fa fa-lg fa-arrow-left'></i>Beranda</a></li>
                         <li class='dashboard'><a href='#'><i class='fa fa-lg fa-dashboard'></i>Dash</a></li>
                         <li class='active docs'><a href='{{ route('database-pakar') }}'><i
@@ -43,7 +43,7 @@
                             <hr>
                         </li>
                         <li class='person-lookup'><a href='{{ route('pengajuan-kursus') }}'><i
-                                    class='fa fa-lg fa-phone-square'></i>Pengajuan Kursus</a>
+                                    class='fa fa-lg fa-check-square-o'></i>Pengajuan Kursus</a>
                         </li>
                         <li class='software-support'><a href='#softwareSupport'><i
                                     class='fa fa-lg fa-question-circle'></i>Support</a></li>
@@ -131,13 +131,13 @@
                                                 <td>
                                                     <a class="btn btn-secondary btn-sm"
                                                         href="{{ asset('cv/' . $item->cv) }}">
-                                                        <button>Download</button>
+                                                        <button><i class="fa fa-3xs fa-download"></i></button>
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-secondary btn-sm"
                                                         href="{{ asset('portofolio/' . $item->portofolio) }}">
-                                                        <button>Download</button>
+                                                        <button><i class="fa fa-3xs fa-download"></i></button>
                                                     </a>
                                                 </td>
                                                 <td>
@@ -146,8 +146,10 @@
                                                         <input type="hidden" name="pakar_id"
                                                             value="{{ $item->id }}">
                                                         <button type="submit" name="setuju"
+                                                            onclick="return confirm('Apakah anda yakin untuk menyetujui !')"
                                                             value="1">Setuju</button>
                                                         <button type="submit" name="setuju"
+                                                            onclick="return confirm('Apakah anda yakin untuk menolak !')"
                                                             value="0">Tolak</button>
                                                         <input type="hidden" name="admin_id"
                                                             value="{{ Auth::guard('admin')->user()->id }}">

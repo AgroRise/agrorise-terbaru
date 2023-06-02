@@ -254,19 +254,19 @@ https://templatemo.com/tm-588-ebook-landing
                                 <p>Pada Website AgroRise ini terdapat 2 fitur utama yang sangat membantu bagi para
                                     pengguna khususnya yang berkaitan dengan bidang AgroIndustri. Fitur tersebut terdiri
                                     dari <strong>Fitur Perhitungan</strong> dan <strong>Fitur Pelatihan atau
-                                        Course</strong></p>
+                                        Kursus</strong></p>
 
                                 <p><strong>Fitur Perhitungan</strong> adalah Fitur yang dibuat untuk membantu para
                                     pengguna dalam menentukan takaran atau hasil dari suatu perhitungan yang dipilih
                                     nantinya. Dalam Fitur Perhitungan sendiri terdapat 3 Jenis Perhitungan yang terdiri
                                     dari Perhitungan Keuntungan, Perhitungan Pupuk, Perhitungan Pestisida</p>
 
-                                <p><strong>Fitur Pelatihan atau Course</strong> adalah Pelatihan atau course adalah
+                                <p><strong>Fitur Pelatihan atau Kursus</strong> adalah Pelatihan atau Kursus adalah
                                     suatu bentuk pembelajaran atau pengajaran yang terstruktur untuk memberikan
-                                    pengetahuan, keterampilan, atau keahlian tertentu. Pelatihan atau course biasanya
+                                    pengetahuan, keterampilan, atau keahlian tertentu. Pelatihan atau Kursus biasanya
                                     diarahkan untuk meningkatkan kompetensi atau keterampilan seseorang dalam bidang
                                     tertentu. Pada Pelatihan ini menggunakan media secara online, sehingga memudahkan
-                                    pengguna dalam mengakses course dengan praktis.</p> <br>
+                                    pengguna dalam mengakses kursus dengan praktis.</p> <br>
 
                                 <div class="row">
                                     <div class="col-lg-6 col-12 mb-3">

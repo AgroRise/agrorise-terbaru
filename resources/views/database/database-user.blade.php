@@ -43,7 +43,7 @@
                             <hr>
                         </li>
                         <li class='person-lookup'><a href='{{ route('pengajuan-kursus') }}'><i
-                                    class='fa fa-lg fa-phone-square'></i>Pengajuan Kursus</a>
+                                    class='fa fa-lg fa-check-square-o'></i>Pengajuan Kursus</a>
                         </li>
                         <li class='software-support'><a href='#softwareSupport'><i
                                     class='fa fa-lg fa-question-circle'></i>Support</a></li>
