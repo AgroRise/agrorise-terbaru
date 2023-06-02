@@ -37,7 +37,7 @@ route::post('/logout', [SigninController::class, 'logout1']);
 
 route::post('/logout', [SigninController::class, 'logout2']);
 
-route::get('/', [DashboardController::class, 'index']);
+route::get('/', [DashboardController::class, 'index'])->name('index');
 
 
 

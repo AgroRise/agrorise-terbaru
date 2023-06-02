@@ -30,7 +30,7 @@
 
                 <div class='collapse navbar-collapse navbar-hamburger-delicious'>
                     <ul class='nav navbar-nav side-nav fadeInLeft'>
-                        <li class='toggle-nav visible-lg visible-md visible-sm'><a href="/"><i
+                        <li class='toggle-nav visible-lg visible-md visible-sm'><a href="{{route('index')}}"><i
                                     class='fa fa-lg fa-arrow-left'></i>Beranda</a></li>
                         <li class='dashboard'><a href='#'><i class='fa fa-lg fa-dashboard'></i>Dash</a></li>
                         <li class='active docs'><a href='{{ route('database-pakar') }}'><i

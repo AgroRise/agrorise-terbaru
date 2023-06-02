@@ -56,7 +56,7 @@ https://templatemo.com/tm-588-ebook-landing
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="/">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="{{ route('course') }}">Kursus</a>
