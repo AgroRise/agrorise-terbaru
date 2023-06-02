@@ -53,10 +53,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('course')}}">Kursus</a>
+                            <a class="nav-link click-scroll" href="{{ route('course') }}">Kursus</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
@@ -79,7 +79,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
-                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
+                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
                                 </li>
                                 <li>
@@ -103,6 +103,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profile">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('kursus-saya') }}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -163,14 +164,14 @@
                 <div class="row align-items-stretch justify-content-center no-gutters">
                     <div class="col-md-7">
                         <div class="form h-100 contact-wrap p-5">
-                            <h3 class="text-center">Kalkulator Pupuk Urea</h3>
+                            <h3 class="text-center">Kalkulator Pupuk</h3>
                             <nav class="nav2 mt-3">
                                 <form class="container-fluid justify-content-center">
-                                    <button class="btn btn-outline-success me-2 :hover active "
-                                        type="button">Urea</button>
+                                    <a href="/pupuk-urea"><button class="btn btn-outline-success me-2 :hover active"
+                                            type="button">Urea</button></a>
                                     <a href="/pupuk-kotoran-ayam"><button class="btn btn-outline-success me-2 "
                                             type="button">Kotoran Ayam</button></a>
-                                    <a href="/pupuk-SP-36"><button class="btn btn-outline-success me-2"
+                                    <a href="/pupuk-SP-36"><button class="btn btn-outline-success me-2 "
                                             type="button">SP-36</button></a>
                                 </form>
                             </nav>
@@ -200,8 +201,19 @@
                                         </div>
                                     </div>
                                     <div class="row justify-content-center">
+                                        <div class="row justify-content-center mt-3 ">
+                                            <p id="notes" style="display: none">Pupuk urea adalah pupuk kimia
+                                                tunggal dengan kandungan nitrogen (N) yang tinggi.
+                                                Kandungan Unsur N yang terdapat dalam 100 kg pupuk urea sebesar 46% kg
+                                                yakni sebanyak 46 kg nitrogen, 0,5 moisture,
+                                                kadar biouret 1%. Nitrogen yang tinggi terkandung dalam pupuk urea
+                                                sangat berguna dalam meningkatkan pertumbuhan dan
+                                                perkembangan tanaman khususnya tanaman yang masih muda.</p>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
                                         <div class="col-md-5 mt-5 form-group text-center">
-                                            <input type="button" value="Hitung" onclick="hpest()"
+                                            <input type="button" value="Hitung" onclick="hpupuk()"
                                                 class="btn btn-block btn-primary rounded-0 py-2 px-4">
                                         </div>
                                         <div class="col-md-5 mt-5 form-group text-center">
@@ -227,23 +239,27 @@
         // Dosis Pestisida (L/Ha)
         var dosis2 = document.getElementById("dosis2");
 
+        var note = document.getElementById("notes")
+
         function getselect() {
             var selector = document.getElementById("selector").value;
             console.log(selector);
         }
 
-        function hpest() {
+        function reset() {
+            var dosis1 = document.getElementById("dosis1").value = "";
+            var dosis2 = document.getElementById("dosis2").value = "";
+            note.style.display = "none";
+        }
+
+        function hpupuk() {
             if (selector.value == "meter") {
                 dosis2.value = Number(luas.value) * 15;
             }
             if (selector.value == "hektar") {
                 dosis1.value = Number(luas.value) * 150;
             }
-        }
-
-        function reset() {
-            var dosis1 = document.getElementById("dosis1").value = "";
-            var dosis2 = document.getElementById("dosis2").value = "";
+            note.style.display = "block";
         }
     </script>
 

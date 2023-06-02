@@ -83,6 +83,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="/profile">Profil</a></li>
+                            <li><a class="dropdown-item" href="{{route('kursus-saya')}}">Kursus Saya</a></li>
                             <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
                             <li>
                                 <hr class="dropdown-divider">

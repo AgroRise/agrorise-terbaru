@@ -19,11 +19,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <link href=" {{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href=" {{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/kalkulator.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/kalkulator.css') }}" rel="stylesheet">
     <!--
 -->
 </head>
@@ -53,7 +53,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text click-scroll" href="#section_2">Kursus</a>
@@ -157,23 +157,23 @@
                     <table>
                         <tr>
                             <td>Nama</td>
-                            <td>{{ $order->name }}</td>
+                            <td> {{ $order->user->username }}</td>
+                        </tr>
+                        <tr>
+                            <td>Nama Kursus</td>
+                            <td> {{ $order->course->judul }}</td>
                         </tr>
                         <tr>
                             <td>No Hp</td>
-                            <td>{{ $order->phone }}</td>
-                        </tr>
-                        <tr>
-                            <td>Alamat</td>
-                            <td>{{ $order->address }}</td>
+                            <td> {{ $order->no_telepon }}</td>
                         </tr>
                         <tr>
                             <td>Total Harga</td>
-                            <td>{{ $order->total_price }}</td>
+                            <td> {{ $order->course->harga }}</td>
                         </tr>
                         <tr>
                             <td>Status</td>
-                            <td>{{ $order->status }}</td>
+                            <td> {{ $order->status }}</td>
                         </tr>
                     </table>
                 </div>

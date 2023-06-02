@@ -22,18 +22,25 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="css/bootstrap-icons.css" rel="stylesheet">
-
-    <link href="css/video.css" rel="stylesheet">
-
+    <link href="{{ asset('css/course.css') }}" rel="stylesheet">
 
 </head>
 
-<body>
+<body className='snippet-body'>
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css"
+        rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js">
+    </script>
+
 
     <main>
         <nav class="navbar navbar-expand-lg">
@@ -76,7 +83,6 @@
                             <a class="nav-link click-scroll" href="#tentang_kami">Tentang Kami</a>
                         </li>
                     </ul>
-
                     @if (Str::length(Auth::guard('pakar')->user()) > 0)
                         <div class="dropdown">
                             <button class="btn btn-transparent dropdown-toggle text-light" type="button"
@@ -85,7 +91,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
-                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Saya</a></li>
+                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
                                 <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
                                 </li>
                                 <li>
@@ -95,7 +101,8 @@
                                     <form action="/logout" method="post">
                                         @csrf
                                         <button type="submit" class="dropdown-item"><i
-                                                class="bi bi-box-arrow-right"></i> Logout</button>
+                                                class="bi bi-box-arrow-right"></i>
+                                            Logout</button>
                                     </form>
                                 </li>
                             </ul>
@@ -108,7 +115,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profile">Profil</a></li>
-                                <li><a class="dropdown-item" href="{{ route('kursus-saya') }}">Kursus Saya</a></li>
+                                <li><a class="dropdown-item" href="{{route('kursus-saya')}}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -130,8 +137,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profileadmin">Profil</a></li>
-                                <li><a class="dropdown-item" href="/file">Database Pengguna</a></li>
-                                <li><a class="dropdown-item" href="/filepakar">Database Pakar</a></li>
+                                <li><a class="dropdown-item" href="{{ route('database-pakar') }}">Database</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -156,50 +162,68 @@
                 </div>
             </div>
         </nav>
-        <div class="containerdesc">
-            <div class="row">
-                <div class="col-6">
-                    <h5>{{ $videos[0]->course->judul }}</h5>
-                    <p class="description">{{ $videos[0]->course->deskripsi }}</p>
+        <div class="container-fluid page-header" style="margin-bottom: -50px;">
+            <div class="container">
+                <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                    <h3 class="display-4 text-white">Kursus</h3>
+                    <div class="d-inline-flex text-white">
+                        <p class="m-0 text-white">Temukan kursus yang anda pilih dan daftarkan diri
+                            Anda</p>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <div class="containercard">
-                        <div class="card-template card-template-1">
-                            <div class="left-part">
-                                <img alt="left-circular-image"
-                                    src="{{ asset('storage/' . old('foto', $videos[0]->course->pakar->foto)) }}"
-                                    width="100%" />
-                            </div>
-                            <div class="right-part">
-                                <p class="profile-name">{{ $videos[0]->course->pakar->nama }}</p>
-                                <p class="profile-work">{{ $videos[0]->course->pakar->pekerjaan }}</p>
+            </div>
+        </div>
+
+
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5">
+                    <h1>Agroindustri</h1>
+                </div>
+                <div class="row">
+                    @forelse($courses as $course)
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="rounded overflow-hidden mb-2">
+                                <div class="profile-img">
+                                    <img src="{{ asset('storage/' . old('images', $course->pakar->foto)) }}"
+                                        alt="Profile Photo">
+                                </div>
+                                <img class="rounded" width="450px" height="300px" style="object-fit: cover;"
+                                    src="{{ asset('storage/' . old('thumbnail', $course->thumbnail)) }}"
+                                    alt="">
+                                <div class="bg-secondary p-4">
+                                    <p class="profile-name">{{ $course->pakar->nama }}</p>
+                                    <p class="profile-work">{{ $course->pakar->pekerjaan }}</p>
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <small class="m-0"><i
+                                                class="fa fa-users text-primary mr-2"></i>{{ $course->jmlh_peserta }}
+                                            Kuota</small>
+                                        <small class="m-0"><i
+                                                class="far fa-clock text-primary mr-2"></i>{{ $course->pertemuan }}
+                                            Pertemuan</small>
+                                    </div>
+                                    <h5>{{ $course->judul }}</h5>
+                                    <small class="m-0">Online</small>
+                                    <div class="border-top mt-4 pt-4">
+                                        <div class="d-flex justify-content-between">
+                                            @if (Str::length(Auth::guard('user')->user()) > 0)
+                                                <button type="button" class="btn btn-primary mb-2"
+                                                    onclick="kirimData({{ $course->id }})">Lihat Video</button>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @empty
+                        <div class="alert alert-danger" role="alert">
+                            Belum ada Kursus
+                        </div>
+                    @endforelse
+
                 </div>
             </div>
         </div>
-
-
-        <div class="containervid">
-            <div class="main-video">
-                @if (!$videos->isEmpty() && array_key_exists(0, $videos->toArray()))
-                    <div class="video">
-                        <video src="{{ $videos[0]->link }}" controls autoplay></video>
-                        <h3 class="title"></h3>
-                    </div>
-                @endif
-            </div>
-            <div class="video-list">
-                @foreach ($videos as $video)
-                    <div class="vid">
-                        <video src="{{ $video->link }}" controls muted></video>
-                        <h3 class="title">{{ $video->title }}</h3>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-
 
         <footer class="contact-section section-padding" id="section_5">
             <div class="container">
@@ -228,25 +252,35 @@
     <script src="js/jquery.sticky.js"></script>
     <script src="js/click-scroll.js"></script>
     <script src="js/custom.js"></script>
-
-    <script>
-        let listvideo = document.querySelectorAll('.video-list .vid')
-        let mainvideo = document.querySelector('.main-video video')
-        let title = document.querySelector('.main-video .title')
-
-        listvideo.forEach(video => {
-            video.onclick = () => {
-                listvideo.forEach(vid => vid.classList.remove('active'));
-                video.classList.add('active');
-                if (video.classList.contains('active')) {
-                    let src = video.children[0].getAttribute('src');
-                    mainvideo.src = src;
-                    let text = video.children[1].innerHTML;
-                    tittle.innerHTML = text;
-                };
-            };
-        });
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'>
     </script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js'>
+    </script>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            @foreach ($courses as $course)
+                $('#smartwizard{{ $course->id }}').smartWizard({
+                    selected: 0,
+                    theme: 'arrows',
+                    autoAdjustHeight: true,
+                    transitionEffect: 'fade',
+                    showStepURLhash: false,
+                });
+            @endforeach
+        });
+
+        function setCourseId(courseId) {
+            selectedCourseId = courseId;
+        }
+
+        function kirimData(courseId) {
+            const url = "{{ route('konten-kursus', ':id') }}".replace(':id', courseId);
+            window.location.href = url;
+        }
+    </script>
+
 </body>
+
+
 
 </html>

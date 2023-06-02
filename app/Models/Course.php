@@ -32,4 +32,9 @@ class Course extends Model
     {
         return 'id';
     }
+
+    public function detailpembayaran()
+    {
+        return $this->hasMany(DetailPembayaran::class);
+    }
 }

@@ -54,11 +54,11 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('course')}}">Course</a>
+                            <a class="nav-link click-scroll" href="{{ route('course') }}">Course</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -83,8 +83,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="/profileadmin">Profil</a></li>
-                            <li><a class="dropdown-item" href="/file">Database Pengguna</a></li>
-                            <li><a class="dropdown-item" href="/filepakar">Database Pakar</a></li>
+                            <li><a class="dropdown-item" href="{{ route('database-pakar') }}">Database</a></li>
                             <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
                             <li>
                                 <hr class="dropdown-divider">

@@ -55,10 +55,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('course')}}">Kursus</a>
+                            <a class="nav-link click-scroll" href="{{ route('course') }}">Kursus</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
@@ -81,7 +81,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
-                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
+                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
                                 </li>
                                 <li>
@@ -105,6 +105,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profile">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('kursus-saya') }}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -183,7 +184,34 @@
                                     </div>
                                 </div>
                                 <div class="row justify-content-center">
-                                    <div class="col-md-5 mt-5 form-group text-center">
+                                    <p id="notes" style="display: none">Defenisi operasional
+                                        variable yang berkaitan dengan
+                                        perhitungan ini sebagai berikut: <br>
+                                        1. Hasil Panen adalah jumlah produk
+                                        yang dihasilkan petani padi berupa
+                                        gabah kering giling (GKG) yang
+                                        diukur dengan kilogram (Kg) untuk
+                                        satu kali panen. <br>
+                                        2. Modal adalah jumlah pengeluaran
+                                        yang dikeluarkan petani secara riil
+                                        dalam menghasilkan padi yang
+                                        diukur dengan Rupiah (Rp). Biaya
+                                        usaha tani diklasifikasikan menjadi
+                                        dua yaitu : biaya tetap (fixed cost)
+                                        dan biaya tidak tetap (variable cost). <br>
+                                        3. Keuntungan bersih petani adalah
+                                        jumlah uang yang diterima petani
+                                        padi dari hasil penjualan gabah
+                                        setelah dikurangi biaya yang
+                                        dikeluarkan dalam setiap kegiatan
+                                        produksi yang diukur dalam Rupiah
+                                        (Rp)
+                                    </p>
+
+
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-5 mt-5 form-group justify-content-center text-center">
                                         <input type="button" value="Hitung" onclick="hkeuntungan()"
                                             class="btn btn-block btn-primary rounded-0 py-2 px-4">
                                     </div>
@@ -198,15 +226,18 @@
         </div>
 
     </main>
+
     <script>
         var modal = document.getElementById("modal");
         var panen = document.getElementById("panen");
         var harga = document.getElementById("harga");
         var hasil = document.getElementById("hasil");
+        var note = document.getElementById("notes")
 
 
         function hkeuntungan() {
             hasil.value = (Number(panen.value) * Number(harga.value)) - Number(modal.value) + ",00"
+            note.style.display = "block";
         }
     </script>
 

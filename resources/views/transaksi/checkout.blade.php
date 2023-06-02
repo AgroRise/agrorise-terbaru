@@ -25,11 +25,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="{{asset('css/kalkulator.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/kalkulator.css') }}" rel="stylesheet">
     <!--
 
 
@@ -62,7 +62,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text click-scroll" href="#section_2">Kursus</a>
@@ -161,30 +161,27 @@
                 <div class="card" style="width: 18rem;">
                     <img src="images/software-engineering-team.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">detail pesanan</h5>
+                        <h5 class="card-title">Detail Pesanan</h5>
                         <table>
                             <tr>
                                 <td>Nama</td>
-                                <td>{{ $order->name }}</td>
+                                <td>  {{ $order->user->username }}</td>
                             </tr>
                             <tr>
                                 <td>No Hp</td>
-                                <td>{{ $order->phone }}</td>
-                            </tr>
-                            <tr>
-                                <td>Alamat</td>
-                                <td>{{ $order->address }}</td>
+                                <td>  {{ $order->no_telepon }}</td>
                             </tr>
                             <tr>
                                 <td>Total Harga</td>
-                                <td>{{ $order->total_price }}</td>
+                                <td>  {{ $order->course->harga }}</td>
                             </tr>
                         </table>
-                        <button class="btn btn-primary" id="pay-button">Bayar</button>  
+                        <button class="btn btn-primary" id="pay-button">Bayar</button>
                     </div>
                 </div>
             </div>
         </div>
+
     </head>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
@@ -196,11 +193,11 @@
         var payButton = document.getElementById('pay-button');
         payButton.addEventListener('click', function() {
             // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-            window.snap.pay('{{$snapToken}}', {
+            window.snap.pay('{{ $snapToken }}', {
                 onSuccess: function(result) {
                     /* You may add your own implementation here */
                     // alert("payment success!");
-                    window.location.href = '/invoice/{{$order->id}}'
+                    window.location.href = '/invoice/{{ $order->id }}'
                     console.log(result);
                 },
                 onPending: function(result) {

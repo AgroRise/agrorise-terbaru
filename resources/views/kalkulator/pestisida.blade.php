@@ -54,11 +54,11 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('course')}}">Kursus</a>
+                            <a class="nav-link click-scroll" href="{{ route('course') }}">Kursus</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -84,7 +84,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
-                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
+                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
                                 </li>>
                                 <li>
@@ -108,6 +108,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profile">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('kursus-saya') }}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -167,26 +168,26 @@
                 <div class="row align-items-stretch justify-content-center no-gutters">
                     <div class="col-md-7">
                         <div class="form h-100 contact-wrap p-5">
-                            <h3 class="text-center">Kalkulator Pestisida</h3>
+                            <h3 class="text-center mb-5">Kalkulator Pestisida</h3>
                             <form class="mb-5" method="post" id="contactForm" name="contactForm">
                                 <div class="row">
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Konsentrasi Aplikasi
                                             (ml/L)</label>
-                                        <input type="tnumberext" class="form-control" id="consent">
+                                        <input type="number" class="form-control" id="consent" required>
                                     </div>
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Luas Lahan (m)</label>
-                                        <input type="number" class="form-control" id="luas">
+                                        <input type="number" class="form-control" id="luas" required>
                                     </div>
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Kapasitas Tangki (L)</label>
-                                        <input type="number" class="form-control" id="vtangki">
+                                        <input type="number" class="form-control" id="vtangki" required>
                                     </div>
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="budget" class="col-form-label">Volume Aplikasi/Semprot
                                             (L/Ha)</label>
-                                        <input type="number" class="form-control" id="vsemprot">
+                                        <input type="number" class="form-control" id="vsemprot" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -214,8 +215,32 @@
                                         <output class="form-control" id="btangki"></output>
                                     </div>
                                 </div>
+                                <div class="row justify-content-center mt-3 ">
+                                    <p id="notes" style="display: none">Cara tepat agar penyemprotan pestisida
+                                        berhasil lihat Pustaka : <br>
+                                        1. Ukuran butiran semprot yang ideal adalah 150 mikron. Butiran yang terlalu
+                                        kecil akan mudah terbawa
+                                        angin. <br>
+                                        2. Lakukan kalibrasi untuk menentukan volume semprot yang akan diberikan. <br>
+                                        3. Berjalanlah dengan kecepatan berjalan yang ideal, yakni 6 km/jam. <br>
+                                        4. Pastikan arah sudut sprayer idealnya adalah 45 ͦ. <br>
+                                        5. Pastikan suhu udara satu atau dua jam setelah penyemprotan harus konstan atau
+                                        turun. Karena jika terlalu panas, maka pestisida akan menguap. <br>
+                                        6. Update dan cek kelembaban udara yang idealnya saat pagi hari. Idealnya
+                                        kelembaban lebih dari 80 %. <br>
+                                        7. Pastikan kecepatan angin ideal adalah 4-6km/jam. Lebih dari itu, pestisida
+                                        akan hilang terbawa angin. <br><br>
+                                        Peralatan yang digunakan dalam pengaplikasian pestisida: <br>
+                                        1. Sesuai dengan alat yang digunakan. Beberapa peralatan aplikasi pestisida
+                                        diantaranya : knapsack sprayer,
+                                        fooging, blower spray, dan fumigasi. <br>
+                                        2. Menggunakan safety treatment (boot sepatu kedap dimana butir-butir semprot
+                                        tidak terkenda kulit kaki,
+                                        baju lengan panjang, dan juga masker), penggunaan kacamata dan juga sarung
+                                        tangan</p>
+                                </div>
                                 <div class="row justify-content-center">
-                                    <div class="col-md-5 mt-5 form-group text-center">
+                                    <div class="col-md-5 mt-5 form-group justify-content-center text-center">
                                         <input type="button" value="Hitung" onclick="hpest()"
                                             class="btn btn-block btn-primary rounded-0 py-2 px-4">
                                     </div>
@@ -248,11 +273,14 @@
         // Banyak tangki yang diperlukan
         var btangki = document.getElementById("btangki");
 
+        var note = document.getElementById("notes")
+
         function hpest() {
             dosis.value = Number(consent.value) * Number(vsemprot.value)
             vpestisida.value = Number(consent.value) * Number(vtangki.value)
             vair.value = Number(vsemprot.value) * Number(luas.value)
             btangki.value = Number(vair.value) / Number(vtangki.value) + "  Tangki"
+            note.style.display = "block";
         }
     </script>
 

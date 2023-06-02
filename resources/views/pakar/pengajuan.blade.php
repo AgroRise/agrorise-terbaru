@@ -84,7 +84,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="/content-course">Tentang Kami</a>
+                            <a class="nav-link click-scroll" href="#tentang_kami">Tentang Kami</a>
                         </li>
                     </ul>
                     <div class="dropdown">

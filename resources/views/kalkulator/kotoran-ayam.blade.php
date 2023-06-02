@@ -51,10 +51,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('course')}}">Kursus</a>
+                            <a class="nav-link click-scroll" href="{{ route('course') }}">Kursus</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
@@ -77,7 +77,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
-                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
+                                <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
                                 </li>
                                 <li>
@@ -101,6 +101,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profile">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('kursus-saya') }}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -160,19 +161,21 @@
                 <div class="row align-items-stretch justify-content-center no-gutters">
                     <div class="col-md-7">
                         <div class="form h-100 contact-wrap p-5">
-                            <h3 class="text-center">Kalkulator Pupuk Kotoran Ayam</h3>
+                            <h3 class="text-center">Kalkulator Pupuk</h3>
                             <nav class="nav2 mt-3">
                                 <form class="container-fluid justify-content-center">
                                     <a href="/pupuk-urea"><button class="btn btn-outline-success me-2 "
                                             type="button">Urea</button></a>
-                                    <button class="btn btn-outline-success me-2 :hover active" type="button">Kotoran
-                                        Ayam</button>
-                                    <a href="/pupuk-SP-36"><button class="btn btn-outline-success me-2"
+                                    <a href="/pupuk-kotoran-ayam"><button
+                                            class="btn btn-outline-success me-2 :hover active" type="button">Kotoran
+                                            Ayam</button></a>
+                                    <a href="/pupuk-SP-36"><button class="btn btn-outline-success me-2 "
                                             type="button">SP-36</button></a>
                                 </form>
                             </nav>
                             <form class="mb-5 mt-4" method="post" id="contactForm" name="contactForm">
                                 <div class="row">
+
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Luas Lahan</label>
                                         <input type="number" class="form-control" id="luas"><br>
@@ -196,8 +199,20 @@
                                         </div>
                                     </div>
                                     <div class="row justify-content-center">
+                                        <div class="row justify-content-center mt-3 ">
+                                            <p id="notes" style="display: none">Pupuk kotoran ayam memiliki
+                                                kandungan hara yang cukup tinggi yakni 2,6% (N),
+                                                2,9% (P), dan 3,4% (K) dengan perbandingan C/N ratio 8,3. Pupuk kandang
+                                                ayam mengandung unsur hara tiga kali lebih
+                                                besar dari pada pupuk kandang lainnya. Lebih lanjut dikemukakan
+                                                kandungan unsur hara dari pupuk kandang ayam lebih
+                                                tinggi karena bagian cair (urine) bercampur dengan bagian padat.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
                                         <div class="col-md-5 mt-5 form-group text-center">
-                                            <input type="button" value="Hitung" onclick="hpest()"
+                                            <input type="button" value="Hitung" onclick="hpupuk()"
                                                 class="btn btn-block btn-primary rounded-0 py-2 px-4">
                                         </div>
                                         <div class="col-md-5 mt-5 form-group text-center">
@@ -206,6 +221,7 @@
                                         </div>
                                     </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -222,18 +238,21 @@
         // Dosis Pestisida (L/Ha)
         var dosis2 = document.getElementById("dosis2");
 
+        var note = document.getElementById("notes")
+
         function getselect() {
             var selector = document.getElementById("selector").value;
             console.log(selector);
         }
 
-        function hpest() {
+        function hpupuk() {
             if (selector.value == "meter") {
                 dosis2.value = Number(luas.value) * 500;
             }
             if (selector.value == "hektar") {
                 dosis1.value = Number(luas.value) * 5000;
             }
+            note.style.display = "block";
         }
 
         function reset() {
