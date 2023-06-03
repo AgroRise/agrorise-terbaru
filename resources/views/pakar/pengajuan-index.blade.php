@@ -54,11 +54,11 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('course')}}">Kursus</a>
+                            <a class="nav-link click-scroll" href="{{ route('course') }}">Kursus</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -131,6 +131,8 @@
                                     <p>Deskripsi {{ $course->deskripsi }}</p>
                                     <p class="col-6">Jumlah Kuota {{ $course->jmlh_peserta }}</p>
                                 </div>
+                                <button type="button" class="btn btn-sm btn-info mb-2"
+                                    onclick="kirimData({{ $course->id }})">Lihat Video</button>
                             </div>
                             @unless ($course->status === 'Disetujui')
                                 <form action="{{ route('pengajuan-destroy', $course->id) }}" method="post">
@@ -169,6 +171,29 @@
     <script src="js/jquery.sticky.js"></script>
     <script src="js/click-scroll.js"></script>
     <script src="js/custom.js"></script>
+
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            @foreach ($courses as $course)
+                $('#smartwizard{{ $course->id }}').smartWizard({
+                    selected: 0,
+                    theme: 'arrows',
+                    autoAdjustHeight: true,
+                    transitionEffect: 'fade',
+                    showStepURLhash: false,
+                });
+            @endforeach
+        });
+
+        function setCourseId(courseId) {
+            selectedCourseId = courseId;
+        }
+
+        function kirimData(courseId) {
+            const url = "{{ route('konten-kursus', ':id') }}".replace(':id', courseId);
+            window.location.href = url;
+        }
+    </script>
 
 </body>
 

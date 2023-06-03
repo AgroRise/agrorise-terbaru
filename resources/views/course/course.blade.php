@@ -115,7 +115,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profile">Profil</a></li>
-                                <li><a class="dropdown-item" href="{{route('kursus-saya')}}">Kursus Saya</a></li>
+                                <li><a class="dropdown-item" href="{{ route('kursus-saya') }}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -183,43 +183,60 @@
                 <div class="row">
                     @forelse($courses as $course)
                         @if ($course->status === 'Disetujui')
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="rounded overflow-hidden mb-2">
-                                    <div class="profile-img">
-                                        <img src="{{ asset('storage/' . old('images', $course->pakar->foto)) }}"
-                                            alt="Profile Photo">
-                                    </div>
-                                    <img class="rounded" width="450px" height="300px" style="object-fit: cover;"
-                                        src="{{ asset('storage/' . old('thumbnail', $course->thumbnail)) }}"
-                                        alt="">
-                                    <div class="bg-secondary p-4">
-                                        <p class="profile-name">{{ $course->pakar->nama }}</p>
-                                        <p class="profile-work">{{ $course->pakar->pekerjaan }}</p>
-                                        <div class="d-flex justify-content-between mb-3">
-                                            <small class="m-0"><i
-                                                    class="fa fa-users text-primary mr-2"></i>{{ $course->jmlh_peserta }}
-                                                Kuota</small>
-                                            <small class="m-0"><i
-                                                    class="far fa-clock text-primary mr-2"></i>{{ $course->pertemuan }}
-                                                Pertemuan</small>
+                            @php
+                                $user = Auth::guard('user')->user();
+                                $isPaid = $user
+                                    ? $user->detailpembayaran
+                                        ->where('course_id', $course->id)
+                                        ->where('status', 'Paid')
+                                        ->first()
+                                    : null;
+                            @endphp
+
+                            @if ($isPaid === null)
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="rounded overflow-hidden mb-2">
+                                        <div class="profile-img">
+                                            <img src="{{ asset('storage/' . old('images', $course->pakar->foto)) }}"
+                                                alt="Profile Photo">
                                         </div>
-                                        <h5>{{ $course->judul }}</h5>
-                                        <small class="m-0">Online</small>
-                                        <div class="border-top mt-4 pt-4">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="m-0 mr-2">Harga Rp. {{ $course->harga }}</p>
-                                                @if (Str::length(Auth::guard('user')->user()) > 0)
-                                                    <button class="button-3" role="button" data-toggle="modal"
-                                                        data-target="#exampleModal{{ $course->id }}"
-                                                        onclick="setCourseId({{ $course->id }})">
-                                                        Daftar
-                                                    </button>
-                                                @endif
+                                        <img class="rounded" width="450px" height="300px"
+                                            style="object-fit: cover;"
+                                            src="{{ asset('storage/' . old('thumbnail', $course->thumbnail)) }}"
+                                            alt="">
+                                        <div class="bg-secondary p-4">
+                                            <p class="profile-name">{{ $course->pakar->nama }}</p>
+                                            <p class="profile-work">{{ $course->pakar->pekerjaan }}</p>
+                                            <div class="d-flex justify-content-between mb-3">
+                                                <small class="m-0"><i
+                                                        class="fa fa-users text-primary mr-2"></i>{{ $course->jmlh_peserta }}
+                                                    Kuota</small>
+                                                <small class="m-0"><i
+                                                        class="far fa-clock text-primary mr-2"></i>{{ $course->pertemuan }}
+                                                    Pertemuan</small>
+                                            </div>
+                                            <h5>{{ $course->judul }}</h5>
+                                            <small class="m-0">Online</small>
+                                            <div class="border-top mt-4 pt-4">
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="m-0 mr-2">Harga Rp. {{ $course->harga }}</p>
+                                                    @if (Auth::guard('user')->check() && $user)
+                                                        @if ($isPaid)
+                                                            <p>Paid</p>
+                                                        @else
+                                                            <button class="button-3" role="button"
+                                                                data-toggle="modal"
+                                                                data-target="#exampleModal{{ $course->id }}">
+                                                                Daftar
+                                                            </button>
+                                                        @endif
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         @endif
                     @empty
                         <div class="alert alert-danger" role="alert">
@@ -230,7 +247,7 @@
             </div>
         </div>
 
-        @if (Str::length(Auth::guard('user')->user()) > 0)
+        @if (Auth::guard('user')->check())
             @foreach ($courses as $course)
                 <div class="modal fade" id="exampleModal{{ $course->id }}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel{{ $course->id }}" aria-hidden="true">
@@ -258,21 +275,14 @@
                                                 <div class="col-md-6">
                                                     <label for="">Nama</label>
                                                     <input type="text" class="form-control" readonly
-                                                        placeholder="{{ old('username', Auth::guard('user')->user()->username) }}">
+                                                        placeholder="{{ Auth::guard('user')->user()->username }}">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="">Email</label>
                                                     <input type="text" class="form-control" readonly
-                                                        placeholder="{{ old('email', Auth::guard('user')->user()->email) }}">
+                                                        placeholder="{{ Auth::guard('user')->user()->email }}">
                                                 </div>
                                             </div>
-                                            {{-- <div class="row mt-3">
-                                                <div class="col-md-12">
-                                                    <label for="">Nomor WhatsApp</label>
-                                                    <input type="number" class="form-control" placeholder=""
-                                                        required>
-                                                </div>
-                                            </div> --}}
                                         </div>
                                         <div id="step-2{{ $course->id }}">
                                             <div class="row">
@@ -308,15 +318,18 @@
                                                 </div>
                                                 <form action="{{ route('detail-pembayaran') }}" method="POST">
                                                     @csrf
-                                                    <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                                    <input type="hidden" name="course_id"
+                                                        value="{{ $course->id }}">
                                                     <div class="col-md-12">
                                                         <label for="">Nomor WhatsApp</label>
-                                                        <input type="number" class="form-control" name="no_telepon" placeholder="" required>
+                                                        <input type="number" class="form-control" name="no_telepon"
+                                                            placeholder="" required>
                                                     </div>
-                                                    <input type="hidden" name="user_id" value="{{ Auth::guard('user')->user()->id }}">
-                                                    <button type="submit" class="btn btn-primary mb-2">Kirim</button>
+                                                    <input type="hidden" name="user_id"
+                                                        value="{{ Auth::guard('user')->user()->id }}">
+                                                    <button type="submit"
+                                                        class="btn btn-primary col-12">Kirim</button>
                                                 </form>
-                                                
                                             </div>
                                         </div>
                                     </div>
@@ -327,6 +340,10 @@
                 </div>
             @endforeach
         @endif
+
+
+
+
         <footer class="contact-section section-padding" id="section_5">
             <div class="container">
                 <div class="row">

@@ -103,7 +103,7 @@ class ProfileController extends Controller
             $file_name = $request->foto->getClientOriginalName();
             $image = $request->foto->storeAs('images', $file_name);
         }
-        
+
         $user->nama = $request->nama;
         $user->username = $request->username;
         $user->no_telepon = $request->no_telepon;
@@ -131,17 +131,6 @@ class ProfileController extends Controller
 
         return view('pakar.profilepakar', compact('regencies', 'pakar'));
     }
-
-
-
-
-
-    // public function show2()
-    // {
-    //     $pakar = Pakar::all();
-
-    //     return view('pakar.profilepakar', compact('pakar'));
-    // }
 
 
     // edit profil admin
@@ -182,5 +171,47 @@ class ProfileController extends Controller
     public function show3()
     {
         return view('admin.profileadmin');
+    }
+
+
+    public function index4()
+    {
+        return view('user.cv-portofolio');
+    }
+
+    public function update4(Request $request)
+    {
+        $validatedData = $request->validate([
+            'cv' => 'required|mimes:pdf',
+            'portofolio' => 'required|mimes:pdf',
+            'status' => 'required'
+        ], [
+            'cv.mimes' => 'File harus berformat PDF',
+            'portofolio.mimes' => 'File harus berformat PDF',
+        ]);
+
+        $status = $validatedData['status'];
+
+        $pakar = Pakar::findOrFail($request->user()->id);
+
+        if ($request->hasFile('cv')) {
+            $cvFile = $request->file('cv');
+            $cvNama = time() . '.' . $cvFile->getClientOriginalExtension();
+            $cvFile->move('cv', $cvNama);
+            $validatedData['cv'] = $cvNama;
+        }
+
+        if ($request->hasFile('portofolio')) {
+            $portofolioFile = $request->file('portofolio');
+            $portofolioNama = time() . '.' . $portofolioFile->getClientOriginalExtension();
+            $portofolioFile->move('portofolio', $portofolioNama);
+            $validatedData['portofolio'] = $portofolioNama;
+        }
+
+        $validatedData['status'] = $status;
+
+        $pakar->update($validatedData);
+
+        return redirect()->route('profilepakar')->with('success', 'CV Dan Portofolio berhasil diperbarui');
     }
 }

@@ -86,15 +86,4 @@ class SignupController extends Controller
 
         return redirect()->route('signin.pakar.index')->with('success', 'Pendaftaran Berhasil! Silahkan Masuk');
     }
-    //fitur baca database di admin
-    // public function user()
-    // {
-    //     $data = User::orderBy('id', 'asc')->paginate(1);
-    //     return view('database.admin-user')->with('data', $data);
-    // }
-    // public function pakar()
-    // {
-    //     $data = Pakar::orderBy('id', 'asc')->paginate(3);
-    //     return view('database.admin-pakar')->with('data', $data);
-    // }
 }

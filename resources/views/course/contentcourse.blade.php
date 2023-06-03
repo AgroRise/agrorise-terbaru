@@ -159,20 +159,26 @@
         <div class="containerdesc">
             <div class="row">
                 <div class="col-6">
-                    <h5>{{ $videos[0]->course->judul }}</h5>
-                    <p class="description">{{ $videos[0]->course->deskripsi }}</p>
+                    @if (!$videos->isEmpty() && isset($videos[0]))
+                        <h5>{{ $videos[0]->course->judul }}</h5>
+                        <p class="description">{{ $videos[0]->course->deskripsi }}</p>
+                    @endif
                 </div>
                 <div class="col-6">
                     <div class="containercard">
                         <div class="card-template card-template-1">
                             <div class="left-part">
-                                <img alt="left-circular-image"
-                                    src="{{ asset('storage/' . old('foto', $videos[0]->course->pakar->foto)) }}"
-                                    width="100%" />
+                                @if (!$videos->isEmpty() && isset($videos[0]))
+                                    <img alt="left-circular-image"
+                                        src="{{ asset('storage/' . old('foto', $videos[0]->course->pakar->foto)) }}"
+                                        width="100%" />
+                                @endif
                             </div>
                             <div class="right-part">
-                                <p class="profile-name">{{ $videos[0]->course->pakar->nama }}</p>
-                                <p class="profile-work">{{ $videos[0]->course->pakar->pekerjaan }}</p>
+                                @if (!$videos->isEmpty() && isset($videos[0]))
+                                    <p class="profile-name">{{ $videos[0]->course->pakar->nama }}</p>
+                                    <p class="profile-work">{{ $videos[0]->course->pakar->pekerjaan }}</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -180,10 +186,9 @@
             </div>
         </div>
 
-
         <div class="containervid">
             <div class="main-video">
-                @if (!$videos->isEmpty() && array_key_exists(0, $videos->toArray()))
+                @if (!$videos->isEmpty() && isset($videos[0]))
                     <div class="video">
                         <video src="{{ $videos[0]->link }}" controls autoplay></video>
                         <h3 class="title"></h3>
@@ -199,6 +204,7 @@
                 @endforeach
             </div>
         </div>
+
 
 
         <footer class="contact-section section-padding" id="section_5">

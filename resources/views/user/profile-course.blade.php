@@ -28,6 +28,14 @@
 
     <link href="{{ asset('css/course.css') }}" rel="stylesheet">
 
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/bg1.jpg), no-repeat center center;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
 </head>
 
 <body className='snippet-body'>
@@ -115,7 +123,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profile">Profil</a></li>
-                                <li><a class="dropdown-item" href="{{route('kursus-saya')}}">Kursus Saya</a></li>
+                                <li><a class="dropdown-item" href="{{ route('kursus-saya') }}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -167,8 +175,7 @@
                 <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
                     <h3 class="display-4 text-white">Kursus</h3>
                     <div class="d-inline-flex text-white">
-                        <p class="m-0 text-white">Temukan kursus yang anda pilih dan daftarkan diri
-                            Anda</p>
+                        <p class="m-0 text-white">Jadilah bagian dari Agroindustri</p>
                     </div>
                 </div>
             </div>

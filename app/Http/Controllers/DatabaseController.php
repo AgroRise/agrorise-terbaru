@@ -17,17 +17,17 @@ class DatabaseController extends Controller
     }
     public function show1()
     {
-        $data = User::orderBy('id', 'asc')->paginate(5);
+        $data = User::orderBy('id', 'desc')->paginate(5);
         return view('database.database-user')->with('data', $data);
     }
     public function show2()
     {
-        $data = Pakar::orderBy('id', 'asc')->paginate(5);
+        $data = Pakar::orderBy('id', 'desc')->paginate(6);
         return view('database.database-pakar', compact('data'));
     }
     public function show3(Request $request)
     {
-        $data = Course::orderBy('id', 'asc')->paginate(5);
+        $data = Course::orderBy('id', 'desc')->paginate(6);
         return view('database.pengajuan-course', compact('data'));
     }
     public function store(Request $request)

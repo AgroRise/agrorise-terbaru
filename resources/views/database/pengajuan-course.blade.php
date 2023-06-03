@@ -33,24 +33,24 @@
                     <ul class='nav navbar-nav side-nav fadeInLeft'>
                         <li class='toggle-nav visible-lg visible-md visible-sm'><a href="{{ route('index') }}"><i
                                     class='fa fa-lg fa-arrow-left'></i>Beranda</a></li>
-                        <li class='dashboard'><a href='#'><i class='fa fa-lg fa-dashboard'></i>Dash</a></li>
+                        {{-- <li class='dashboard'><a href='#'><i class='fa fa-lg fa-dashboard'></i>Dash</a></li> --}}
                         <li class='docs'><a href='{{ route('database-pakar') }}'><i
                                     class='fa fa-lg fa-user'></i>Database
                                 Pakar</a></li>
                         <li class='admin'><a href='{{ route('database-user') }}'><i
-                                    class='fa fa-lg fa-user'></i>Database User</a></li>
+                                    class='fa fa-lg fa-users'></i>Database User</a></li>
                         <li class='divider'>
                             <hr>
                         </li>
                         <li class='active person-lookup'><a href='{{ route('pengajuan-kursus') }}'><i
                                     class='fa fa-lg fa-check-square-o'></i>Pengajuan Kursus</a>
                         </li>
-                        <li class='software-support'><a href='#softwareSupport'><i
+                        {{-- <li class='software-support'><a href='#softwareSupport'><i
                                     class='fa fa-lg fa-question-circle'></i>Support</a></li>
                         <li class='dashboard-updates'><a href='#dashboardUpdates'><i
                                     class='fa fa-lg fa-arrow-up'></i>Updates</a>
-                        </li>
-                        <li class='print'><a><i class='fa fa-lg fa-print'></i>Print</a></li>
+                        </li> --}}
+                        {{-- <li class='print'><a><i class='fa fa-lg fa-sign-out'></i>Logout</a></li> --}}
                     </ul>
                     <ul class='nav navbar-nav navbar-right navbar-user'>
                         <li class='dropdown user-dropdown'>
@@ -95,15 +95,16 @@
                                         <tr>
                                             <th data-field="No">No</th>
                                             <th>Thumbnail</th>
+                                            <th data-field="Tanggal">Tanggal</th>
                                             <th data-field="Judul Kursus">Judul Kursus</th>
                                             <th data-field="Jumlah Peserta">Jumlah Peserta</th>
                                             <th data-field="Pertemuan">Pertemuan</th>
                                             <th data-field="Deskripsi">Deskripsi</th>
-                                            <th data-field="Harga">Harga</th>
+                                            <th data-field="Harga Kursus">Harga Kursus</th>
                                             <th data-field="Nomor Rekening">Nomor Rekening</th>
                                             <th data-field="Nama Pakar">Nama Pakar</th>
                                             <th data-field="Video Kursus">Video Kursus</th>
-                                            <th data-field="Persetujuan">Persetujuan</th>
+                                            <th data-field="Persetujuan Kursus">Persetujuan Kursus</th>
                                             <th data-field="Status">Status</th>
                                         </tr>
                                     </thead>
@@ -114,11 +115,12 @@
                                                 <td><img width="75" height="75"
                                                         src="{{ asset('storage/' . $item->thumbnail) }}"
                                                         alt="Foto"></td>
+                                                <td>{{ $item->updated_at->format('y/m/d') }}</td>
                                                 <td>{{ $item->judul }}</td>
                                                 <td>{{ $item->jmlh_peserta }}</td>
                                                 <td>{{ $item->pertemuan }}</td>
                                                 <td>{{ Str::limit($item->deskripsi, 30) }}</td>
-                                                <td>{{ $item->harga }}</td>
+                                                <td>Rp. {{ $item->harga }}</td>
                                                 <td>{{ $item->no_rekening }}</td>
                                                 <td>{{ $item->pakar->nama }}</td>
                                                 <td>

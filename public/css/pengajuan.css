@@ -737,11 +737,11 @@
   
   body {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    background: url(../images/land.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/BG2.png), no-repeat center center;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-  }
+}
   
   input, button {
     border: none;

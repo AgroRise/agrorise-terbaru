@@ -203,7 +203,7 @@ class CourseController extends Controller
         $params = array(
             'transaction_details' => array(
                 'order_id' => $order->id,
-                'gross_amount' => $order->course->harga + 5000,
+                'gross_amount' => $order->course->harga,
             ),
             'customer_details' => array(
                 'course_id' => $validatedData['course_id'],

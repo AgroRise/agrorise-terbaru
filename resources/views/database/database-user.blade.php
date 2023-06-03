@@ -33,24 +33,24 @@
                     <ul class='nav navbar-nav side-nav fadeInLeft'>
                         <li class='toggle-nav visible-lg visible-md visible-sm'><a href="{{route('index')}}"><i
                                     class='fa fa-lg fa-arrow-left'></i>Beranda</a></li>
-                        <li class='dashboard'><a href='#'><i class='fa fa-lg fa-dashboard'></i>Dash</a></li>
+                        {{-- <li class='dashboard'><a href='#'><i class='fa fa-lg fa-dashboard'></i>Dash</a></li> --}}
                         <li class='docs'><a href='{{ route('database-pakar') }}'><i
                                     class='fa fa-lg fa-user'></i>Database
                                 Pakar</a></li>
                         <li class='active admin'><a href='{{ route('database-user') }}'><i
-                                    class='fa fa-lg fa-user'></i>Database User</a></li>
+                                    class='fa fa-lg fa-users'></i>Database User</a></li>
                         <li class='divider'>
                             <hr>
                         </li>
                         <li class='person-lookup'><a href='{{ route('pengajuan-kursus') }}'><i
                                     class='fa fa-lg fa-check-square-o'></i>Pengajuan Kursus</a>
                         </li>
-                        <li class='software-support'><a href='#softwareSupport'><i
+                        {{-- <li class='software-support'><a href='#softwareSupport'><i
                                     class='fa fa-lg fa-question-circle'></i>Support</a></li>
                         <li class='dashboard-updates'><a href='#dashboardUpdates'><i
                                     class='fa fa-lg fa-arrow-up'></i>Updates</a>
-                        </li>
-                        <li class='print'><a><i class='fa fa-lg fa-print'></i>Print</a></li>
+                        </li> --}}
+                        {{-- <li class='print'><a><i class='fa fa-lg fa-sign-out'></i>Logout</a></li> --}}
                     </ul>
                     <ul class='nav navbar-nav navbar-right navbar-user'>
                         <li class='dropdown user-dropdown'>

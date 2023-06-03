@@ -29,32 +29,12 @@ use App\Http\Controllers\PDFController;
 Route::get('/keuntungan', function () {
     return view('kalkulator/keuntungan');
 });
-Route::get('/tes', function () {
-    return view('course/checkout');
-});
 
 route::post('/logout', [SigninController::class, 'logout1']);
 
 route::post('/logout', [SigninController::class, 'logout2']);
 
 route::get('/', [DashboardController::class, 'index'])->name('index');
-
-
-
-
-route::get('/order', [OrderController::class, 'index']);
-
-route::post('/checkout', [OrderController::class, 'checkout']);
-
-
-
-
-
-
-
-
-
-
 
 
 route::group(['middleware' => ['auth:user,pakar,admin']], function () {
@@ -70,42 +50,44 @@ route::group(['middleware' => ['auth:user,pakar,admin']], function () {
     Route::get('/pupuk-SP-36', function () {
         return view('kalkulator/SP-36');
     });
+    // route profile 3 aktor
     route::get('/profile', [ProfileController::class, 'show1'])->name('profile');
     route::get('/profilepakar', [ProfileController::class, 'show2'])->name('profilepakar');
     route::get('/profileadmin', [ProfileController::class, 'show3'])->name('profileadmin');
-    // route::get('/profilepakar', [ProfileController::class, 'show4'])->name('profilepakar');
+    // route edit pakar dan update
     route::get('/edit-pakar', [ProfileController::class, 'index2']);
     route::patch('/update-pakar', [ProfileController::class, 'update2']);
     route::get('/edit-user', [ProfileController::class, 'index1']);
     route::patch('/update-user', [ProfileController::class, 'update1']);
     route::get('/edit-admin', [ProfileController::class, 'index3']);
     route::patch('/update-admin', [ProfileController::class, 'update3']);
+    route::get('/cv-portofolio', [ProfileController::class, 'index4']);
+    route::post('/cv-portofolio', [ProfileController::class, 'update4']);
+    // route edit password
     route::get('/edit-password-user', [PasswordController::class, 'index1']);
     route::put('/update-password-user', [PasswordController::class, 'update1']);
     route::get('/edit-password-admin', [PasswordController::class, 'index2']);
     route::put('/update-password-admin', [PasswordController::class, 'update2']);
     route::get('/edit-password-pakar', [PasswordController::class, 'index3'])->name('edit-password-pakar');
     route::put('/update-password-pakar', [PasswordController::class, 'update3']);
-    // route::get('/file', [SignupController::class, 'user']);
-    // route::get('/filepakar', [SignupController::class, 'pakar']);
+    // database admin
     route::get('/database', [DatabaseController::class, 'show1']);
     route::get('/database-user', [DatabaseController::class, 'show1'])->name('database-user');
     route::get('/database-pakar', [DatabaseController::class, 'show2'])->name('database-pakar');
     route::get('/pengajuan-kursus', [DatabaseController::class, 'show3'])->name('pengajuan-kursus');
     route::post('/persetujuan-kursus', [DatabaseController::class, 'store'])->name('persetujuan-kursus');
     route::post('/persetujuan-pakar', [DatabaseController::class, 'store1'])->name('persetujuan-pakar');
-
+    // route pengajuan kursus
     route::get('/pengajuan-main', [CourseController::class, 'index'])->name('pengajuan-index');
     route::get('/pengajuan', [CourseController::class, 'create'])->name('pengajuan');
     route::post('/pengajuan', [CourseController::class, 'store'])->name('pengajuan-post');
     route::get('/pengajuan-video', [CourseController::class, 'create1'])->name('pengajuan-video');
     route::delete('/pengajuan-delete/{course}', [CourseController::class, 'destroy'])->name('pengajuan-destroy');
-
+    // route konten kursus
     route::get('/kursus', [CourseController::class, 'show1'])->name('course');
     route::get('/konten-kursus{course}', [CourseController::class, 'show2'])->name('konten-kursus');
-    // route::get('/pengajuan-konten-kursus{course}', [CourseController::class, 'show3'])->name('pengajuan-konten-kursus');
     route::get('/kursus-saya', [CourseController::class, 'show3'])->name('kursus-saya');
-
+    // pembayaran kursus
     route::post('/detail-pembayaran', [CourseController::class, 'checkout'])->name('detail-pembayaran');
     route::get('/invoice/{id}', [CourseController::class, 'invoice']);
 });

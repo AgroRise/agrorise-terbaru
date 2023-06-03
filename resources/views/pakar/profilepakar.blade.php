@@ -54,11 +54,11 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('course')}}">Kursus</a>
+                            <a class="nav-link click-scroll" href="{{ route('course') }}">Kursus</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -121,9 +121,11 @@
                                         <h4>{{ old('username', Auth::guard('pakar')->user()->username) }}</h4>
                                         @if (Auth::guard('pakar')->user()->status === 'Disetujui')
                                             <h6 class="text-success">Pendaftaran Disetujui</h6>
-                                        @else
+                                        @elseif(Auth::guard('pakar')->user()->status === 'Ditolak')
                                             <h6 class="text-danger">Pendaftaran Tidak Disetujui</h6>
-                                            <p>Silahkan Daftar Ulang CV dan Portofolio Anda</p>
+                                            <p>Silahkan Daftar Ulang CV dan Portofolio Anda <a href="/cv-portofolio">disini</a></p>
+                                        @else
+                                            <p class="text-warning">Menunggu persetujuan admin</p>
                                         @endif
                                         <form action="/logout" method="post">
                                             @csrf
