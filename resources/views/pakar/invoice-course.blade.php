@@ -202,13 +202,16 @@
         <!--Container-->
         <div id="content" class="container w-full md:w-4/5 xl:w-3/5 mx-auto px-2">
             <!--Title-->
-            <h1
-                class="flex items-center font-sans font-bold break-normal text-indigo-500 px-2 py-8 text-xl md:text-2xl">
-                Pembelian Kursus
-            </h1>
+            <div class="flex justify-center">
+                <h1
+                    class="flex items-center font-sans font-bold break-normal text-yellow-400 px-2 py-8 text-xl md:text-2xl">
+                    Pembelian Kursus
+                </h1>
+            </div>
+
             <!--Card-->
             <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-                <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                <table id="example" class="stripe hover" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                     <thead>
                         <tr>
                             <th data-priority="1">No</th>
@@ -220,18 +223,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Niko Muhamad</td>
-                            <td>Menaman biji semangka</td>
-                            <td>0853272522</td>
-                            <td>Rp. 50000</td>
-                            <td>Paid</td>
-                        </tr>
+                        @foreach ($data as $detail)
+                            @if ($detail->status == 'Paid')
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $detail->user->username }}</td>
+                                    <td>{{ $detail->course->judul }}</td>
+                                    <td>{{ $detail->no_telepon }}</td>
+                                    <td>Rp. {{ $detail->course->harga }}</td>
+                                    <td>{{ $detail->status }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
                     </tbody>
                 </table>
+                {{ $data->links() }}
             </div>
         </div>
+
     </main>
 
     <!-- JAVASCRIPT FILES -->
@@ -249,10 +258,13 @@
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable({
-                responsive: true
+                responsive: true,
+                paging: false, // Menghilangkan pagination
+                info: false // Menghilangkan teks informasi jumlah entri
             }).columns.adjust().responsive.recalc();
         });
     </script>
+
 
 </body>
 

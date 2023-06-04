@@ -34,18 +34,20 @@ class DatabaseController extends Controller
     public function show4(Request $request)
     {
         // 1. Dapatkan ID pengguna yang sedang terautentikasi
-        $userId = Auth::guard('pakar')->user();
+        $userId = Auth::guard('pakar')->id();
 
         // 2. Dapatkan semua detail pembayaran yang sesuai
         $data = DetailPembayaran::whereHas('course', function ($query) use ($userId) {
             $query->where('pakar_id', $userId);
         })
+            ->with('user', 'course')
             ->orderBy('id', 'desc')
-            ->paginate(6);
+            ->paginate(10);
 
         // 3. Tampilkan data-detail pembayaran dalam tampilan
         return view('pakar.invoice-course', compact('data'));
     }
+
 
     public function store(Request $request)
     {

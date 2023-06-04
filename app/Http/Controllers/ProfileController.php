@@ -212,6 +212,6 @@ class ProfileController extends Controller
 
         $pakar->update($validatedData);
 
-        return redirect()->route('profilepakar')->with('success', 'CV Dan Sertifikat berhasil diperbarui');
+        return redirect()->route('profilepakar')->with('success', 'Pengajuan pakar berhasil diperbarui');
     }
 }
