@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\DetailPembayaran;
 use App\Models\Pakar;
 use App\Models\Regency;
 use App\Models\User;
@@ -30,6 +31,22 @@ class DatabaseController extends Controller
         $data = Course::orderBy('id', 'desc')->paginate(6);
         return view('database.pengajuan-course', compact('data'));
     }
+    public function show4(Request $request)
+    {
+        // 1. Dapatkan ID pengguna yang sedang terautentikasi
+        $userId = Auth::guard('pakar')->user();
+
+        // 2. Dapatkan semua detail pembayaran yang sesuai
+        $data = DetailPembayaran::whereHas('course', function ($query) use ($userId) {
+            $query->where('pakar_id', $userId);
+        })
+            ->orderBy('id', 'desc')
+            ->paginate(6);
+
+        // 3. Tampilkan data-detail pembayaran dalam tampilan
+        return view('pakar.invoice-course', compact('data'));
+    }
+
     public function store(Request $request)
     {
         // Validasi input form jika diperlukan

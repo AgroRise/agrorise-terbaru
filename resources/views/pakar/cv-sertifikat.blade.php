@@ -113,9 +113,9 @@
                     <h2 class="mt-5 text-3xl font-bold text-gray-900">
                         Pengajuan Pakar
                     </h2>
-                    <p class="mt-2 text-sm text-gray-400">Unggah CV Dan Portofolio</p>
+                    <p class="mt-2 text-sm text-gray-400">Unggah CV Dan Sertifikaat</p>
                 </div>
-                <form class="mt-8 space-y-3" action="cv-portofolio" method="POST" enctype="multipart/form-data">
+                <form class="mt-8 space-y-3" action="cv-sertifikat" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="grid grid-cols-1 space-y-2">
                         <label class="text-sm font-bold text-gray-500 tracking-wide">
@@ -141,7 +141,7 @@
                     </div>
                     <div class="grid grid-cols-1 space-y-2">
                         <label class="text-sm font-bold text-gray-500 tracking-wide">
-                            Portofolio
+                            Sertifikat
                             <div id="selected-files-2" class="text-xs text-gray-400 mt-1"></div>
                         </label>
                         <div class="flex items-center justify-center w-full">
@@ -155,7 +155,7 @@
                                         file disini <br /> atau <a href="" id=""
                                             class="text-blue-600 hover:underline">Pilih File</a> dari komputer kamu
                                     </p>
-                                    <input type="file" class="hidden" name="portofolio" id="file-input-2"
+                                    <input type="file" class="hidden" name="sertifikat" id="file-input-2"
                                         accept=".pdf" multiple>
                                 </div>
                             </label>

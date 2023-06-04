@@ -61,8 +61,8 @@ route::group(['middleware' => ['auth:user,pakar,admin']], function () {
     route::patch('/update-user', [ProfileController::class, 'update1']);
     route::get('/edit-admin', [ProfileController::class, 'index3']);
     route::patch('/update-admin', [ProfileController::class, 'update3']);
-    route::get('/cv-portofolio', [ProfileController::class, 'index4']);
-    route::post('/cv-portofolio', [ProfileController::class, 'update4']);
+    route::get('/cv-sertifikat', [ProfileController::class, 'index4']);
+    route::post('/cv-sertifikat', [ProfileController::class, 'update4']);
     // route edit password
     route::get('/edit-password-user', [PasswordController::class, 'index1']);
     route::put('/update-password-user', [PasswordController::class, 'update1']);
@@ -77,6 +77,7 @@ route::group(['middleware' => ['auth:user,pakar,admin']], function () {
     route::get('/pengajuan-kursus', [DatabaseController::class, 'show3'])->name('pengajuan-kursus');
     route::post('/persetujuan-kursus', [DatabaseController::class, 'store'])->name('persetujuan-kursus');
     route::post('/persetujuan-pakar', [DatabaseController::class, 'store1'])->name('persetujuan-pakar');
+    route::get('/invoice-course', [DatabaseController::class, 'show4'])->name('invoice-course');
     // route pengajuan kursus
     route::get('/pengajuan-main', [CourseController::class, 'index'])->name('pengajuan-index');
     route::get('/pengajuan', [CourseController::class, 'create'])->name('pengajuan');
@@ -90,6 +91,8 @@ route::group(['middleware' => ['auth:user,pakar,admin']], function () {
     // pembayaran kursus
     route::post('/detail-pembayaran', [CourseController::class, 'checkout'])->name('detail-pembayaran');
     route::get('/invoice/{id}', [CourseController::class, 'invoice']);
+
+
 });
 
 route::group(['middleware' => ['guest:user,pakar,admin']], function () {

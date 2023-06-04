@@ -176,18 +176,18 @@ class ProfileController extends Controller
 
     public function index4()
     {
-        return view('user.cv-portofolio');
+        return view('pakar.cv-sertifikat');
     }
 
     public function update4(Request $request)
     {
         $validatedData = $request->validate([
             'cv' => 'required|mimes:pdf',
-            'portofolio' => 'required|mimes:pdf',
+            'sertifikat' => 'nullable|mimes:pdf',
             'status' => 'required'
         ], [
             'cv.mimes' => 'File harus berformat PDF',
-            'portofolio.mimes' => 'File harus berformat PDF',
+            'sertifikat.mimes' => 'File harus berformat PDF',
         ]);
 
         $status = $validatedData['status'];
@@ -201,17 +201,17 @@ class ProfileController extends Controller
             $validatedData['cv'] = $cvNama;
         }
 
-        if ($request->hasFile('portofolio')) {
-            $portofolioFile = $request->file('portofolio');
-            $portofolioNama = time() . '.' . $portofolioFile->getClientOriginalExtension();
-            $portofolioFile->move('portofolio', $portofolioNama);
-            $validatedData['portofolio'] = $portofolioNama;
+        if ($request->hasFile('sertifikat')) {
+            $sertifikatFile = $request->file('sertifikat');
+            $sertifikatNama = time() . '.' . $sertifikatFile->getClientOriginalExtension();
+            $sertifikatFile->move('sertifikat', $sertifikatNama);
+            $validatedData['sertifikat'] = $sertifikatNama;
         }
 
         $validatedData['status'] = $status;
 
         $pakar->update($validatedData);
 
-        return redirect()->route('profilepakar')->with('success', 'CV Dan Portofolio berhasil diperbarui');
+        return redirect()->route('profilepakar')->with('success', 'CV Dan Sertifikat berhasil diperbarui');
     }
 }

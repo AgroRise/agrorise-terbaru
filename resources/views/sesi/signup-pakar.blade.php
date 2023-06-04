@@ -255,10 +255,10 @@
                                 </div>
                             @enderror
                         </label>
-                        <label>Portofolio (format dalam bentuk .pdf)<br><input type="file" id="portofolio"
-                                class="fadeIn third @error('portofolio') is-invalid @enderror" name="portofolio"
-                                placeholder="Portofolio" accept=".pdf" required>
-                            @error('portofolio')
+                        <label>Portofolio (format dalam bentuk .pdf)<br><input type="file" id="Sertifikat"
+                                class="fadeIn third @error('Sertifikat') is-invalid @enderror" name="sertifikat"
+                                placeholder="Sertifikat" accept=".pdf" >
+                            @error('Sertifikat')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

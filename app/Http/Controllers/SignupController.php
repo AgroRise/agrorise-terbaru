@@ -44,7 +44,7 @@ class SignupController extends Controller
     {
         $provincies = Province::all();
         $regencies = Regency::all();
-        return view('sesi.signup-pakar', compact('provincies','regencies'));
+        return view('sesi.signup-pakar', compact('provincies', 'regencies'));
     }
     public function store2(Request $request)
     {
@@ -61,27 +61,34 @@ class SignupController extends Controller
             'pekerjaan' => 'required',
             'instansi' => 'required',
             'cv' => 'required|mimes:pdf',
-            'portofolio' => 'required|mimes:pdf',
+            'sertifikat' => 'nullable|mimes:pdf',
         ], [
             'password.regex' => ' Mengandung setidaknya 1 huruf besar, 1 huruf kecil, dan 1 angka',
             'username.regex' => 'username tidak boleh spasi',
             'cv.mimes' => 'File harus berformat PDF',
-            'portofolio.mimes' => 'File harus berformat PDF',
+            'sertifikat.mimes' => 'File harus berformat PDF',
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         $cvFile = $request->file('cv');
-        $cvNama = time() . '.' . $cvFile->getClientOriginalExtension();
-        $cvFile->move('cv', $cvNama);
+        if ($cvFile) {
+            $cvNama = time() . '.' . $cvFile->getClientOriginalExtension();
+            $cvFile->move('cv', $cvNama);
+            $validatedData['cv'] = $cvNama;
+        }
 
-        $portofolioFile = $request->file('portofolio');
-        $portofolioNama = time() . '.' . $portofolioFile->getClientOriginalExtension();
-        $portofolioFile->move('portofolio', $portofolioNama);
+        $sertifikatFile = $request->file('sertifikat');
+        $sertifikatNama = null; // Initialize the variable
+        if ($sertifikatFile) {
+            $sertifikatNama = time() . '.' . $sertifikatFile->getClientOriginalExtension();
+            $sertifikatFile->move('sertifikat', $sertifikatNama);
+            $validatedData['sertifikat'] = $sertifikatNama;
+        }
 
         $validatedData['cv'] = $cvNama;
-        $validatedData['portofolio'] = $portofolioNama;
-   
+        $validatedData['sertifikat'] = $sertifikatNama;
+
         Pakar::create($validatedData);
 
         return redirect()->route('signin.pakar.index')->with('success', 'Pendaftaran Berhasil! Silahkan Masuk');

@@ -123,7 +123,7 @@
                                             <h6 class="text-success">Pendaftaran Disetujui</h6>
                                         @elseif(Auth::guard('pakar')->user()->status === 'Ditolak')
                                             <h6 class="text-danger">Pendaftaran Tidak Disetujui</h6>
-                                            <p>Silahkan Daftar Ulang CV dan Portofolio Anda <a href="/cv-portofolio">disini</a></p>
+                                            <p>Silahkan Daftar Ulang CV dan Sertifikat Anda <a href="/cv-sertifikat">disini</a></p>
                                         @else
                                             <p class="text-warning">Menunggu persetujuan admin</p>
                                         @endif

@@ -107,7 +107,7 @@
                                             <th data-field="Kabupaten">Kabupaten</th>
                                             <th data-field="Alamat">Alamat</th>
                                             <th data-field="CV">CV</th>
-                                            <th data-field="Portofolio">Portofolio</th>
+                                            <th data-field="Sertifikat">Sertifikat</th>
                                             <th data-field="Persetujuan Pakar">Persetujuan Pakar</th>
                                             <th data-field="Status">Status</th>
                                         </tr>
@@ -138,7 +138,7 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-secondary btn-sm"
-                                                        href="{{ asset('portofolio/' . $item->portofolio) }}">
+                                                        href="{{ asset('sertifikat/' . $item->sertifikat) }}">
                                                         <button><i class="fa fa-3xs fa-download"></i></button>
                                                     </a>
                                                 </td>
