@@ -69,10 +69,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text click-scroll" href="{{route('course')}}">Kursus</a>
+                            <a class="nav-link text click-scroll" href="{{ route('course') }}">Kursus</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
@@ -95,6 +95,7 @@
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
                             <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Anda</a></li>
+                            <li><a class="dropdown-item" href="{{ route('invoice-course') }}">Pembelian</a></li>
                             <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
                             </li>
                             <li>
@@ -112,7 +113,8 @@
                 </div>
             </div>
         </nav>
-        <form class="snippet-body" action="{{ route('pengajuan-post') }}" method="POST" enctype="multipart/form-data">
+        <form class="snippet-body" action="{{ route('pengajuan-post') }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
             <div class="container">
                 <div class="text-center">
@@ -216,6 +218,12 @@
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="deskripsi">Lihat tata cara unggah ketentuan video </label>
+                                                <button class="text-primary" onclick="openInstructionsWindow()">Disini</button>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mx-auto mb-3">
@@ -335,7 +343,7 @@
             linkInput.setAttribute("type", "text");
             linkInput.setAttribute("name", "link[]");
             linkInput.className = "form-control";
-            linkInput.setAttribute("placeholder", "Masukkan link gdrive");
+            linkInput.setAttribute("placeholder", "Masukkan link Cloudinary");
             linkInput.required = true;
 
             var deleteButton = document.createElement("button");
@@ -382,6 +390,27 @@
                 $(this).val(harga);
             });
         });
+    </script>
+
+    <script>
+        function openInstructionsWindow() {
+            var instructions =
+                `1. Daftar atau masuk ke akun Cloudinary: Buka situs web resmi Cloudinary (cloudinary.com) dan daftar untuk membuat akun baru atau masuk menggunakan akun yang sudah ada.
+  2. Navigasi ke Media Library: Setelah masuk ke akun Anda, navigasikan ke Media Library. Anda akan melihat tampilan galeri yang menampilkan file media yang sudah diunggah sebelumnya.
+  3. Pilih tombol "Upload" atau "Upload assets": Di Media Library, Anda akan menemukan tombol "Upload" atau "Upload assets" yang biasanya berada di sudut kanan atas halaman. 
+  Klik tombol tersebut untuk memulai proses upload.
+  4. Pilih video yang ingin diunggah: Pilih video dari perangkat Anda dengan menelusuri direktori file atau seret dan lepaskan file video ke area upload.
+  5. Tunggu hingga proses upload selesai: Setelah memilih video, Cloudinary akan mulai mengunggah file. Proses ini akan memakan waktu tergantung pada ukuran file dan kecepatan internet Anda.
+  6. Konfigurasi opsi pengunggahan (opsional): Setelah video diunggah, Anda dapat mengkonfigurasi opsi pengunggahan seperti mengatur folder tujuan, 
+  memberikan tag atau metadata, memilih format file output, dan menentukan pengaturan lainnya yang sesuai dengan kebutuhan Anda. Anda dapat menyesuaikan pengaturan ini melalui antarmuka Cloudinary.
+  7. Selesai: Setelah video diunggah dan pengaturan yang diperlukan dikonfigurasi, Cloudinary akan mengelola dan menyimpan video tersebut. Anda dapat mengakses dan menggunakan video 
+  tersebut dengan menggunakan URL yang disediakan oleh Cloudinary.`;
+
+            var instructionsWindow = window.open("", "_blank", "width=1920,height=1080");
+            instructionsWindow.document.write(
+                `<html><head><title>Langkah-langkah Upload Video di Cloudinary</title></head><body><pre>${instructions}</pre></body></html>`
+            );
+        }
     </script>
 
 

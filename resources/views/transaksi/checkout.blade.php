@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -29,12 +29,21 @@
 
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/kalkulator.css') }}" rel="stylesheet">
-    <!--
+    <link href="{{ asset('css/video.css') }}" rel="stylesheet">
 
-
-
--->
+    <style>
+        body {
+            background-image: url('../images/bg23.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding-top: 50px;
+            height: 100vh;
+            z-index: 79;
+            display: flex;
+        }
+    </style>
 </head>
 
 <body>
@@ -65,11 +74,12 @@
                             <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text click-scroll" href="#section_2">Kursus</a>
+                            <a class="text nav-link click-scroll" href="{{ route('course') }}">Kursus</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Keuntungan</a>
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Perhitungan</a>
+
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                 <li><a class="dropdown-item" href="/pupuk-urea">Pupuk</a></li>
                                 <li><a class="dropdown-item" href="/pestisida">Pestisida</a></li>
@@ -77,110 +87,62 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">Tentang Kami</a>
+                            <a class="nav-link click-scroll" href="/#tentang_kami">Tentang Kami</a>
                         </li>
                     </ul>
-                    @if (Str::length(Auth::guard('pakar')->user()) > 0)
-                        <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Hallo, {{ Auth::guard('pakar')->user()->username }}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/profilepakar">Profil</a></li>
-                                <li><a class="dropdown-item" href="/edit-password-pakar">Ubah Password</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <form action="/logout" method="post">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item"><i
-                                                class="bi bi-box-arrow-right"></i> Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    @elseif(Str::length(Auth::guard('user')->user()) > 0)
-                        <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Hallo, {{ Auth::guard('user')->user()->username }}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/profile">Profil</a></li>
-                                <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <form action="/logout" method="post">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item"><i
-                                                class="bi bi-box-arrow-right"></i> Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    @elseif(Str::length(Auth::guard('admin')->user()) > 0)
-                        <div class="dropdown">
-                            <button class="btn btn-transparent dropdown-toggle text-light" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Hallo, {{ Auth::guard('admin')->user()->username }}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/profileadmin">Profil</a></li>
-                                <li><a class="dropdown-item" href="/file">Database Pengguna</a></li>
-                                <li><a class="dropdown-item" href="/filepakar">Database Pakar</a></li>
-                                <li><a class="dropdown-item" href="/edit-password-admin">Ubah Password</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <form action="/logout" method="post">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item"><i
-                                                class="bi bi-box-arrow-right"></i> Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    @else
-                        <div class="d-none d-lg-block">
-                            <a href="/login" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
-                                <i class="btn-icon bi-cloud-download"></i>
-                                <span href="...\PPLARGO\login.php">Masuk</span><!-- duplicated above one for mobile -->
-                            </a>
-                        </div>
-                    @endif
+                    <div class="dropdown">
+                        <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Hallo, {{ Auth::guard('user')->user()->username }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="/profile">Profil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('kursus-saya') }}">Kursus Saya</a></li>
+                            <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i>
+                                        Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
         <div class="content">
-            <div class="container">
-                <div class="card" style="width: 18rem;">
-                    <img src="images/software-engineering-team.jpg" class="card-img-top" alt="...">
+            <div class="container py-5 d-flex justify-content-center align-items-center">
+                <div class="card text-left" style="width: 28rem;">
+                    <img class="rounded" width="448px" height="300px" style="object-fit: cover;"
+                        src="{{ asset('storage/' . old('thumbnail', $order->course->thumbnail)) }}" alt="kursus">
                     <div class="card-body">
-                        <h5 class="card-title">Detail Pesanan</h5>
+                        <h5 class="card-title">Detail Pembayaran</h5>
                         <table>
                             <tr>
                                 <td>Nama</td>
-                                <td>  {{ $order->user->username }}</td>
+                                <td>: {{ $order->user->username }}</td>
                             </tr>
                             <tr>
                                 <td>No Hp</td>
-                                <td>  {{ $order->no_telepon }}</td>
+                                <td>: {{ $order->no_telepon }}</td>
                             </tr>
                             <tr>
                                 <td>Total Harga</td>
-                                <td>  {{ $order->course->harga }}</td>
+                                <td>: Rp. {{ $order->course->harga }}</td>
                             </tr>
                         </table>
-                        <button class="btn btn-primary" id="pay-button">Bayar</button>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-primary btn-lg" id="pay-button">Bayar</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
     </head>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

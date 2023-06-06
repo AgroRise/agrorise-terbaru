@@ -85,6 +85,7 @@
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('profilepakar') }}">Profil</a></li>
                                 <li><a class="dropdown-item" href="{{ route('pengajuan-index') }}">Kursus Saya</a></li>
+                                <li><a class="dropdown-item" href="{{ route('invoice-course') }}">Pembelian</a></li>
                                 <li><a class="dropdown-item" href="{{ route('edit-password-pakar') }}">Ubah Password</a>
                                 </li>>
                                 <li>
