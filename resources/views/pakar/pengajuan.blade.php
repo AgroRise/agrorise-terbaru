@@ -223,7 +223,8 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="deskripsi">Lihat tata cara unggah ketentuan video </label>
-                                                <button class="text-primary" onclick="openInstructionsWindow()">Disini</button>
+                                                <button class="text-primary"
+                                                    onclick="openInstructionsWindow()">Disini</button>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mx-auto mb-3">
@@ -408,7 +409,7 @@
 
             var instructionsWindow = window.open("", "_blank", "width=1920,height=1080");
             instructionsWindow.document.write(
-                `<html><head><title>Langkah-langkah Upload Video di Cloudinary</title></head><body><pre>${instructions}</pre></body></html>`
+                `<html><head><title>Langkah-langkah Unggah Video di Cloudinary</title></head><body><pre>${instructions}</pre></body></html>`
             );
         }
     </script>

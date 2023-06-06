@@ -112,54 +112,46 @@
                         class="btn btn-primary mb-3">Buat Kursus Baru</a>
                 @endif
             </div>
-            @forelse ($courses as $course)
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex align-items-center">
-                                <img width="140px" height="140px"
-                                    src="{{ asset('storage/' . old('thumbnail', $course->thumbnail)) }}" alt="default"
-                                    style="object-fit: cover;">
-                                <div class="ml-3">
-                                    <p>Judul{{ $course->judul }}</p>
-                                    <p class="text-muted">{{ $course->created_at->format('Y-m-d') }} &middot;
-                                        {{ $course->created_at->diffForHumans() }}</p>
-                                    <p class="col-6">Harga {{ $course->harga }}</p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <div class="ml-3">
-                                    <p>Deskripsi {{ $course->deskripsi }}</p>
-                                    <p class="col-6">Jumlah Kuota {{ $course->jmlh_peserta }}</p>
-                                </div>
+            <div class="row">
+                @forelse ($courses as $course)
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="{{ asset('storage/' . old('thumbnail', $course->thumbnail)) }}" alt="thumbnail"
+                                class="card-img-top" style="object-fit: cover; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $course->judul }}</h5>
+                                <p class="text-muted mb-2">{{ $course->created_at->format('Y-m-d') }} &middot;
+                                    {{ $course->created_at->diffForHumans() }}</p>
+                                <p class="card-text">Harga {{ $course->harga }}</p>
                                 <button type="button" class="btn btn-sm btn-info mb-2"
                                     onclick="kirimData({{ $course->id }})">Lihat Video</button>
                             </div>
                             @unless ($course->status === 'Disetujui')
-                                <form action="{{ route('pengajuan-destroy', $course->id) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger"
-                                        onclick="return confirm('Apakah anda yakin untuk menghapus kursus ? ')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
-                                    </button>
-                                </form>
+                                <div class="card-footer">
+                                    <form action="{{ route('pengajuan-destroy', $course->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-block"
+                                            onclick="return confirm('Apakah anda yakin untuk menghapus kursus ? ')">
+                                            Hapus Kursus
+                                        </button>
+                                    </form>
+                                </div>
                             @else
-                                <p class="text-success">Kursus telah disetujui.</p>
+                                <div class="card-footer text-success">Kursus telah disetujui.</div>
                             @endunless
                         </div>
                     </div>
-                </div>
-            @empty
-                <div class="alert alert-danger" role="alert">
-                    Kamu belum Memiliki Kursus
-                </div>
-            @endforelse
+                @empty
+                    <div class="col">
+                        <div class="alert alert-danger" role="alert">
+                            Kamu belum Memiliki Kursus
+                        </div>
+                    </div>
+                @endforelse
+            </div>
         </div>
+
 
 
 
