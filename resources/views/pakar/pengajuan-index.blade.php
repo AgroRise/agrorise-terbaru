@@ -77,7 +77,7 @@
                         </li>
                     </ul>
                     <div class="dropdown">
-                        <button class="btn btn-transparent dropdown-toggle text-light" type="button"
+                        <button class="btn btn-transparent dropdown-toggle text" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Hallo, {{ Auth::guard('pakar')->user()->username }}
                         </button>

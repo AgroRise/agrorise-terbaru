@@ -22,11 +22,14 @@
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/kalkulator.css') }}" rel="stylesheet">
-    <!--
 
 
-
--->
+    <style>
+        .output-field {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 
 <body>
@@ -163,7 +166,6 @@
             </div>
         </nav>
         <div class="content">
-
             <div class="container">
                 <div class="row align-items-stretch justify-content-center no-gutters">
                     <div class="col-md-7">
@@ -174,45 +176,80 @@
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Konsentrasi Aplikasi
                                             (ml/L)</label>
-                                        <input type="number" class="form-control" id="consent" required>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="consent" required
+                                                style="padding-right: 20px; padding-left: 20px;">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">ml/L</span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Luas Lahan (m)</label>
-                                        <input type="number" class="form-control" id="luas" required>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="luas" required
+                                                style="padding-right: 20px; padding-left: 20px;">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">m</span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="" class="col-form-label">Kapasitas Tangki (L)</label>
-                                        <input type="number" class="form-control" id="vtangki" required>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="vtangki" required
+                                                style="padding-right: 20px; padding-left: 20px;">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">L</span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 form-group mb-3">
                                         <label for="budget" class="col-form-label">Volume Aplikasi/Semprot
                                             (L/Ha)</label>
-                                        <input type="number" class="form-control" id="vsemprot" required>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="vsemprot" required
+                                                style="padding-right: 20px; padding-left: 20px;">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">L/Ha</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 form-group mb-3">
                                         <label for="budget" class="col-form-label">Dosis Pestisida (L/Ha)</label>
-                                        <output class="form-control" id="dosis"></output>
+                                        <output class="form-control output-field" id="dosis"></output
+                                            style="padding-right: 10px; padding-left: 10px;">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 form-group mb-3">
                                         <label for="budget" class="col-form-label">Volume Pestisida (mL)</label>
-                                        <output class="form-control" id="vpestisida"></output>
+                                        <output class="form-control output-field" id="vpestisida"
+                                            style="padding-right: 10px; padding-left: 10px;"></output>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 form-group mb-3">
                                         <label for="budget" class="col-form-label">Volume Larutan air (L)</label>
-                                        <output class="form-control" id="vair"></output>
+                                        <output class="form-control output-field" id="vair"
+                                            style="padding-right: 10px; padding-left: 10px;"></output>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 form-group mb-3">
                                         <label for="budget" class="col-form-label">Banyak tangki yang
                                             diperlukan</label>
-                                        <output class="form-control" id="btangki"></output>
+                                        <output class="form-control output-field" id="btangki"
+                                            style="padding-right: 10px; padding-left: 10px;"></output>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 form-group mb-3">
+                                        <label for="budget" class="col-form-label">Volume Insektisida (ml)</label>
+                                        <output class="form-control output-field" id="vinsektisida"
+                                            style="padding-right: 10px; padding-left: 10px;"></output>
                                     </div>
                                 </div>
                                 <div class="row justify-content-center mt-3 ">
@@ -251,7 +288,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
     </main>
@@ -276,10 +312,11 @@
         var note = document.getElementById("notes")
 
         function hpest() {
-            dosis.value = Number(consent.value) * Number(vsemprot.value)
-            vpestisida.value = Number(consent.value) * Number(vtangki.value)
-            vair.value = Number(vsemprot.value) * Number(luas.value)
-            btangki.value = Number(vair.value) / Number(vtangki.value) + "  Tangki"
+            dosis.value = Number(consent.value) * Number(vsemprot.value) / 1000;
+            vpestisida.value = Number(consent.value) * Number(vtangki.value);
+            vair.value = Number(vsemprot.value) * Number(luas.value) / 10000;
+            btangki.value = Math.round(Number(vair.value) / Number(vtangki.value)) + " Tangki";
+            vinsektisida.value = Number(dosis.value) * Number(luas.value) / 10000 * 1000;
             note.style.display = "block";
         }
     </script>

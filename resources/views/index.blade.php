@@ -23,13 +23,18 @@
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/landing.css') }}" rel="stylesheet">
-    <!--
 
-TemplateMo 588 ebook landing
+    <style>
+        .tentang {
+            font-size: 16px;
+            /* Sesuaikan ukuran teks yang diinginkan */
+            color: grey;
+            line-height: 1.5;
+            /* Sesuaikan jarak antarbaris yang diinginkan */
+            text-align: center;
+        }
+    </style>
 
-https://templatemo.com/tm-588-ebook-landing
-
--->
 </head>
 
 <body>
@@ -57,7 +62,7 @@ https://templatemo.com/tm-588-ebook-landing
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto me-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{{route('index')}}">Beranda</a>
+                            <a class="nav-link click-scroll" href="{{ route('index') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="{{ route('course') }}">Kursus</a>
@@ -108,7 +113,7 @@ https://templatemo.com/tm-588-ebook-landing
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/profile">Profil</a></li>
-                                <li><a class="dropdown-item" href="{{route('kursus-saya')}}">Kursus Saya</a></li>
+                                <li><a class="dropdown-item" href="{{ route('kursus-saya') }}">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="/edit-password-user">Ubah Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -290,14 +295,13 @@ https://templatemo.com/tm-588-ebook-landing
         <section class="author-section section-padding" id="tentang_kami">
             <div class="container">
                 <div class="row">
-
-                    <div class="col-lg-6 col-12">
-                        <img src="images/software-engineering-team.jpg" class="author-image img-fluid"
-                            alt="">
+                    <div class="col-lg-6 col-12 my-auto">
+                        <img src="images/fotokami.jpg" class="author-image img-fluid" alt="">
                     </div>
-                    <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                        <h2 class="mb-4">Tentang Kami</h2>
-                        <p>Website AGRORISE merupakan sebuah platform yang dikembangkan oleh Tim Pengembangan Perangkat
+                    <div class="col-lg-6 col-12 mb-5 ">
+                        <h2 class="mb-4 text-center">Tentang Kami</h2>
+                        <h5 class="tentang">Website AGRORISE merupakan sebuah platform yang dikembangkan oleh Tim
+                            Pengembangan Perangkat
                             Lunak untuk AgroIndustri Modern. Tujuan utama dari website ini adalah memberikan bantuan
                             kepada petani dalam mendapatkan informasi tentang perkiraan perhitungan pupuk dan pestisida,
                             serta potensi keuntungan yang dapat diperoleh. Selain itu, sistem ini juga menyediakan
@@ -315,7 +319,7 @@ https://templatemo.com/tm-588-ebook-landing
                             pengetahuan. Dengan demikian, diharapkan petani dapat meningkatkan produktivitas dan
                             keuntungan mereka dalam agroindustri, serta menghadapi tantangan yang dihadapi dengan lebih
                             efektif.
-                        </p>
+                        </h5>
                     </div>
                 </div>
             </div>
