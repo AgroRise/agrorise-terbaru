@@ -50,11 +50,11 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'judul' => 'required|max:50',
+            'judul' => 'required|max:40',
             'thumbnail' => 'required|mimes:png,jpg,jpeg',
             'jmlh_peserta' => 'required',
             'no_rekening' => 'required',
-            'deskripsi' => 'required|max:300',
+            'deskripsi' => 'required|max:500',
             'harga' => 'required',
             'pertemuan' => 'required',
             'title.*' => 'required', // tambahkan validasi untuk judul video

@@ -195,7 +195,7 @@
                         @enderror
                         <input type="text" id="instansi"
                             class="fadeIn third @error('instansi') is-invalid @enderror" name="instansi"
-                            placeholder="Instansi" required>
+                            placeholder="Instansi" >
                         @error('instansi')
                             <div class="invalid-feedback">
                                 {{ $message }}

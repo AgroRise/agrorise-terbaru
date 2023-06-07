@@ -27,6 +27,14 @@
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/course.css') }}" rel="stylesheet">
+    <style>
+        .course-title {
+            font-size: 16px;
+            /* Sesuaikan ukuran teks yang diinginkan */
+        }
+    </style>
+
+
 
 </head>
 
@@ -215,7 +223,7 @@
                                                         class="far fa-clock text-primary mr-2"></i>{{ $course->pertemuan }}
                                                     Pertemuan</small>
                                             </div>
-                                            <h5>{{ $course->judul }}</h5>
+                                            <h5 class="course-title">{{ $course->judul }}</h5>
                                             <small class="m-0">Online</small>
                                             <div class="border-top mt-4 pt-4">
                                                 <div class="d-flex justify-content-between">
@@ -246,6 +254,7 @@
                 </div>
             </div>
         </div>
+
 
         @if (Auth::guard('user')->check())
             @foreach ($courses as $course)
@@ -320,10 +329,10 @@
                                                     @csrf
                                                     <input type="hidden" name="course_id"
                                                         value="{{ $course->id }}">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-12 mb-3">
                                                         <label for="">Nomor WhatsApp</label>
                                                         <input type="number" class="form-control" name="no_telepon"
-                                                            placeholder="" required>
+                                                            placeholder="Masukkan Nomor WhatsApp Anda" required>
                                                     </div>
                                                     <input type="hidden" name="user_id"
                                                         value="{{ Auth::guard('user')->user()->id }}">

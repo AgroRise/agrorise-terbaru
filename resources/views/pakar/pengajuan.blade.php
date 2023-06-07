@@ -128,7 +128,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="judul">Judul *</label>
+                                                <label for="judul">Judul (maks 40 huruf) *</label>
                                                 <input id="judul" type="text" name="judul"
                                                     class="form-control @error('judul') is-invalid @enderror"
                                                     placeholder="Masukkan Judul Kursus" required>
@@ -210,7 +210,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="deskripsi">Deskripsi *</label>
+                                                <label for="deskripsi">Deskripsi (maks 500 huruf) *</label>
                                                 <textarea id="deskripsi" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror"
                                                     placeholder="Deskripsikan Kursus Anda" rows="4" required></textarea>
                                                 @error('deskripsi')
@@ -316,6 +316,11 @@
 
     {{-- menggabungkan 2 form pengajuan dan video --}}
     <script>
+        window.addEventListener("DOMContentLoaded", function() {
+            // Tambahkan event listener ketika halaman dimuat
+            addInputField();
+        });
+
         function addInputField() {
             var container = document.getElementById("video-container");
 
@@ -372,6 +377,7 @@
             container.removeChild(div);
         }
     </script>
+
 
 
     {{-- format harga rupiah --}}

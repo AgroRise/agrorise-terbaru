@@ -82,8 +82,8 @@ class ProfileController extends Controller
             'alamat' => 'required',
             'pendidikan_terakhir' => 'required',
             'pekerjaan' => 'required',
-            'instansi' => 'required',
-            'foto' => 'mimes:jpeg,jpg,png,gif',
+            'instansi' => 'nullable',
+            'foto' => 'nullable|mimes:jpeg,jpg,png,gif',
         ], [
             'username.regex' => 'username tidak boleh spasi',
             'foto.mimes' => 'File foto hanya boleh berekstensi JPEG, JPG, PNG, dan GIF',
@@ -94,6 +94,7 @@ class ProfileController extends Controller
 
         // Menghapus gambar lama jika ada
         $oldImage = Auth::guard('pakar')->user()->foto;
+        $image = null;
         if ($request->hasFile('foto')) {
             // Menghapus gambar lama jika ada
             $oldImage = $user->foto;

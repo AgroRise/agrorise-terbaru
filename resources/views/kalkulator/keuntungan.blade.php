@@ -23,11 +23,14 @@
 
     <link href="{{ asset('css/kalkulator.css') }}" rel="stylesheet">
 
-    <!--
+    <style>
+        .output-field {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+    </style>
 
 
-
--->
 </head>
 
 <body>
@@ -162,54 +165,51 @@
                             <form class="mb-5" method="post" id="contactForm" name="contactForm">
                                 <div class="row">
                                     <div class="col-md-6 form-group mb-3">
-                                        <label for="" class="col-form-label">Modal (Rupiah)</label>
-                                        <input type="number" class="form-control" id="modal">
+                                        <label for="modal" class="col-form-label">Modal (Rupiah)</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input type="number" class="form-control" id="modal" min="0"
+                                                placeholder="Masukkan jumlah modal" autofocus
+                                                style="padding-right: 10px; padding-left: 10px;">
+                                        </div>
                                     </div>
                                     <div class="col-md-6 form-group mb-3">
-                                        <label for="" class="col-form-label">Jumlah Hasil Panen (Kg)</label>
-                                        <input type="number" class="form-control" id="panen">
+                                        <label for="panen" class="col-form-label">Jumlah Hasil Panen (Kg)</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="panen" min="0"
+                                                placeholder="Masukkan jumlah hasil panen"
+                                                style="padding-right: 20px; padding-left: 20px;">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Kg</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12 form-group mb-3">
-                                        <label for="budget" class="col-form-label">Harga Pasar (Rupiah)</label>
-                                        <input type="number" class="form-control" id="harga">
+                                        <label for="harga" class="col-form-label">Harga Pasar (Rupiah)/Kg</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input type="number" class="form-control" id="harga" min="0"
+                                                placeholder="Masukkan harga pasar"
+                                                style="padding-right: 10px; padding-left: 10px;">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12 form-group mb-3">
-                                        <label for="budget" class="col-form-label">Hasil Keuntungan (Rupiah)</label>
-                                        <output class="form-control" id="hasil"></output>
-                                    </div>
+                                <div class="col-md-12 form-group mb-3">
+                                    <label for="hasil" class="col-form-label">Hasil Keuntungan (Rupiah)</label>
+                                    <output class="form-control output-field" id="hasil"
+                                        style="padding-right: 10px; padding-left: 10px;"></output>
                                 </div>
                                 <div class="row justify-content-center">
-                                    <p id="notes" style="display: none">Defenisi operasional
-                                        variable yang berkaitan dengan
-                                        perhitungan ini sebagai berikut: <br>
-                                        1. Hasil Panen adalah jumlah produk
-                                        yang dihasilkan petani padi berupa
-                                        gabah kering giling (GKG) yang
-                                        diukur dengan kilogram (Kg) untuk
-                                        satu kali panen. <br>
-                                        2. Modal adalah jumlah pengeluaran
-                                        yang dikeluarkan petani secara riil
-                                        dalam menghasilkan padi yang
-                                        diukur dengan Rupiah (Rp). Biaya
-                                        usaha tani diklasifikasikan menjadi
-                                        dua yaitu : biaya tetap (fixed cost)
-                                        dan biaya tidak tetap (variable cost). <br>
-                                        3. Keuntungan bersih petani adalah
-                                        jumlah uang yang diterima petani
-                                        padi dari hasil penjualan gabah
-                                        setelah dikurangi biaya yang
-                                        dikeluarkan dalam setiap kegiatan
-                                        produksi yang diukur dalam Rupiah
-                                        (Rp)
-                                    </p>
-
-
+                                    <p id="notes" style="display: none"></p>
                                 </div>
+
                                 <div class="row justify-content-center">
                                     <div class="col-md-5 mt-5 form-group justify-content-center text-center">
                                         <input type="button" value="Hitung" onclick="hkeuntungan()"
@@ -222,8 +222,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
+
 
     </main>
 
@@ -232,11 +233,29 @@
         var panen = document.getElementById("panen");
         var harga = document.getElementById("harga");
         var hasil = document.getElementById("hasil");
-        var note = document.getElementById("notes")
+        var note = document.getElementById("notes");
 
+        function formatRupiah(number) {
+            var formattedNumber = new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR"
+            }).format(number);
+            return formattedNumber;
+        }
 
         function hkeuntungan() {
-            hasil.value = (Number(panen.value) * Number(harga.value)) - Number(modal.value) + ",00"
+            var modalValue = parseFloat(modal.value);
+            var hargaValue = parseFloat(harga.value);
+            var keuntungan = (panen.value * hargaValue) - modalValue;
+
+            hasil.value = formatRupiah(keuntungan);
+
+            if (keuntungan >= 0) {
+                note.innerHTML = "Anda mendapatkan keuntungan sebesar " + formatRupiah(keuntungan);
+            } else {
+                note.innerHTML = "Anda mengalami kerugian sebesar " + formatRupiah(Math.abs(keuntungan));
+            }
+
             note.style.display = "block";
         }
     </script>

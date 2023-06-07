@@ -59,7 +59,7 @@ class SignupController extends Controller
             'alamat' => 'required',
             'pendidikan_terakhir' => 'required',
             'pekerjaan' => 'required',
-            'instansi' => 'required',
+            'instansi' => 'nullable',
             'cv' => 'required|mimes:pdf',
             'sertifikat' => 'nullable|mimes:pdf',
         ], [
